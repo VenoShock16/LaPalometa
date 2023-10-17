@@ -11,15 +11,23 @@ public class TransportCompany
 {
     // TODO definir todos sus campos
     private String name;  //nombre de la compañía
+    private Taxi vehicles;
+    private Passenger passengers;
+    private Passenger assignments;
+    private ArrayList<Passenger> lPassengers;
+    private ArrayList<Taxi> lVehicles;
 
     /**
      * Constructor for objects of class TransportCompany
      */
-    public TransportCompany(String name)
+    public TransportCompany(String name, Taxi vehicles, Passenger passengers, Passenger assignments)
     {
         this.name = name;
-        //TODO implementar el resto del constructor 
-
+        this.vehicles = vehicles;
+        this.passengers = passengers;
+        this.assignments = assignments;
+        lPassengers = new ArrayList<Passenger>();
+        lVehicles = new ArrayList<Taxi>();
     }
 
     /**
@@ -46,9 +54,7 @@ public class TransportCompany
      */
     public List<Taxi> getVehicles()
     {       
-        //TODO implementar el método 
-
-        return null;
+        return lVehicles;
     }
 
     /**
@@ -56,9 +62,7 @@ public class TransportCompany
      */
     public List<Passenger> getPassengers()
     {
-        //TODO implementar el método 
-
-        return null;
+        return lPassengers;
     }
 
     /**
@@ -66,7 +70,7 @@ public class TransportCompany
      */
     public void addVehicle(Taxi vehicle)
     {
-        //TODO implementar el método 
+        lVehicles.add (vehicle);
     }
 
     /**
@@ -75,7 +79,7 @@ public class TransportCompany
      */
     public void addPassenger(Passenger passenger)
     {
-        //TODO implementar el método 
+        lPassengers.add (passenger);
 
     }
 
@@ -86,8 +90,12 @@ public class TransportCompany
      */
     private Taxi scheduleVehicle(Location location)
     {
-        //TODO implementar el método 
-
+    //    int i;
+    //    for (i=0; i<; i++){ // cómo se cual es el valor máximo de la lista?
+    //        if(lVehicles(i).isFree()){
+    //            return lVehicles(i);
+    //        }
+    //    }
         return null;
     }
 
@@ -98,8 +106,17 @@ public class TransportCompany
      */
     public boolean requestPickup(Passenger passenger)
     {
-        //TODO implementar el método 
+        int taxiAux;
+        taxiAux= scheduleVehicle(passenger.getPickup());
+        if (taxiAux== null){
+            return false;
+        }
+        else{
+        taxiAux.setPickupLocation(passenger.getPickup());
+        taxiAux.setTargetLocation(passenger.getDestination());
+        // asignará el objeto Passenger al taxi (en assignments)
         return true;
+        }
     }
 
     /**
@@ -114,5 +131,4 @@ public class TransportCompany
         //TODO el pasajero debe guardar el nombre del taxi que le ha recogido
         //TODO el taxi debe recoger al pasajero
     }
-
 }
