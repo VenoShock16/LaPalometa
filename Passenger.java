@@ -6,8 +6,7 @@
  * @version 2016.02.29
  * @version 2023.10.10 DP classes 
  */
-public class Passenger
-{
+public class Passenger{
     private String name;
     private Location pickup;
     private Location destination;
