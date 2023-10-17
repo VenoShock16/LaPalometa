@@ -1,4 +1,5 @@
 import java.util.*;
+import javax.swing.Box;
 
 /**
  * Model the operation of a taxi company, operating different
@@ -12,22 +13,18 @@ public class TransportCompany
     // TODO definir todos sus campos
     private String name;  //nombre de la compañía
     private Taxi vehicles;
-    private Passenger passengers;
-    private Passenger assignments;
-    private ArrayList<Passenger> lPassengers;
-    private ArrayList<Taxi> lVehicles;
+    private List<Passenger> passengers;
+    private List<Taxi> assignments;
 
     /**
      * Constructor for objects of class TransportCompany
      */
-    public TransportCompany(String name, Taxi vehicles, Passenger passengers, Passenger assignments)
+    public TransportCompany(String name, Taxi vehicles, List<Passenger> passengers, List<Taxi> assignments)
     {
         this.name = name;
         this.vehicles = vehicles;
-        this.passengers = passengers;
-        this.assignments = assignments;
-        lPassengers = new ArrayList<Passenger>();
-        lVehicles = new ArrayList<Taxi>();
+        passengers = new ArrayList<>(passengers);
+        assignments = new ArrayList<>(assignments);
     }
 
     /**
@@ -54,7 +51,7 @@ public class TransportCompany
      */
     public List<Taxi> getVehicles()
     {       
-        return lVehicles;
+        return assignments;
     }
 
     /**
@@ -62,7 +59,7 @@ public class TransportCompany
      */
     public List<Passenger> getPassengers()
     {
-        return lPassengers;
+        return passengers;
     }
 
     /**
@@ -70,7 +67,7 @@ public class TransportCompany
      */
     public void addVehicle(Taxi vehicle)
     {
-        lVehicles.add (vehicle);
+        assignments.add (vehicle);
     }
 
     /**
@@ -79,7 +76,7 @@ public class TransportCompany
      */
     public void addPassenger(Passenger passenger)
     {
-        lPassengers.add (passenger);
+        passengers.add (passenger);
 
     }
 
@@ -90,13 +87,21 @@ public class TransportCompany
      */
     private Taxi scheduleVehicle(Location location)
     {
-    //    int i;
-    //    for (i=0; i<; i++){ // cómo se cual es el valor máximo de la lista?
-    //        if(lVehicles(i).isFree()){
-    //            return lVehicles(i);
-    //        }
-    //    }
-        return null;
+       boolean enc;
+       int i=0;
+       enc= false;
+       while (i< assignments.size() || !enc ){ //como se hace para que retorne segun la posicion
+           if(assignments.get(i).isFree()){
+               enc=true;           
+            }
+           i++;
+       }
+       if (enc= true){
+           return assignments.get(i);
+       }
+       else{
+         return null;  
+       }
     }
 
     /**
