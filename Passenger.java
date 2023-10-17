@@ -11,7 +11,7 @@ public class Passenger
     private String name;
     private Location pickup;
     private Location destination;
-    //incluir campo para el nombre del taxi que lo ha transportado
+    private String taxiName;
 
     /**
      * Constructor for objects of class Passenger
@@ -20,7 +20,7 @@ public class Passenger
      * @param name The passenger's name
      * @throws NullPointerException If either location is null.
      */
-    public Passenger(Location pickup, Location destination, String name)
+    public Passenger(Location pickup, Location destination, String name, String taxiName)
     {
         //TODO modificar el constructor o crear otro constructor si necesario
         if(pickup == null) {
@@ -32,7 +32,7 @@ public class Passenger
         this.pickup = pickup;
         this.destination = destination;
         this.name = name;
-        //incluir inicialización del campo para el nombre del taxi que lo ha transportado
+        this.taxiName = taxiName;
     }
 
     /**
@@ -62,14 +62,29 @@ public class Passenger
     }
     
     
+     /**
+     * @return The pickup location of the passenger.
+     */
+    public Location getPickup()
+    {
+        return pickup;
+    }
     
-    //TODO Debe poder devolver la posición donde hay que recoger al Passenger.
-
-    //TODO Debe poder devolver la localización donde hay que llevar al Passenger.
-
-    //TODO Debe poder modificarse el nombre del taxi usado.
+    /**
+     * @modify The name of the taxi used.
+     */
+    public void setTaxiName(String tName)
+    {
+        this.taxiName= tName;
+    }
     
-    //TODO Debe poder devolver el nombre del taxi usado..
+     /**
+     * @return The name of the taxi used.
+     */
+    public String getTaxiName()
+    {
+        return taxiName;
+    }
     
     
     /**
@@ -77,8 +92,7 @@ public class Passenger
      */
     public String showFinalInfo()
     {
-        // TO DO
-        return "";
+        return "Final passenger information: "+ getName() + " " + destination + " " + getTaxiName() ;
     }
 
 }

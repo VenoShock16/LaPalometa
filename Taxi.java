@@ -8,16 +8,20 @@
 public class Taxi 
 {
     // The Taxi Company of this Taxi.
-    public TransportCompany company;   //TODO cambiar a private
+    private TransportCompany company;   
     // Where the vehicle is.
-    public Location location;     //TODO cambiar a private
+    private Location location;     
     // Where the vehicle is headed.
-    public  Location targetLocation;   //TODO cambiar a private
+    private  Location targetLocation;   
     // Record how often the vehicle has nothing to do.
-    public int idleCount;       //TODO cambiar a private
+    private int idleCount;       
     //name of the taxi
-    public String name; //TODO cambiar a private
-    //TODO añadir campos necesarios
+    private String name; 
+    //passenger of the taxi
+    private Passenger passenger;
+    //number of passengers that are transported by the taxi (in the whole simulation)
+    private int passengersTransported;
+//
 
     /**
      * Constructor of class Vehicle
@@ -155,8 +159,14 @@ public class Taxi
      */
     public boolean isFree()
     {
-        //TODO  implementar este método
-        return true;
+        boolean flag=false;  //bandera
+        //El if checa si tiene por lo menos 1 pasajero,
+        //Si lo tiene aunque tenga uno se considera que el taxi no está libre.
+        //Si tiene 0 estará libre
+        if(passengersTransported==0){
+        flag=true;
+        }
+        return flag;
     }
 
     /**
@@ -164,7 +174,9 @@ public class Taxi
      */
     public void notifyPickupArrival()
     {
-        //TODO  implementar este método
+        //Esto no tengo ni idea, tienes que llamar a ese metodo con un tipo Taxi
+        // y no se donde hay un tipo taxi al que pueda llamar para hacer esa llamada
+        //   company.arrivedAtPickup(taxi); 
     }
 
     /**
@@ -172,7 +184,8 @@ public class Taxi
      */
     public void notifyPassengerArrival(Passenger passenger)
     {
-        //TODO  implementar este método
+        //Me pasa lo mismo q la de arriba
+        //company.arrivedAtDestination(Taxi, passenger);
     }
 
     /**
@@ -181,9 +194,8 @@ public class Taxi
      * @param passenger The passenger.
      */
     public void pickup(Passenger passenger)
-    {
-        //TODO  implementar este método
-
+    {   
+        setTargetLocation(passenger.getDestination());
     }
 
     /**
@@ -191,7 +203,8 @@ public class Taxi
      */
     public void offloadPassenger()
     {
-        //TODO  implementar este método
+        passenger=null; //Limpia la información de passenger para luego asignarle otro pasajero
+        targetLocation=null; //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
     }
 
     /**
@@ -199,8 +212,7 @@ public class Taxi
      */
     public int passengersTransported()
     {
-        //TODO  implementar este método
-        return 1;
+        return passengersTransported;
     }
     
     /**
@@ -208,7 +220,7 @@ public class Taxi
      */
     protected void incrementPassengersTransported()
     {
-        //TODO  implementar este método
+        passengersTransported =passengersTransported +1; //Lo incrementa 1
     }
 
     /**
@@ -217,8 +229,7 @@ public class Taxi
      */
     public int distanceToTheTargetLocation()
     {
-        //TODO  implementar este método
-        return 1;
+        return location.distance(targetLocation);
 
     }
 
@@ -227,7 +238,24 @@ public class Taxi
      */
     public void act()
     {
-        //TODO  implementar este método
+        if(targetLocation==null){
+           idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
+        }
+        else{
+            //Si la siguiente posicion es la misma que la a la que se dirgia y no está lleno
+            //es decir, va recoger a un pasajero:
+            if(location.nextLocation(location)==targetLocation&&isFree()){
+                notifyPickupArrival(); //Notifica que ha recogido un pasajero
+            }
+            //Si la siguiente posicion es la misma que la a la que se dirgia y está lleno
+            //es decir, esta llevando a un destino a un pasajero:
+            if(location.nextLocation(location)==targetLocation&&!isFree()){
+                notifyPassengerArrival(passenger); //Notifica que el pasajero ha llegado a su destino
+                offloadPassenger();
+                incrementPassengersTransported();
+            }
+        
+        }
     }
     
      /**
@@ -236,8 +264,7 @@ public class Taxi
      */
     public String showFinalInfo()
     {
-        //TODO  implementar este método
-        return "";
+        return "Final taxi information: " + getName() + " " + getLocation() + " " + passengersTransported +" "+ getIdleCount();
 
     }
 
