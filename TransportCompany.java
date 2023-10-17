@@ -106,7 +106,7 @@ public class TransportCompany
      */
     public boolean requestPickup(Passenger passenger)
     {
-        int taxiAux;
+        Taxi taxiAux;
         taxiAux= scheduleVehicle(passenger.getPickup());
         if (taxiAux== null){
             return false;
