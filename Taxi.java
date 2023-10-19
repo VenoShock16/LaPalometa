@@ -110,15 +110,22 @@ public class Taxi
     {
         setTargetLocation(location);
     }
-    
-    public void getTransportCompany(TransportCompany company)
+
+     /**
+     * Get the TransportCompany
+     * @return Transport Company of the taxi
+     */
+    public TransportCompany getTransportCompany(TransportCompany company)
     {
-        getTransportCompany(company);
+        return getTransportCompany(company);
     }
     
+    /**
+     * Recieve a company, Set the required company
+     */
      public void setTransportCompany(TransportCompany company)
     {
-        setTransportCompany(company);
+        this.company = company;
     }
     
     /**

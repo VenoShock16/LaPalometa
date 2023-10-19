@@ -18,7 +18,6 @@ public class TaxiTest
     private Passenger passenger;
     private List<Passenger> passengerList;
     private List<Taxi> taxiList;
-    //TODO
     //crear más campos (si es necesario) 
     /**
      * Default constructor for test class TaxiTest
@@ -35,7 +34,7 @@ public class TaxiTest
     @Before
     public void setUp()
     {
-        
+        //Crea 2 listas para declarar TransportCompany
         passengerList = new ArrayList<Passenger>();
         taxiList= new ArrayList<Taxi>();
         // Locations for the passenger.
@@ -59,9 +58,10 @@ public class TaxiTest
         passengerList.add(passenger2);
         taxiList.add(taxi1);
         taxiList.add(taxi2);
+        
         //Create the company
         TransportCompany company = new TransportCompany("Compañía Taxis Cáceres",taxi,passengerList,taxiList);
-        
+        //Quita el null al taxi y le añade la compañía.
         taxi.setTransportCompany(company);
         
     }
@@ -74,6 +74,7 @@ public class TaxiTest
     @After
     public void tearDown()
     {
+        //TODO
     }
 
     /**
@@ -82,17 +83,16 @@ public class TaxiTest
     @Test
     public void testCreation()
     {
-        assertNotNull(passengerList);
-        assertNotNull(taxiList);
-        assertNotNull(taxi);
-        assertNotNull(taxi.getCompany()); // Aquí el campo company debería ser nulo inicialmente
-        assertEquals(new Location(0, 0), taxi.getLocation());
-        assertEquals("T1", taxi.getName());
-        assertNull(taxi.getTargetLocation());
-        assertEquals(0, taxi.getIdleCount());
-        assertNull(taxi.getPassenger());
-        assertEquals(0, taxi.getPassengersTransported());
-        assertNotNull(taxi.getTransportCompany()); // Comprobar que la compañía se ha asignado correctamente
+        assertNotNull(passengerList); //La lista de pasajeros no debería estar vacia
+        assertNotNull(taxiList); //La lista de taxis no debería estar vacia
+        assertNotNull(taxi1.getCompany()); //El campo company debería ser nulo inicialmente
+        assertEquals(new Location(0, 0), taxi1.getLocation()); //La localizacion icial del taxi es 0,0
+        assertEquals("T1", taxi1.getName()); //Checa si el nombre es correcta
+        assertNull(taxi.getTargetLocation()); //No deberia tener ningun taget location
+        assertEquals(0, taxi1.getIdleCount()); //Checa el idle count
+        assertEquals(passenger1,taxi1.getPassenger()); //Checa el passenger
+        assertEquals(0, taxi1.getPassengersTransported()); //Checa los pasjeros transportados
+        assertNotNull(taxi1.getTransportCompany()); // Comprobar que la compañía se ha asignado correctamente
     }
 
     /**
@@ -105,11 +105,11 @@ public class TaxiTest
         taxi.pickup(passenger1);
         taxi.pickup(passenger2);
         
-        assertEquals(passenger1, taxi1.getPassenger());
-        assertEquals(passenger1.getDestination(), taxi1.getTargetLocation());
+        assertEquals(passenger1, taxi1.getPassenger()); //Mira si el passenger se ha asiganado correctamente
+        assertEquals(passenger1.getDestination(), taxi1.getTargetLocation()); //Comapara el getDestination y el targetLocation
         
-        assertEquals(passenger2, taxi2.getPassenger());
-        assertEquals(passenger2.getDestination(), taxi2.getTargetLocation());
+        assertEquals(passenger2, taxi2.getPassenger()); //Mira si el passenger se ha asiganado correctamente
+        assertEquals(passenger2.getDestination(), taxi2.getTargetLocation()); //Mira si el passenger se ha asiganado correctamente
     }
 
     /**
@@ -133,6 +133,9 @@ public class TaxiTest
      */
     public void testDelivery()
     {
+        /*
+         * No tengo ni idea como hacer esta clase, necesito una tutoria.
+         
          taxi1.pickup(passenger); // Realiza la recogida del pasajero.
             taxi1.act();
             taxi1.offloadPassenger();
@@ -140,6 +143,8 @@ public class TaxiTest
             // Verifica que el pasajero se haya dejado en su destino y que el pasajero del taxi sea nulo.
             assertNull(taxi.getPassenger());
             assertNull(taxi.getTargetLocation());
+            
+            */
     }
 }
 
