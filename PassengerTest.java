@@ -15,8 +15,7 @@ public class PassengerTest
     /**
      * Default constructor for test class PassengerTest
      */
-    public PassengerTest()
-    {
+    public PassengerTest(){
     }
 
     /**
@@ -57,11 +56,8 @@ public class PassengerTest
      * Ensure that this method gets and returns the name of the taxi correctly.
      */
     @Test
-    public void testGetTaxiName()
-    {
-        //TODO implementar este método
-        // Testear el método que devuelve el nombre del taxi que ha transportado
-        //al pasajero/a
+    public void testGetTaxiName(){
+        
     }
 
     /**
@@ -69,8 +65,8 @@ public class PassengerTest
      * Ensure that this method gets and returns the pickup location correctly.
      */
     @Test
-    public void testGetPickupLocation ()
-    {
+    public void testGetPickupLocation (){
+        
         //TODO implementar este método
         // Testear el método que devuelve la dirección de recogida del objeto.
     }
