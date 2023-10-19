@@ -12,10 +12,17 @@ import org.junit.Test;
  */
 public class PassengerTest
 {
+    private String name;
+    private Location pickup;
+    private Location destination;
+    private String taxiName;
+    private Passenger passenger;
+
+  
     /**
      * Default constructor for test class PassengerTest
      */
-    public PassengerTest(){
+    public PassengerTest(){  
     }
 
     /**
@@ -26,6 +33,10 @@ public class PassengerTest
     @Before
     public void setUp()
     {
+        name= "Leo Xian Li";
+        pickup= new Location(1,1);
+        destination=new Location(2,2);
+        taxiName="FakeTaxi";
     }
 
     /**
@@ -36,6 +47,12 @@ public class PassengerTest
     @After
     public void tearDown()
     {
+        name= "";
+        pickup=null;
+        destination=null;
+        taxiName="";
+        passenger=null;
+        
     }
 
     /**
@@ -49,6 +66,13 @@ public class PassengerTest
         //TODO implementar este método
         // Testear la creación correcta de objetos de tipo Passenger comprobando 
         // que la inicialización de campos como dirección de recogida y destino es correcta.
+        
+        passenger = new Passenger(pickup, destination, name, taxiName);
+                
+        assertEquals(name, passenger.getName());
+        assertEquals(pickup, passenger.getPickup());
+        assertEquals(destination, passenger.getDestination());
+        assertEquals(taxiName, passenger.getTaxiName());
     }
 
     /**
@@ -57,7 +81,10 @@ public class PassengerTest
      */
     @Test
     public void testGetTaxiName(){
+        passenger = new Passenger(pickup, destination, name, taxiName);
+
         
+        assertEquals(taxiName, passenger.getTaxiName());    
     }
 
     /**
@@ -66,8 +93,8 @@ public class PassengerTest
      */
     @Test
     public void testGetPickupLocation (){
-        
-        //TODO implementar este método
-        // Testear el método que devuelve la dirección de recogida del objeto.
+        passenger = new Passenger(pickup, destination, name, taxiName);
+
+        assertEquals(pickup, passenger.getPickup());
     }
 }
