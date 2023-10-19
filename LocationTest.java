@@ -14,14 +14,15 @@ public class LocationTest
 {
     Location startLocation;
     Location destination;
-    //TODO
-    //crear más campos (si es necesario) 
+    
+    Location location1;
+    Location location2;
+    Location location3;
 
     /**
      * Default constructor for test class LocationTest
      */
-    public LocationTest()
-    {
+    public LocationTest(){
     }
 
     /**
@@ -34,9 +35,11 @@ public class LocationTest
     {
         startLocation = new Location(1, 2);
         destination = new Location(2, 2);
+        
+        location1 = new Location(0, 0);
+        location2 = new Location(1, 0);
+        location3 = new Location(4, 4);
 
-        //TODO
-        //Completar (si es necesario) este método
     }
 
     /**
@@ -45,8 +48,14 @@ public class LocationTest
      * Called after every test case method.
      */
     @After
-    public void tearDown()
-    {
+    public void tearDown(){
+        startLocation= null;
+        destination= null;
+        
+        location1= null;
+        location2= null;
+        location3= null;
+        
     }
 
     /**
@@ -55,9 +64,10 @@ public class LocationTest
     @Test
     public void testDistance()
     {
+        //Comprueba la distancia entre start location y otro destino
         assertEquals(startLocation.distance(new Location(5, 7)), 5);
         assertEquals(startLocation.distance(destination), 1);
-        //Utilizando otra aserción:
+        
         assertTrue(startLocation.distance(destination) == 1);
     }
 
@@ -67,9 +77,14 @@ public class LocationTest
     @Test
     public void testAdjacentLocations()
     {
-        //TODO implementar este método
-        // Testear la adyacencia entre dos localizaciones. Se puede hacer 
-        // utilizando llamada al método "nextLocation".
+        //Son adyaccentes
+        Location next;
+        next= location1.nextLocation(location2);
+        assertTrue(location1.areAdjacent(location1, next));
+        
+        //No son adyaccentes
+        next= location1.nextLocation(location3);
+        assertFalse(location1.areAdjacent(location1, next));
 
     }
 }

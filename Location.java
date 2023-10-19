@@ -88,15 +88,8 @@ public class Location
      */
     public int distance(Location destination)
     {
-        int x2= destination.getX()-getX();
-        int y2= destination.getY()-getY();
-        if (x2<0){
-            x2=0-x2;
-        }
-        if (y2<0){
-            y2=0-y2;
-        }
-        
+        int x2= Math.abs(destination.getX()-getX());
+        int y2= Math.abs(destination.getY()-getY());
         if(x2>y2)
         return x2;
         else
@@ -146,5 +139,10 @@ public class Location
       public void setX(int n){
        this.x=n;
    } 
-
+    public boolean areAdjacent(Location l1, Location l2){
+        int posX = Math.abs(l1.getX() - l2.getX());
+        int posY = Math.abs(l1.getY() - l2.getY());
+        return (posX <= 1 && posY <= 1) && (posX + posY == 1);
+        
+   }
 }
