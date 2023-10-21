@@ -51,6 +51,11 @@ public class Taxi
     {
         return name;
     }
+    
+        public Passenger getPassenger()
+    {
+        return passenger;
+    }
 
     /**
      * Get the location.
@@ -115,9 +120,9 @@ public class Taxi
      * Get the TransportCompany
      * @return Transport Company of the taxi
      */
-    public TransportCompany getTransportCompany(TransportCompany company)
+    public TransportCompany getTransportCompany()
     {
-        return getTransportCompany(company);
+        return company;
     }
     
     /**
@@ -227,7 +232,7 @@ public class Taxi
     /**
      * @return how many passengers this vehicle has transported.
      */
-    public int passengersTransported()
+    public int getPassengersTransported()
     {
         return passengersTransported;
     }
@@ -261,16 +266,19 @@ public class Taxi
         else{
             //Si la siguiente posicion es la misma que la a la que se dirgia y no está lleno
             //es decir, va recoger a un pasajero:
-            if(location.nextLocation(location)==targetLocation&&isFree()){
+            if(location.nextLocation(targetLocation)==targetLocation&&isFree()){
                 notifyPickupArrival(); //Notifica que ha recogido un pasajero
             }
             //Si la siguiente posicion es la misma que la a la que se dirgia y está lleno
             //es decir, esta llevando a un destino a un pasajero:
-            if(location.nextLocation(location)==targetLocation&&!isFree()){
+            if(location.nextLocation(targetLocation)==targetLocation&&!isFree()){
                 notifyPassengerArrival(passenger); //Notifica que el pasajero ha llegado a su destino
                 offloadPassenger();
                 incrementPassengersTransported();
             }
+            
+            //Efectua el movimiento
+            setLocation(location.nextLocation(targetLocation));
         
         }
     }
