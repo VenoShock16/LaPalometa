@@ -196,9 +196,7 @@ public class Taxi
      */
     public void notifyPickupArrival()
     {
-        //Esto no tengo ni idea, tienes que llamar a ese metodo con un tipo Taxi
-        // y no se donde hay un tipo taxi al que pueda llamar para hacer esa llamada
-        //   company.arrivedAtPickup(taxi); 
+         company.arrivedAtPickup(this); 
     }
 
     /**
@@ -206,8 +204,7 @@ public class Taxi
      */
     public void notifyPassengerArrival(Passenger passenger)
     {
-        //Me pasa lo mismo q la de arriba
-        //company.arrivedAtDestination(Taxi, passenger);
+        company.arrivedAtDestination(this, passenger);
     }
 
     /**
