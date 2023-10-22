@@ -57,6 +57,12 @@ public class TaxiTest
         Location taxiLocation1 = new Location(0, 0);
         Location taxiLocation2 = new Location(0, 0);
         
+        //Create the company
+        TransportCompany defaultcompany = new TransportCompany("Compañía Taxis Cáceres",/*Estructura que guarda taxis (el null es place holder)<*/null,passengerList,taxiList);
+        /*Aqui falta que el jm arregle la declaracion del transport company
+        * Y poner la coleccion vehicles de taxi sinn nada y luego rellenarla
+        *
+        */
         // Para poder declarar el taxi sin necesitar una compañia he añadido un setCompany a taxi para añadirselo despues.
         taxi1 = new Taxi(null, taxiLocation1,"T1");
         taxi2 = new Taxi(null, taxiLocation2,"T2");
@@ -70,8 +76,6 @@ public class TaxiTest
         taxiList.add(taxi1);
         taxiList.add(taxi2);
         
-        //Create the company
-        TransportCompany company = new TransportCompany("Compañía Taxis Cáceres",taxi1,passengerList,taxiList);
         //Quita el null al taxi y le añade la compañía.
         taxi1.setTransportCompany(company);
         taxi2.setTransportCompany(company);
@@ -116,7 +120,7 @@ public class TaxiTest
         assertEquals("T1", taxi1.getName()); //Checa si el nombre es correcta
         assertNull(taxi1.getTargetLocation()); //No deberia tener ningun taget location
         assertEquals(0, taxi1.getIdleCount()); //Checa el idle count
-        assertEquals(passenger1,taxi1.getPassenger()); //Checa el passenger
+        assertNull(taxi1.getPassenger()); //Checa si no tiene un passenger asigando
         assertEquals(0, taxi1.getPassengersTransported()); //Checa los pasjeros transportados
         assertNotNull(taxi1.getTransportCompany()); // Comprobar que la compañía se ha asignado correctamente
     }
