@@ -5,7 +5,7 @@
  * @version 2016.02.29
  * @version 2023.10.10 DP classes 
  */
-public class Location
+public class Location 
 {
     private int x;  //TODO cambiar a private
     private int y;  //TODO cambiar a private

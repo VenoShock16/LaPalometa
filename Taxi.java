@@ -8,11 +8,11 @@
 public class Taxi 
 {
     // The Taxi Company of this Taxi.
-    private TransportCompany company;   
+    private TransportCompany company;  
     // Where the vehicle is.
     private Location location;     
     // Where the vehicle is headed.
-    private  Location targetLocation;   
+    private  Location targetLocation; 
     // Record how often the vehicle has nothing to do.
     private int idleCount;       
     //name of the taxi
@@ -21,7 +21,6 @@ public class Taxi
     private Passenger passenger;
     //number of passengers that are transported by the taxi (in the whole simulation)
     private int passengersTransported;
-//
 
     /**
      * Constructor of class Vehicle
@@ -29,6 +28,7 @@ public class Taxi
      * @param location The vehicle's starting point. Must not be null.
      * @throws NullPointerException If company or location is null.
      */
+    
     public Taxi(TransportCompany company, Location location, String name)
     {
         if(company == null) {
@@ -50,6 +50,14 @@ public class Taxi
     public String getName()
     {
         return name;
+    }
+    
+        public Passenger getPassenger()
+    {
+        return passenger;
+    }
+    public void asignarPasagero(Passenger p){
+        this.passenger = p;
     }
 
     /**
@@ -109,6 +117,23 @@ public class Taxi
     public void setPickupLocation(Location location)
     {
         setTargetLocation(location);
+    }
+
+     /**
+     * Get the TransportCompany
+     * @return Transport Company of the taxi
+     */
+    public TransportCompany getTransportCompany()
+    {
+        return company;
+    }
+    
+    /**
+     * Recieve a company, Set the required company
+     */
+     public void setTransportCompany(TransportCompany company)
+    {
+        this.company = company;
     }
     
     /**
@@ -174,9 +199,7 @@ public class Taxi
      */
     public void notifyPickupArrival()
     {
-        //Esto no tengo ni idea, tienes que llamar a ese metodo con un tipo Taxi
-        // y no se donde hay un tipo taxi al que pueda llamar para hacer esa llamada
-        //   company.arrivedAtPickup(taxi); 
+         company.arrivedAtPickup(this); 
     }
 
     /**
@@ -184,8 +207,7 @@ public class Taxi
      */
     public void notifyPassengerArrival(Passenger passenger)
     {
-        //Me pasa lo mismo q la de arriba
-        //company.arrivedAtDestination(Taxi, passenger);
+        company.arrivedAtDestination(this, passenger);
     }
 
     /**
@@ -210,7 +232,7 @@ public class Taxi
     /**
      * @return how many passengers this vehicle has transported.
      */
-    public int passengersTransported()
+    public int getPassengersTransported()
     {
         return passengersTransported;
     }
@@ -244,16 +266,19 @@ public class Taxi
         else{
             //Si la siguiente posicion es la misma que la a la que se dirgia y no está lleno
             //es decir, va recoger a un pasajero:
-            if(location.nextLocation(location)==targetLocation&&isFree()){
+            if(location.nextLocation(targetLocation)==targetLocation&&isFree()){
                 notifyPickupArrival(); //Notifica que ha recogido un pasajero
             }
             //Si la siguiente posicion es la misma que la a la que se dirgia y está lleno
             //es decir, esta llevando a un destino a un pasajero:
-            if(location.nextLocation(location)==targetLocation&&!isFree()){
+            if(location.nextLocation(targetLocation)==targetLocation&&!isFree()){
                 notifyPassengerArrival(passenger); //Notifica que el pasajero ha llegado a su destino
                 offloadPassenger();
                 incrementPassengersTransported();
             }
+            
+            //Efectua el movimiento
+            setLocation(location.nextLocation(targetLocation));
         
         }
     }
