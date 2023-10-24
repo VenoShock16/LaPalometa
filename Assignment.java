@@ -2,6 +2,7 @@
 /**
  * Write a description of class assignments here.
  *
+<<<<<<< HEAD
  * @author (your name)
  * @version (a version number or a date)
  */
@@ -52,5 +53,32 @@ public class Assignment
     public Passenger getTaxiAssignment(Passenger passenger){
         return passenger;
 >>>>>>> d9545d9bade08043cf62db58cd7f1d726d5eadf1
+=======
+ * @author (leo chino)
+ * @version (a version number or a date)
+ */
+public class Assignment
+{
+    private Taxi taxi;
+    private Passenger passenger;
+
+    /**
+     * Constructor for objects of class assignments
+     */
+    public Assignment(){
+        taxi= null;
+        passenger= null;
+    }
+    public Assignment(Taxi taxi, Passenger passenger)
+    {
+        this.taxi= taxi;
+        this.passenger= passenger;
+    }
+    public Taxi getTaxiAssignment(Taxi taxi){
+        return taxi;
+    }
+    public Passenger getTaxiAssignment(Passenger passenger){
+        return passenger;
+>>>>>>> cb3497591d425bc224ef854c26cdaff1fe3d5585
     }
 }
