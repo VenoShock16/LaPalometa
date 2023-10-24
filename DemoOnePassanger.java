@@ -106,9 +106,9 @@ public class DemoOnePassanger
         System.out.println("-->> Taxis of the company <<--");
 
         //TODO ordenar y mostrar los taxis
-         Collections.sort(, new ComparadorActors())
+         Collections.sort( company.getVehicles(), new ComparadorNombreTaxi());
         //TODO ordenar y mostrar los pasajero/as
-                                                                      
+         Collections.sort( company.getPassengers(), new ComparadorNombrePassenger());                                                             
         //para ordenar una colección aplicando un comparador, esta sería 
         //la sintaxis (suponiendo que "passengers" es una colección donde
         //la compañía de taxis almacena los pasajero/as):
