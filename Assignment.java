@@ -7,6 +7,7 @@
  */
 public class Assignment
 {
+<<<<<<< HEAD
     // instance variables - replace the example below with your own
     private int x;
 
@@ -29,5 +30,27 @@ public class Assignment
     {
         // put your code here
         return x + y;
+=======
+    private Taxi taxi;
+    private Passenger passenger;
+
+    /**
+     * Constructor for objects of class assignments
+     */
+    public Assignment(){
+        taxi= null;
+        passenger= null;
+    }
+    public Assignment(Taxi taxi, Passenger passenger)
+    {
+        this.taxi= taxi;
+        this.passenger= passenger;
+    }
+    public Taxi getTaxiAssignment(Taxi taxi){
+        return taxi;
+    }
+    public Passenger getTaxiAssignment(Passenger passenger){
+        return passenger;
+>>>>>>> d9545d9bade08043cf62db58cd7f1d726d5eadf1
     }
 }

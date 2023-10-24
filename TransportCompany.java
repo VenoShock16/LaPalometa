@@ -14,7 +14,11 @@ public class TransportCompany
     private String name;  //nombre de la compañía
     private List<Taxi> vehicles;
     private List<Passenger> passengers;
+<<<<<<< HEAD
     private List<Assigment> assignments;
+=======
+    private List<Assignment> assignments;
+>>>>>>> d9545d9bade08043cf62db58cd7f1d726d5eadf1
 
     /**
      * Constructor for objects of class TransportCompany
