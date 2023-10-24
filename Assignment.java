@@ -2,7 +2,7 @@
 /**
  * Write a description of class assignments here.
  *
- * @author (your name)
+ * @author (leo chino)
  * @version (a version number or a date)
  */
 public class Assignment
