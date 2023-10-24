@@ -19,6 +19,18 @@ public class Passenger{
      * @param name The passenger's name
      * @throws NullPointerException If either location is null.
      */
+    
+    public Passenger(Location pickup, Location destination, String name){
+        if(pickup == null) {
+            throw new NullPointerException("Pickup location");
+        }
+        if(destination == null) {
+            throw new NullPointerException("Destination location");
+        }
+        this.pickup = pickup;
+        this.destination = destination;
+        this.name = name;
+    }
     public Passenger(Location pickup, Location destination, String name, String taxiName)
     {
         //TODO modificar el constructor o crear otro constructor si necesario
