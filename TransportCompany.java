@@ -126,7 +126,8 @@ public class TransportCompany
         else{
         taxiAux.setPickupLocation(passenger.getPickup());
         taxiAux.setTargetLocation(passenger.getDestination());
-        assignment.passengerToTaxi(passenger, taxiAux);     // asignará el objeto Passenger al taxi (en assignments)
+        assignment.passengerToTaxi(passenger, taxiAux); // asignará el objeto Passenger al taxi (en assignments)
+        assignments.add(assignment);
         return true;
         }
     }
@@ -136,11 +137,16 @@ public class TransportCompany
      * @param vehicle The vehicle at the pickup point.
      */
     public void arrivedAtPickup(Taxi taxi)
-    {
-        //TODO Obtener el pasajero asignado al taxi y eliminar la asignación correspondiente taxi/pasajero
-        //TODO Descomentar siguiente línea cuando esté el método completamente implementado
-        //System.out.println("<<<< "+taxi + " picks up " + passenger.getName());
-        //TODO el pasajero debe guardar el nombre del taxi que le ha recogido
-        //TODO el taxi debe recoger al pasajero
+    {   
+        Assignment aAux;
+        Passenger pAux;
+        pAux= taxi.getPassenger();
+        if(taxi.getLocation()==pAux.getPickup()){  // Obtener el pasajero asignado al taxi y eliminar la asignación correspondiente taxi/pasajero
+            aAux.passengerToTaxi(pAux, taxi);
+            assignments.remove(aAux);
+            System.out.println("<<<< "+taxi + " picks up " + pAux.getName());
+            pAux.setTaxiName(taxi.getName());   // el pasajero debe guardar el nombre del taxi que le ha recogido
+            taxi.pickup(pAux);  // el taxi debe recoger al pasajero
+        }        
     }
 }
