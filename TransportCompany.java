@@ -96,17 +96,22 @@ public class TransportCompany
        boolean enc;
        int i=0;
        enc= false;
+       Taxi tAux;
+       tAux= null;
+       Assignment aAux;
        while (i< assignments.size() || !enc ){ //como se hace para que retorne segun la posicion
-           if(assignments.get(i).isFree()){
+           aAux= assignments.get(i);
+           tAux= aAux.getTaxiAssignment();
+           if(tAux.isFree()){
                enc=true;           
             }
            i++;
        }
        if (enc= true){
-           return assignments.get(i);
+           return tAux;
        }
        else{
-         return null;  
+         return tAux;  
        }
     }
 
@@ -119,6 +124,7 @@ public class TransportCompany
     {
         Taxi taxiAux;
         Assignment assignment;
+        assignment= null;
         taxiAux= scheduleVehicle(passenger.getPickup());
         if (taxiAux== null){
             return false;
@@ -141,6 +147,7 @@ public class TransportCompany
         Assignment aAux;
         Passenger pAux;
         pAux= taxi.getPassenger();
+        aAux= null;
         if(taxi.getLocation()==pAux.getPickup()){  // Obtener el pasajero asignado al taxi y eliminar la asignación correspondiente taxi/pasajero
             aAux.passengerToTaxi(pAux, taxi);
             assignments.remove(aAux);

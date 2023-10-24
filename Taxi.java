@@ -41,8 +41,7 @@ public class Taxi
         this.location = location;
         targetLocation = null;
         idleCount = 0;
-        //TODO resto de inicializaciones pendientes
-    }
+        }
 
     /**
      * @return the name of the taxi
