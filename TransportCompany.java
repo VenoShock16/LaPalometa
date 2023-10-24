@@ -22,12 +22,12 @@ public class TransportCompany
     public TransportCompany(String name){
         this.name= name;
     }
-    public TransportCompany(String name, List<Taxi> vehicles, List<Passenger> passengers, List<Taxi> assignments)
+    public TransportCompany(String name, List<Taxi> vehicles, List<Passenger> passengers, List<Assignment> assignments)
     {
         this.name = name;
         vehicles = new ArrayList<>(vehicles);
         passengers = new ArrayList<>(passengers);
-        // assignments = new ArrayList<>(assignments);
+        assignments = new ArrayList<>(assignments);
     }
 
     /**
@@ -70,7 +70,7 @@ public class TransportCompany
      */
     public void addVehicle(Taxi vehicle)
     {
-        assignments.add (vehicle);
+        vehicles.add (vehicle);
     }
 
     /**
@@ -115,6 +115,7 @@ public class TransportCompany
     public boolean requestPickup(Passenger passenger)
     {
         Taxi taxiAux;
+        Assignment assignment;
         taxiAux= scheduleVehicle(passenger.getPickup());
         if (taxiAux== null){
             return false;
@@ -122,7 +123,7 @@ public class TransportCompany
         else{
         taxiAux.setPickupLocation(passenger.getPickup());
         taxiAux.setTargetLocation(passenger.getDestination());
-        // asignará el objeto Passenger al taxi (en assignments)
+        assignment.passengerToTaxi(passenger, taxiAux);     // asignará el objeto Passenger al taxi (en assignments)
         return true;
         }
     }

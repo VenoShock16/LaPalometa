@@ -28,6 +28,7 @@ public class Taxi
      * @param location The vehicle's starting point. Must not be null.
      * @throws NullPointerException If company or location is null.
      */
+    
     public Taxi(TransportCompany company, Location location, String name)
     {
         if(company == null) {
@@ -54,6 +55,9 @@ public class Taxi
         public Passenger getPassenger()
     {
         return passenger;
+    }
+    public void asignarPasagero(Passenger p){
+        this.passenger = p;
     }
 
     /**

@@ -13,6 +13,9 @@ public class Assignment
     /**
      * Constructor for objects of class assignments
      */
+    public void passengerToTaxi(Passenger passenger, Taxi taxi){
+        taxi.asignarPasagero(passenger);    
+    }
     public Assignment(){
         taxi= null;
         passenger= null;
