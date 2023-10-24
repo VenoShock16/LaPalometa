@@ -77,14 +77,6 @@ public class TaxiTest
         assigment1 = new Assignment( taxi1,passenger1);
         assigment2 = new Assignment( taxi2,passenger2);
         
-        // Add passengers and taxis to the taxiList and passengerList
-        passengerList.add(passenger1);
-        passengerList.add(passenger2);
-        taxiList.add(taxi1);
-        taxiList.add(taxi2);
-        assignments.add(assigment1);
-        assignments.add(assigment2);
-        
         
     }
 
@@ -131,6 +123,14 @@ public class TaxiTest
         taxi1.asignarPasagero(passenger1);
         taxi2.asignarPasagero(passenger2);
         
+        // Add passengers and taxis to the taxiList and passengerList
+        passengerList.add(passenger1);
+        passengerList.add(passenger2);
+        taxiList.add(taxi1);
+        taxiList.add(taxi2);
+        assignments.add(assigment1);
+        assignments.add(assigment2);
+        
         //Asserts
         assertNotNull(passengerList); //La lista de pasajeros no debería estar vacia
         assertNotNull(taxiList); //La lista de taxis no debería estar vacia
@@ -168,6 +168,14 @@ public class TaxiTest
         taxi1.pickup(passenger1);
         taxi2.pickup(passenger2);
         
+        // Add passengers and taxis to the taxiList and passengerList
+        passengerList.add(passenger1);
+        passengerList.add(passenger2);
+        taxiList.add(taxi1);
+        taxiList.add(taxi2);
+        assignments.add(assigment1);
+        assignments.add(assigment2);
+        
         //Asserts taxi1
         assertEquals(passenger1, taxi1.getPassenger()); //Mira si el passenger se ha asiganado correctamente
         assertEquals(passenger1.getDestination(), taxi1.getTargetLocation()); //Comapara el getDestination y el targetLocation
@@ -199,6 +207,14 @@ public class TaxiTest
         //Asigna los pasajeros al taxi
         taxi1.asignarPasagero(passenger1);
         taxi2.asignarPasagero(passenger2);
+        
+        // Add passengers and taxis to the taxiList and passengerList
+        passengerList.add(passenger1);
+        passengerList.add(passenger2);
+        taxiList.add(taxi1);
+        taxiList.add(taxi2);
+        assignments.add(assigment1);
+        assignments.add(assigment2);
         
             taxi1.act(); //Se mueve hacia el punto de recogida
             taxi1.act(); //Se mueve y Realiza la recogida del pasajero.
@@ -238,9 +254,7 @@ public class TaxiTest
     @Test
     public void testDelivery()
     {
-        
-
-        
+           
         //Create the company
         TransportCompany defaultcompany = new TransportCompany("Compañía Taxis Cáceres",taxiList,passengerList,assignments);
             
@@ -249,13 +263,18 @@ public class TaxiTest
         
         //Asigna los pasajeros al taxi
         taxi1.asignarPasagero(passenger1);
+        
+                // Add passengers and taxis to the taxiList and passengerList
+        passengerList.add(passenger1);
+        taxiList.add(taxi1);
+        assignments.add(assigment1);
     
             taxi1.act(); //Se mueve hacia el punto de recogida
             assertEquals(taxiLocation1.nextLocation(taxi1.getTargetLocation()),passenger1.getPickup()); //Mira si la siguiente posicion es el target location y la pickup del pasajero coinciden
             taxi1.act(); //Se mueve y Realiza la recogida del pasajero.
             
             assertEquals(passenger1, taxi1.getPassenger()); //Mira si el passenger se ha asiganado correctamente
-         //   assertEquals(passenger1.getDestination(), taxi1.getTargetLocation()); //Comapara el getDestination y el targetLocation
+         // assertEquals(passenger1.getDestination(), taxi1.getTargetLocation()); //Comapara el getDestination y el targetLocation
             assertEquals(false, taxi1.isFree()); //Mira si no esta libre el taxi
             
             taxi1.act(); //Se mueve hacia el destino del pasajero
