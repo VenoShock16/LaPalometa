@@ -107,7 +107,10 @@ public class TransportCompany
        }
        else{
          return null;  
+         
        }
+       
+      
     }
 
     /**
@@ -126,8 +129,8 @@ public class TransportCompany
         else{
         taxiAux.setPickupLocation(passenger.getPickup());
         taxiAux.setTargetLocation(passenger.getDestination());
-        assignment.passengerToTaxi(passenger, taxiAux); // asignará el objeto Passenger al taxi (en assignments)
-        assignments.add(assignment);
+         assignment.passengerToTaxi(passenger, taxiAux); // asignará el objeto Passenger al taxi (en assignments)
+         assignments.add(assignment);
         return true;
         }
     }
@@ -142,7 +145,7 @@ public class TransportCompany
         Passenger pAux;
         pAux= taxi.getPassenger();
         if(taxi.getLocation()==pAux.getPickup()){  // Obtener el pasajero asignado al taxi y eliminar la asignación correspondiente taxi/pasajero
-            aAux.passengerToTaxi(pAux, taxi);
+           aAux.passengerToTaxi(pAux, taxi);
             assignments.remove(aAux);
             System.out.println("<<<< "+taxi + " picks up " + pAux.getName());
             pAux.setTaxiName(taxi.getName());   // el pasajero debe guardar el nombre del taxi que le ha recogido
