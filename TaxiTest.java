@@ -20,12 +20,15 @@ public class TaxiTest
     private Passenger passenger2;
     private List<Passenger> passengerList;
     private List<Taxi> taxiList;
+    private List<Assignment> assignments;
     private Location taxiLocation1;
     private Location taxiLocation2;
     private Location pickup1;
     private Location pickup2;
     private Location destination1;
     private Location destination2;
+    private Assignment assigment1;
+    private Assignment assigment2;
     
     private TransportCompany company;
     //crear más campos (si es necesario) 
@@ -58,23 +61,28 @@ public class TaxiTest
         Location taxiLocation2 = new Location(0, 0);
         
         //Create the company
-        TransportCompany defaultcompany = new TransportCompany("Compañía Taxis Cáceres",/*Estructura que guarda taxis (el null es place holder)<*/null,passengerList,taxiList);
-        /*Aqui falta que el jm arregle la declaracion del transport company
-        * Y poner la coleccion vehicles de taxi sinn nada y luego rellenarla
-        *
-        */
+        TransportCompany defaultcompany = new TransportCompany("Compañía Taxis Cáceres",taxiList,passengerList,assignments);
+
         // Para poder declarar el taxi sin necesitar una compañia he añadido un setCompany a taxi para añadirselo despues.
         taxi1 = new Taxi(null, taxiLocation1,"T1");
         taxi2 = new Taxi(null, taxiLocation2,"T2");
         
+        
         // Create 2 new passengers
         Passenger passenger1 = new Passenger(pickup1,destination1,"Nombre1", "T1");
         Passenger passenger2 = new Passenger(pickup2,destination2,"Nombre2", "T2");
+        
+        //Create 2 assigments
+        assigment1 = new Assignment( taxi1,passenger1);
+        assigment2 = new Assignment( taxi2,passenger2);
+        
         // Add passengers and taxis to the taxiList and passengerList
         passengerList.add(passenger1);
         passengerList.add(passenger2);
         taxiList.add(taxi1);
         taxiList.add(taxi2);
+        assignments.add(assigment1);
+        assignments.add(assigment2);
         
         //Quita el null al taxi y le añade la compañía.
         taxi1.setTransportCompany(company);
