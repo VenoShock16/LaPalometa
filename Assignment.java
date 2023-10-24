@@ -25,10 +25,10 @@ public class Assignment
         this.taxi= taxi;
         this.passenger= passenger;
     }
-    public Taxi getTaxiAssignment(Taxi taxi){
+    public Taxi getTaxiAssignment(){
         return taxi;
     }
-    public Passenger getTaxiAssignment(Passenger passenger){
+    public Passenger getPassengerAssignment(){
         return passenger;
     }
 }
