@@ -8,11 +8,11 @@
 public class Taxi 
 {
     // The Taxi Company of this Taxi.
-    private TransportCompany company;   //
+    private TransportCompany company;  
     // Where the vehicle is.
-    private Location location;     //
+    private Location location;     
     // Where the vehicle is headed.
-    private  Location targetLocation;   //
+    private  Location targetLocation; 
     // Record how often the vehicle has nothing to do.
     private int idleCount;       
     //name of the taxi
@@ -21,7 +21,6 @@ public class Taxi
     private Passenger passenger;
     //number of passengers that are transported by the taxi (in the whole simulation)
     private int passengersTransported;
-//
 
     /**
      * Constructor of class Vehicle

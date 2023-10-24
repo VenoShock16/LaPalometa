@@ -12,9 +12,9 @@ public class TransportCompany
 {
     // TODO definir todos sus campos
     private String name;  //nombre de la compañía
-    private Taxi vehicles;
+    private List<Taxi> vehicles;
     private List<Passenger> passengers;
-    private List<Taxi> assignments;
+    // private List<Taxi> assignments;
 
     /**
      * Constructor for objects of class TransportCompany
@@ -22,12 +22,12 @@ public class TransportCompany
     public TransportCompany(String name){
         this.name= name;
     }
-    public TransportCompany(String name, Taxi vehicles, List<Passenger> passengers, List<Taxi> assignments)
+    public TransportCompany(String name, List<Taxi> vehicles, List<Passenger> passengers, List<Taxi> assignments)
     {
         this.name = name;
-        this.vehicles = vehicles;
+        vehicles = new ArrayList<>(vehicles);
         passengers = new ArrayList<>(passengers);
-        assignments = new ArrayList<>(assignments);
+        // assignments = new ArrayList<>(assignments);
     }
 
     /**
@@ -54,7 +54,7 @@ public class TransportCompany
      */
     public List<Taxi> getVehicles()
     {       
-        return assignments;
+        return vehicles;
     }
 
     /**
