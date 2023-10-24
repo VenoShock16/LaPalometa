@@ -21,6 +21,9 @@ public class TransportCompany
      */
     public TransportCompany(String name){
         this.name= name;
+        vehicles = new ArrayList<>();
+        passengers = new ArrayList<>();
+        assignments = new ArrayList<>();
     }
     public TransportCompany(String name, List<Taxi> vehicles, List<Passenger> passengers, List<Assignment> assignments)
     {
