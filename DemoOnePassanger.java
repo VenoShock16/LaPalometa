@@ -104,14 +104,17 @@ public class DemoOnePassanger
 
         System.out.println("--->> Simulation of the company: "+company.getName()+" <<---");
         System.out.println("-->> Taxis of the company <<--");
-
+         // Preguntar de donde son los taxis que hay que mostrar, si de company o de actors
         //TODO ordenar y mostrar los taxis
          Collections.sort( company.getVehicles(), new ComparadorNombreTaxi());
          for (Taxi taxi : company.getVehicles()) {
             System.out.println(taxi);
         }
         //TODO ordenar y mostrar los pasajero/as
-         Collections.sort( company.getPassengers(), new ComparadorNombrePassenger());                                                             
+         Collections.sort( company.getPassengers(), new ComparadorNombrePassenger()); 
+         for (Taxi taxi : company.getVehicles()) {
+            System.out.println(taxi);
+        }
         //para ordenar una colección aplicando un comparador, esta sería 
         //la sintaxis (suponiendo que "passengers" es una colección donde
         //la compañía de taxis almacena los pasajero/as):
