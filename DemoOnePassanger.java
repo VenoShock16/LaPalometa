@@ -106,7 +106,7 @@ public class DemoOnePassanger
         System.out.println("-->> Taxis of the company <<--");
 
         //TODO ordenar y mostrar los taxis
-         Collections.sort( company.getVehicles(), new ComparadorNombreVehicles());
+         Collections.sort( company.getVehicles(), new ComparadorNombreTaxi());
          for (Taxi taxi : company.getVehicles()) {
             System.out.println(taxi);
         }

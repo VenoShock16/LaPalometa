@@ -12,3 +12,4 @@ public class ComparadorNombrePassenger implements Comparator<Passenger>
         return (p1.getName().compareTo(p2.getName()));
     } 
 }
+
