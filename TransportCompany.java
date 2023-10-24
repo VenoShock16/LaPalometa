@@ -99,6 +99,7 @@ public class TransportCompany
        Taxi tAux;
        tAux= null;
        Assignment aAux;
+       this.vehicles.sort(Comparator.comparingInt((Taxi taxi) -> taxi.getLocation().distance(location)).thenComparing(Taxi::getName));
        while (i< assignments.size() || !enc ){ //como se hace para que retorne segun la posicion
            aAux= assignments.get(i);
            tAux= aAux.getTaxiAssignment();
