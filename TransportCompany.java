@@ -19,6 +19,9 @@ public class TransportCompany
     /**
      * Constructor for objects of class TransportCompany
      */
+    public TransportCompany(String name){
+        this.name= name;
+    }
     public TransportCompany(String name, Taxi vehicles, List<Passenger> passengers, List<Taxi> assignments)
     {
         this.name = name;
