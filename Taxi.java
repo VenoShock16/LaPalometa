@@ -39,10 +39,10 @@ public class Taxi
         }
         this.company = company;
         this.location = location;
+        this.name= name;
         targetLocation = null;
         idleCount = 0;
-        //TODO resto de inicializaciones pendientes
-    }
+        }
 
     /**
      * @return the name of the taxi
@@ -185,10 +185,8 @@ public class Taxi
     public boolean isFree()
     {
         boolean flag=false;  //bandera
-        //El if checa si tiene por lo menos 1 pasajero,
-        //Si lo tiene aunque tenga uno se considera que el taxi no está libre.
-        //Si tiene 0 estará libre
-        if(passengersTransported==0){
+        //El if checa si tiene por un pasajero asignado
+        if(passenger==null){
         flag=true;
         }
         return flag;
