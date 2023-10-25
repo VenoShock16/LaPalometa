@@ -116,8 +116,15 @@ public class DemoInicial
         System.out.println("-->> Taxis of the company <<--");
 
         //TODO ordenar y mostrar los taxis
-
+        Collections.sort( company.getVehicles(), new ComparadorNombreTaxi());
+         for (Taxi taxi : company.getVehicles()) {
+            System.out.println(taxi);
+        }
         //TODO ordenar y mostrar los pasajero/as
+        Collections.sort( company.getPassengers(), new ComparadorNombrePassenger()); 
+         for (Passenger passenger : company.getPassengers()) {
+            System.out.println(passenger);
+        }
         //para ordenar una colección aplicando un comparador, esta sería 
         //la sintaxis (suponiendo que "passengers" es una colección donde
         //la compañía de taxis almacena los pasajero/as):
@@ -144,10 +151,16 @@ public class DemoInicial
 
         System.out.println("-->> Taxis final information <<--");
         //TODO ordenar y mostrar los taxis
-
+        Collections.sort( company.getVehicles(), new ComparadorNombreTaxi());
+         for (Taxi taxi : company.getVehicles()) {
+            System.out.println(taxi);
+        }
         System.out.println("-->> Passengers final information <<--");
         //TODO ordenar y mostrar los pasajero/as
-
+        Collections.sort( company.getPassengers(), new ComparadorNombrePassenger()); 
+         for (Passenger passenger : company.getPassengers()) {
+            System.out.println(passenger);
+        }
     }
 
 }
