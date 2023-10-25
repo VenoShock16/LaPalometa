@@ -139,6 +139,7 @@ public class Location
       public void setX(int n){
        this.x=n;
    } 
+   
     public boolean areAdjacent(Location l1, Location l2){
         int posX = Math.abs(l1.getX() - l2.getX());
         int posY = Math.abs(l1.getY() - l2.getY());

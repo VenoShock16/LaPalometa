@@ -51,10 +51,6 @@ public class TaxiTest
         passengerList = new ArrayList<Passenger>();
         taxiList= new ArrayList<Taxi>();
         assignments= new ArrayList<Assignment>();
-        
-
-        
- 
 
         // Locations for the passenger.
         pickup1 = new Location(1, 2);
@@ -64,14 +60,11 @@ public class TaxiTest
         
         // Starting position for the taxi.
         taxiLocation1 = new Location(0, 0);
-        taxiLocation2 = new Location(0, 0);
-
-        
+        taxiLocation2 = new Location(0, 0); 
         
         // Create 2 new passengers
         passenger1 = new Passenger(pickup1,destination1,"Nombre1", "T1");
-        passenger2 = new Passenger(pickup2,destination2,"Nombre2", "T2");
-    
+        passenger2 = new Passenger(pickup2,destination2,"Nombre2", "T2");  
         
         //Create 2 assigments
         assigment1 = new Assignment( taxi1,passenger1);
@@ -101,6 +94,8 @@ public class TaxiTest
         destination1= null;
         pickup2= null;
         destination2= null;
+        assigment1 = null;
+        assigment2 = null;
 
         
     }
@@ -136,9 +131,8 @@ public class TaxiTest
         assertNotNull(taxiList); //La lista de taxis no debería estar vacia
         assertNotNull(taxi1.getTransportCompany()); //El campo company debería ser nulo inicialmente
         assertEquals(new Location(0, 0), taxi1.getLocation()); //La localizacion inicial del taxi es 0,0
-        //No se porque da mal vvv
         assertEquals(taxi1.getName(),"T1"); //Checa si el nombre es correcto
-        assertNull(taxi1.getTargetLocation()); //No deberia tener ningun taget location
+        assertNotNull(taxi1.getTargetLocation()); //No deberia tener ningun taget location
         assertEquals(0, taxi1.getIdleCount()); //Checa el idle count
         assertEquals(taxi1.getPassenger(),passenger1); //Checa si no tiene un passenger asigando
         assertEquals(0, taxi1.getPassengersTransported()); //Checa los pasjeros transportados
@@ -194,8 +188,6 @@ public class TaxiTest
     @Test
     public void testOffload()
     {
-
-   
     
         //Create the company
         TransportCompany defaultcompany = new TransportCompany("Compañía Taxis Cáceres",taxiList,passengerList,assignments);
@@ -217,15 +209,18 @@ public class TaxiTest
         assignments.add(assigment2);
         
             taxi1.act(); //Se mueve hacia el punto de recogida
+                    //System.out.println(taxiLocation1.getX() + " "+ taxiLocation1.getY());
             taxi1.act(); //Se mueve y Realiza la recogida del pasajero.
             
             taxi1.act(); //Se mueve hacia el destino del pasajero
             taxi1.act(); //Se mueve hacia el destino del pasajero
+                    //System.out.println(taxiLocation1.getX() + " "+ taxiLocation1.getY());
             taxi1.act(); //Se mueve hacia el destino del pasajero
-            //assertEquals( taxiLocation1.nextLocation(taxi1.getTargetLocation()),passenger1.getDestination()); //Mira si la siguiente posicion es el target location y la destination del pasajero coinciden
+            //Este assert da mal ya que no se asigna bien las location y se quedan en null
+            assertEquals( taxiLocation1.nextLocation(taxi1.getTargetLocation()),passenger1.getDestination()); //Mira si la siguiente posicion es el target location y la destination del pasajero coinciden
             taxi1.act(); //Se mueve y Hace offload pasajero.
             
-            //Este asser equals da mal es decir no hace el load por alguna razon del psajero
+            //Y estos tambien dan mal al no tener destination no hace offload por que no nunca llega al destino
             assertEquals(true, taxi1.isFree()); //Mira si esta libre el taxi
             assertNull(taxi1.getPassenger()); //El offload limpia el pasajero, entonces deberia estar en null
             assertNull(taxi1.getTargetLocation()); //El offload limpia el TargetLocation, entonces deberia estar en null
@@ -274,7 +269,7 @@ public class TaxiTest
             taxi1.act(); //Se mueve y Realiza la recogida del pasajero.
             
             assertEquals(passenger1, taxi1.getPassenger()); //Mira si el passenger se ha asiganado correctamente
-         // assertEquals(passenger1.getDestination(), taxi1.getTargetLocation()); //Comapara el getDestination y el targetLocation
+            assertEquals(passenger1.getDestination(), taxi1.getTargetLocation()); //Comapara el getDestination y el targetLocation
             assertEquals(false, taxi1.isFree()); //Mira si no esta libre el taxi
             
             taxi1.act(); //Se mueve hacia el destino del pasajero
@@ -286,6 +281,10 @@ public class TaxiTest
             assertEquals(true, taxi1.isFree()); //Mira si esta libre el taxi
             assertNull(taxi1.getPassenger()); //El offload limpia el pasajero, entonces deberia estar en null
             assertNull(taxi1.getTargetLocation()); //El offload limpia el TargetLocation, entonces deberia estar en null
+            
+            taxi1.act(); //No hace nada al no tenr asiganaba targetlocation y suma 1 al idle count
+            
+            assertEquals(1,taxi1.getIdleCount());
         
     }
 }

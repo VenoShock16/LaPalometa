@@ -58,6 +58,7 @@ public class Taxi
     }
     public void asignarPasagero(Passenger p){
         this.passenger = p;
+        targetLocation=p.getPickup();
     }
 
     /**
@@ -216,6 +217,7 @@ public class Taxi
     public void pickup(Passenger passenger)
     {   
         setTargetLocation(passenger.getDestination());
+        targetLocation=passenger.getDestination();
     }
 
     /**
