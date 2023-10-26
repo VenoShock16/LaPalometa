@@ -207,16 +207,13 @@ public class TaxiTest
         taxiList.add(taxi2);
         assignments.add(assigment1);
         assignments.add(assigment2);
-        
             taxi1.act(); //Se mueve hacia el punto de recogida
                     //System.out.println(taxiLocation1.getX() + " "+ taxiLocation1.getY());
-            taxi1.act(); //Se mueve y Realiza la recogida del pasajero.
+            taxi1.act(); //Se mueve y Realiza la recogida del pasajero.     
+            taxi1.act(); //Se mueve hacia el destino del pasajero
+            taxi1.act(); //Se mueve hacia el destino del pasajero
+            taxi1.act(); //Se mueve hacia el destino del pasajero
             
-            taxi1.act(); //Se mueve hacia el destino del pasajero
-            taxi1.act(); //Se mueve hacia el destino del pasajero
-                    //System.out.println(taxiLocation1.getX() + " "+ taxiLocation1.getY());
-            taxi1.act(); //Se mueve hacia el destino del pasajero
-            //Este assert da mal ya que no se asigna bien las location y se quedan en null
             assertEquals( taxiLocation1.nextLocation(taxi1.getTargetLocation()),passenger1.getDestination()); //Mira si la siguiente posicion es el target location y la destination del pasajero coinciden
             taxi1.act(); //Se mueve y Hace offload pasajero.
             

@@ -1,4 +1,4 @@
 #LaPalometa
 #JoseTullido me debes 25€ en polen 
-    Leo Nardo tienes que pagar la cuenta del puticlub
-    
+Jose pulido estoy ahogado en deudas date los 25 del chocolate
+     

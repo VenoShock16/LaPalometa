@@ -266,12 +266,12 @@ public class Taxi
         else{
             //Si la siguiente posicion es la misma que la a la que se dirgia y no está lleno
             //es decir, va recoger a un pasajero:
-            if(location.nextLocation(targetLocation)==targetLocation&&isFree()){
+            if(location.nextLocation(targetLocation).equals(targetLocation)&&isFree()){
                 notifyPickupArrival(); //Notifica que ha recogido un pasajero
             }
             //Si la siguiente posicion es la misma que la a la que se dirgia y está lleno
             //es decir, esta llevando a un destino a un pasajero:
-            if(location.nextLocation(targetLocation)==targetLocation&&!isFree()){
+            if(location.nextLocation(targetLocation).equals(targetLocation)&&!isFree()){
                 notifyPassengerArrival(passenger); //Notifica que el pasajero ha llegado a su destino
                 offloadPassenger();
                 incrementPassengersTransported();
