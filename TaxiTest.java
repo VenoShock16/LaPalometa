@@ -260,6 +260,7 @@ public class TaxiTest
             
             taxi1.act(); //Se mueve hacia el destino del pasajero
             taxi1.act(); //Se mueve hacia el destino del pasajero
+            taxi1.act(); //Se mueve hacia el destino del pasajero
                  assertEquals(passenger1, taxi1.getPassenger()); //Mira si el passenger se ha asiganado correctamente antes de que se limpie con el offload
           //  assertEquals( taxiLocation1.nextLocation(taxi1.getTargetLocation()),passenger1.getDestination()); //Mira si la siguiente posicion es el target location y la destination del pasajero coinciden
             taxi1.act(); //Se mueve y Hace offload pasajero.
@@ -274,4 +275,3 @@ public class TaxiTest
         
     }
 }
-

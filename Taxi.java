@@ -259,7 +259,8 @@ public class Taxi
      */
     public void act()
     {
-        boolean flag=false;
+        boolean flagPickUp=false;
+        boolean flagOffload=false;
         if(targetLocation==null){
            idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
         }
@@ -267,16 +268,12 @@ public class Taxi
             //Si la siguiente posicion es la misma que la a la que se dirgia y no está lleno
             //es decir, va recoger a un pasajero:
             if(location.nextLocation(targetLocation).equals(targetLocation)&&isFree()){
-                notifyPickupArrival(); //Notifica que ha recogido un pasajero
-                pickup(passenger);
+                flagPickUp=true;
             }
             //Si la siguiente posicion es la misma que la a la que se dirgia y está lleno
             //es decir, esta llevando a un destino a un pasajero:
             if(location.nextLocation(targetLocation).equals(targetLocation)&&!isFree()){
-                notifyPassengerArrival(passenger); //Notifica que el pasajero ha llegado a su destino
-                
-                incrementPassengersTransported();
-                flag= true;
+                flagOffload= true;
             }
         }    
          
@@ -286,9 +283,16 @@ public class Taxi
         location=location.nextLocation(targetLocation);
         // setLocation(location=location.nextLocation(targetLocation));   
         }
+        
+        if(flagPickUp){
+                notifyPickupArrival(); //Notifica que ha recogido un pasajero
+                pickup(passenger);
+            }
             
-           if(flag){
-           offloadPassenger();
+        if(flagOffload){
+            notifyPassengerArrival(passenger); //Notifica que el pasajero ha llegado a su destino
+            offloadPassenger();
+            incrementPassengersTransported();
         }
         
     }
