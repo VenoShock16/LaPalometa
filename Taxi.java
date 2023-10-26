@@ -21,6 +21,8 @@ public class Taxi
     private Passenger passenger;
     //number of passengers that are transported by the taxi (in the whole simulation)
     private int passengersTransported;
+    
+    private boolean IsFree=true;
 
     /**
      * Constructor of class Vehicle
@@ -185,12 +187,7 @@ public class Taxi
      */
     public boolean isFree()
     {
-        boolean flag=false;  //bandera
-        //El if checa si tiene por un pasajero asignado
-        if(passenger==null){
-        flag=true;
-        }
-        return flag;
+        return IsFree;
     }
 
     /**
@@ -218,6 +215,7 @@ public class Taxi
     {   
         setTargetLocation(passenger.getDestination());
         targetLocation=passenger.getDestination();
+        IsFree=false;
     }
 
     /**
@@ -227,6 +225,7 @@ public class Taxi
     {
         passenger=null; //Limpia la información de passenger para luego asignarle otro pasajero
         targetLocation=null; //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
+        IsFree=true;
     }
 
     /**
@@ -260,6 +259,7 @@ public class Taxi
      */
     public void act()
     {
+        boolean flag=false;
         if(targetLocation==null){
            idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
         }
@@ -268,19 +268,29 @@ public class Taxi
             //es decir, va recoger a un pasajero:
             if(location.nextLocation(targetLocation).equals(targetLocation)&&isFree()){
                 notifyPickupArrival(); //Notifica que ha recogido un pasajero
+                pickup(passenger);
             }
             //Si la siguiente posicion es la misma que la a la que se dirgia y está lleno
             //es decir, esta llevando a un destino a un pasajero:
             if(location.nextLocation(targetLocation).equals(targetLocation)&&!isFree()){
                 notifyPassengerArrival(passenger); //Notifica que el pasajero ha llegado a su destino
-                offloadPassenger();
+                
                 incrementPassengersTransported();
+                flag= true;
             }
-            
-            //Efectua el movimiento
-            setLocation(location.nextLocation(targetLocation));
+        }    
+         
         
+        if(targetLocation!=null){
+        //Efectua el movimiento
+        location=location.nextLocation(targetLocation);
+        // setLocation(location=location.nextLocation(targetLocation));   
         }
+            
+           if(flag){
+           offloadPassenger();
+        }
+        
     }
     
      /**
