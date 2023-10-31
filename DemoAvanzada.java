@@ -176,13 +176,13 @@ public class DemoAvanzada
         //TODO ordenar y mostrar los taxis
         Collections.sort( company.getVehicles(), new ComparadorNombreTaxi());
          for (Taxi taxi : company.getVehicles()) {
-            System.out.println(taxi);
+            System.out.println(taxi + " - passengers transported: " + taxi.getPassengersTransported() +" - non active for:" + taxi.getIdleCount() +" times");
         }
         System.out.println("-->> Passengers final information <<--");
         //TODO ordenar y mostrar los pasajero/as
         Collections.sort( company.getPassengers(), new ComparadorNombrePassenger()); 
          for (Passenger passenger : company.getPassengers()) {
-            System.out.println(passenger);
+            System.out.println(passenger.showFinalInfo());
         }
     }
 

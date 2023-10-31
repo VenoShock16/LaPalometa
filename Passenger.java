@@ -105,7 +105,7 @@ public class Passenger {
      */
     public String showFinalInfo()
     {
-        return "Final passenger information: "+ getName() + " " + destination + " " + getTaxiName() ;
+        return "Final passenger information: "+ getName() + " in location  " + destination + " transported by: " + getTaxiName() ;
     }
 
 }
