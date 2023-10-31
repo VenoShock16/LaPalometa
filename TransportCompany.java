@@ -100,7 +100,7 @@ public class TransportCompany
        Taxi tAux;
        tAux= null;
        this.vehicles.sort(Comparator.comparingInt((Taxi taxi) -> taxi.getLocation().distance(location)).thenComparing(Taxi::getName));
-       while (i< assignments.size() || !enc ){ //como se hace para que retorne segun la posicion
+       while (i< assignments.size() || !enc ){ 
            tAux= vehicles.get(i);
            if(tAux.isFree()){
                enc=true;           
@@ -133,7 +133,7 @@ public boolean requestPickup(Passenger passenger)
         }
         else{
         taxiAux.setPickupLocation(passenger.getPickup());
-        taxiAux.setTargetLocation(passenger.getDestination());
+        //taxiAux.setTargetLocation(passenger.getDestination()); // sobra
         //Crea un assigment auxiliar y lo añade a vehicles (lista de assigments)
         assignmentAux=new Assignment(taxiAux,passenger);
         assignments.add(assignmentAux);
