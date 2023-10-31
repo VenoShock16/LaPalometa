@@ -100,7 +100,7 @@ public class TransportCompany
        Taxi tAux;
        tAux= null;
        this.vehicles.sort(Comparator.comparingInt((Taxi taxi) -> taxi.getLocation().distance(location)).thenComparing(Taxi::getName));
-       while (i< assignments.size() || !enc ){ 
+       while (i< assignments.size() && !enc ){ 
            tAux= vehicles.get(i);
            if(tAux.isFree()){
                enc=true;           
