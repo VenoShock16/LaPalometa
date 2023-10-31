@@ -26,15 +26,15 @@ public class TaxiDemo
         //Comentar o descomentar cada demo para ser ejecutada
 
         //Demo con 1 personaje y 1 taxi
-        DemoOnePassanger demoOne = new DemoOnePassanger();
-        demoOne.run();
+        //DemoOnePassanger demoOne = new DemoOnePassanger();
+        //demoOne.run();
 
         //Demo con 2 personajes y 3 taxis
         //DemoInicial demoIni = new DemoInicial();
         //demoIni.run();
 
         //Demo con varios personajes y taxis
-        //DemoAvanzada demoAvan = new DemoAvanzada();
-        //demoAvan.run();
+        DemoAvanzada demoAvan = new DemoAvanzada();
+        demoAvan.run();
     }
 }

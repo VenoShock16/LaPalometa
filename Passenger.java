@@ -30,7 +30,7 @@ public class Passenger {
         this.pickup = pickup;
         this.destination = destination;
         this.name = name;
-        this.taxiName = null;
+        this.taxiName = "";
     }
     public Passenger(Location pickup, Location destination, String name, String taxiName)
     {

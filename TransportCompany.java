@@ -127,6 +127,7 @@ public boolean requestPickup(Passenger passenger)
         Assignment assignmentAux;
         assignmentAux= null;
         taxiAux= scheduleVehicle(passenger.getPickup());
+        passenger.setTaxiName(taxiAux.getName());
         if (taxiAux== null){
             return false;
         }
