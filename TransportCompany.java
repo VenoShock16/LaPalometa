@@ -93,7 +93,6 @@ public class TransportCompany
      */
     private Taxi scheduleVehicle(Location location)
     {
-            //Este modulo a lo mejor esta mal, (lo ha tocado el leito)
        boolean enc;
        int i=0;
        enc= false;
