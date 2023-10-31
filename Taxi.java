@@ -215,7 +215,7 @@ public class Taxi
     {   
         setTargetLocation(passenger.getDestination());
         targetLocation=passenger.getDestination();
-        System.out.println("----------------------------------------------- ");
+        System.out.println("<<<< Taxi " + name + " at "+ location + " picks up " + passenger.getName());
         IsFree=false;
     }
 
