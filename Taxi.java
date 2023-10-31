@@ -215,6 +215,7 @@ public class Taxi
     {   
         setTargetLocation(passenger.getDestination());
         targetLocation=passenger.getDestination();
+        System.out.println("----------------------------------------------- ");
         IsFree=false;
     }
 
