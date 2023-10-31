@@ -137,6 +137,8 @@ public boolean requestPickup(Passenger passenger)
         //Crea un assigment auxiliar y lo añade a vehicles (lista de assigments)
         assignmentAux=new Assignment(taxiAux,passenger);
         assignments.add(assignmentAux);
+        System.out.println("<<<< "+taxiAux + " at location " + taxiAux.getLocation()+ " go to pick up passenger " +passenger.getName()+ 
+        " at location " +passenger.getPickup());
         //Asigna el pasajero al taxi
         assignmentAux.passengerToTaxi(passenger, taxiAux); // asignará el objeto Passenger al taxi (en assignments)
         return true;
