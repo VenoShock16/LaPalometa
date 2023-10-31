@@ -22,7 +22,9 @@ public class Taxi
     //number of passengers that are transported by the taxi (in the whole simulation)
     private int passengersTransported;
     
-    private boolean IsFree=true;
+    private boolean IsFree;
+    //Esta variable sirve al asignar los taxis a los pasajeros y no sobre escribirlos cuando ya tiene un pasajero asigando
+    private boolean IsBooked;
 
     /**
      * Constructor of class Vehicle
@@ -44,6 +46,8 @@ public class Taxi
         this.name= name;
         targetLocation = null;
         idleCount = 0;
+        IsFree= true;
+        IsBooked= false;
         }
 
     /**
@@ -86,6 +90,12 @@ public class Taxi
             throw new NullPointerException();
         }
     }
+    
+        public void setBookTaxi(boolean flag)
+    {
+        this.IsBooked= flag;
+    }
+    
 
     /**
      * Get the target location.
@@ -189,6 +199,12 @@ public class Taxi
     {
         return IsFree;
     }
+    
+    public boolean isBooked()
+    {
+        return IsBooked;
+    }
+
 
     /**
      * Notify the company of our arrival at a pickup location.
@@ -227,6 +243,7 @@ public class Taxi
         passenger=null; //Limpia la información de passenger para luego asignarle otro pasajero
         targetLocation=null; //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
         IsFree=true;
+        setBookTaxi(false);
     }
 
     /**
