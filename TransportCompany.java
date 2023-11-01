@@ -10,7 +10,6 @@ import javax.swing.Box;
  */
 public class TransportCompany  
 {
-    // TODO definir todos sus campos
     private String name;  //nombre de la compañía
     private List<Taxi> vehicles;
     private List<Passenger> passengers;
@@ -25,6 +24,10 @@ public class TransportCompany
         passengers = new ArrayList<>();
         assignments = new ArrayList<>();
     }
+
+    /**
+     * Constructor for objects of class TransportCompany
+     */
     public TransportCompany(String name, List<Taxi> vehicles, List<Passenger> passengers, List<Assignment> assignments)
     {
         this.name = name;
