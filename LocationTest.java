@@ -14,7 +14,6 @@ public class LocationTest
 {
     Location startLocation;
     Location destination;
-    
     Location location1;
     Location location2;
     Location location3;
@@ -27,7 +26,6 @@ public class LocationTest
 
     /**
      * Sets up the test fixture.
-     *
      * Called before every test case method.
      */
     @Before
