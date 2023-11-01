@@ -26,7 +26,7 @@ public class TransportCompany
     }
 
     /**
-     * Constructor for objects of class TransportCompany
+     * Constructor with necessary parameters for objects of class TransportCompany
      */
     public TransportCompany(String name, List<Taxi> vehicles, List<Passenger> passengers, List<Assignment> assignments)
     {
