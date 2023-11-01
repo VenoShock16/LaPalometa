@@ -330,8 +330,7 @@ public class Taxi
         
         if(targetLocation!=null){
         //Efectua el movimiento
-        location=location.nextLocation(targetLocation);
-        // setLocation(location=location.nextLocation(targetLocation));   
+        location=location.nextLocation(targetLocation);  
         }
         
         if(flagPickUp){
