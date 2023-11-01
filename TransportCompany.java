@@ -104,7 +104,7 @@ public class TransportCompany
        this.vehicles.sort(Comparator.comparingInt((Taxi taxi) -> taxi.getLocation().distance(location)).thenComparing(Taxi::getName));
        while (i< vehicles.size() && !enc ){ 
            tAux= vehicles.get(i);
-           if(tAux.isFree()){
+           if(tAux.isFree()&& !tAux.isBooked()){
                enc=true;           
             }
            i++;
@@ -130,6 +130,8 @@ public boolean requestPickup(Passenger passenger)
         Assignment assignmentAux;
         assignmentAux= null;
         taxiAux= scheduleVehicle(passenger.getPickup());
+        passenger.setTaxiName(taxiAux.getName());
+        taxiAux.setBookTaxi(true);
         if (taxiAux== null){
             return false;
         }
@@ -139,7 +141,7 @@ public boolean requestPickup(Passenger passenger)
         //Crea un assigment auxiliar y lo añade a vehicles (lista de assigments)
         assignmentAux=new Assignment(taxiAux,passenger);
         assignments.add(assignmentAux);
-        System.out.println("<<<< "+taxiAux + " at " + taxiAux.getLocation()+ " go to pick up passenger " +passenger.getName()+ 
+        System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ 
         " at " +passenger.getPickup());
         //Asigna el pasajero al taxi
         assignmentAux.passengerToTaxi(passenger, taxiAux); // asignará el objeto Passenger al taxi (en assignments)
