@@ -132,14 +132,28 @@ public class Location
         return (y << 16) + x;
     }
     
+    /** 
+     * Set the Y coordinate
+     * @param A coordinate for the Y axis
+     */
    public void setY(int n){
        this.y=n;
    }
    
+   /**
+    * Set the X coordinate
+    * @param A coordinate for the X axis
+    */
       public void setX(int n){
        this.x=n;
    } 
    
+   /**
+    * Checks if the locations are adjacents to eachother
+    * @param One location type object
+    * @param One location type object
+    * @return Whether or not ocations are adjacents to eachother
+    */
     public boolean areAdjacent(Location l1, Location l2){
         int posX = Math.abs(l1.getX() - l2.getX());
         int posY = Math.abs(l1.getY() - l2.getY());

@@ -251,18 +251,18 @@ public class TaxiTest
         
         
             taxi1.act(); //Se mueve hacia el punto de recogida
-        //      assertEquals(taxiLocation1.nextLocation(taxi1.getTargetLocation()),passenger1.getPickup()); //Mira si la siguiente posicion es el target location y la pickup del pasajero coinciden
+              assertEquals(taxi1.getLocation().nextLocation(taxi1.getTargetLocation()),passenger1.getPickup()); //Mira si la siguiente posicion es el target location y la pickup del pasajero coinciden
             taxi1.act(); //Se mueve y Realiza la recogida del pasajero.
             
             
-        //    assertEquals(passenger1.getDestination(), taxi1.getTargetLocation()); //Comapara el getDestination y el targetLocation
+            assertEquals(passenger1.getDestination(), taxi1.getTargetLocation()); //Comapara el getDestination y el targetLocation
             assertEquals(false, taxi1.isFree()); //Mira si no esta libre el taxi
             
             taxi1.act(); //Se mueve hacia el destino del pasajero
             taxi1.act(); //Se mueve hacia el destino del pasajero
             taxi1.act(); //Se mueve hacia el destino del pasajero
                  assertEquals(passenger1, taxi1.getPassenger()); //Mira si el passenger se ha asiganado correctamente antes de que se limpie con el offload
-          //  assertEquals( taxiLocation1.nextLocation(taxi1.getTargetLocation()),passenger1.getDestination()); //Mira si la siguiente posicion es el target location y la destination del pasajero coinciden
+            assertEquals( taxi1.getLocation().nextLocation(taxi1.getTargetLocation()),passenger1.getDestination()); //Mira si la siguiente posicion es el target location y la destination del pasajero coinciden
             taxi1.act(); //Se mueve y Hace offload pasajero.
             
             assertEquals(true, taxi1.isFree()); //Mira si esta libre el taxi

@@ -32,9 +32,16 @@ public class Passenger {
         this.name = name;
         this.taxiName = "";
     }
+    
+        /**
+     * Constructor for objects of class Passenger
+     * @param pickup The pickup location, must not be null.
+     * @param destination The destination location, must not be null.
+     * @param name The passenger's name
+     * @throws NullPointerException If either location is null.
+     */
     public Passenger(Location pickup, Location destination, String name, String taxiName)
     {
-        //TODO modificar el constructor o crear otro constructor si necesario
         if(pickup == null) {
             throw new NullPointerException("Pickup location");
         }

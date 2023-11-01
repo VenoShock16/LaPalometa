@@ -5,6 +5,8 @@
  * @version 2016.02.29
  * @version 2023.10.10 DP classes 
  */
+
+// Esta clase guarda todos los elementos comunes de los taxis y reliza las acciones de recoger y dejar a sus pasajeros asigandos
 public class Taxi 
 {
     // The Taxi Company of this Taxi.
@@ -21,7 +23,7 @@ public class Taxi
     private Passenger passenger;
     //number of passengers that are transported by the taxi (in the whole simulation)
     private int passengersTransported;
-    
+    //Si el taxi está libre o no
     private boolean IsFree;
     //Esta variable sirve al asignar los taxis a los pasajeros y no sobre escribirlos cuando ya tiene un pasajero asigando
     private boolean IsBooked;
@@ -51,6 +53,7 @@ public class Taxi
         }
 
     /**
+     * Get the taxi name
      * @return the name of the taxi
      */
     public String getName()
@@ -58,10 +61,28 @@ public class Taxi
         return name;
     }
     
+    /**
+     * Set the name of the taxi
+     * @param the name of the taxi you want to set
+     */
+        public void setName(String name)
+    {
+        this.name=name;
+    }
+    
+    /**
+     * Get the passenger of the taxi
+     * @return the passenger of the taxi
+     */
         public Passenger getPassenger()
     {
         return passenger;
     }
+    
+    /**
+     * Set the passenger of the taxi
+     * @param the passenger you want to set
+     */
     public void asignarPasagero(Passenger p){
         this.passenger = p;
         targetLocation=p.getPickup();
@@ -91,6 +112,10 @@ public class Taxi
         }
     }
     
+    /**
+     * Cambia el estado de si un taxi ha sido reservsado por un pasajero o no
+     * @param boolean flag
+     */
         public void setBookTaxi(boolean flag)
     {
         this.IsBooked= flag;
@@ -200,6 +225,10 @@ public class Taxi
         return IsFree;
     }
     
+    /**
+     * Get del estado booked del taxi
+     * @return Whether or not this taxi is booked.
+     */
     public boolean isBooked()
     {
         return IsBooked;
