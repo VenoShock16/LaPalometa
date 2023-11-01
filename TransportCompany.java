@@ -10,8 +10,7 @@ import javax.swing.Box;
  */
 public class TransportCompany  
 {
-    // TODO definir todos sus campos
-    private String name;  //nombre de la compañía
+    private String name; 
     private List<Taxi> vehicles;
     private List<Passenger> passengers;
     private List<Assignment> assignments;
@@ -25,6 +24,10 @@ public class TransportCompany
         passengers = new ArrayList<>();
         assignments = new ArrayList<>();
     }
+
+    /**
+     * Constructor with necessary parameters for objects of class TransportCompany
+     */
     public TransportCompany(String name, List<Taxi> vehicles, List<Passenger> passengers, List<Assignment> assignments)
     {
         this.name = name;
@@ -69,6 +72,7 @@ public class TransportCompany
     }
 
     /**
+     * Add a new vehicle to the list of vehicles
      * @param Add the new Vehicle.
      */
     public void addVehicle(Taxi vehicle)
@@ -110,7 +114,7 @@ public class TransportCompany
            return tAux;
        }
        else{
-           //Si no encuentra o encuentra y esta lleno el taxi devuelve null.
+        //Si no encuentra o encuentra y esta lleno el taxi devuelve null.
          return null;  
        }
     }
@@ -122,7 +126,6 @@ public class TransportCompany
      */
 public boolean requestPickup(Passenger passenger)
     {
-            //Este modulo a lo mejor esta mal, (lo ha tocado el leito)
         Taxi taxiAux;
         Assignment assignmentAux;
         assignmentAux= null;
@@ -134,14 +137,11 @@ public boolean requestPickup(Passenger passenger)
         }
         else{
         taxiAux.setPickupLocation(passenger.getPickup());
-        //taxiAux.setTargetLocation(passenger.getDestination()); // sobra
-        //Crea un assigment auxiliar y lo añade a vehicles (lista de assigments)
         assignmentAux=new Assignment(taxiAux,passenger);
         assignments.add(assignmentAux);
         System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ 
         " at " +passenger.getPickup());
-        //Asigna el pasajero al taxi
-        assignmentAux.passengerToTaxi(passenger, taxiAux); // asignará el objeto Passenger al taxi (en assignments)
+        assignmentAux.passengerToTaxi(passenger, taxiAux); 
         return true;
         }
     }

@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class assignments here.
+ * This class stores taxis and passengers.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Jorge)
+ * @version 1
  */
 public class Assignment
 {
@@ -11,23 +11,39 @@ public class Assignment
     private Passenger passenger;
 
     /**
-     * Constructor for objects of class assignments
+     * Constructor for objects of class assignments.
      */
-    public void passengerToTaxi(Passenger passenger, Taxi taxi){
-        taxi.asignarPasagero(passenger);    
-    }
     public Assignment(){
         taxi= null;
         passenger= null;
     }
+    
+    /**
+     * Constructor with necessary parameters for objects of class assignments.
+     */
     public Assignment(Taxi taxi, Passenger passenger)
     {
         this.taxi= taxi;
         this.passenger= passenger;
     }
+    
+     /**
+     * Assign a taxi to a passenger.
+     */
+    public void passengerToTaxi(Passenger passenger, Taxi taxi){
+        taxi.asignarPasagero(passenger);    
+    }
+    
+    /**
+     * @return The name of the taxi.
+     */
     public Taxi getTaxiAssignment(){
         return taxi;
     }
+    
+    /**
+     * @return The name of the passenger.
+     */
     public Passenger getPassengerAssignment(){
         return passenger;
     }
