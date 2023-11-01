@@ -63,12 +63,7 @@ public class PassengerTest
     @Test
     public void testCreation()
     {
-        //TODO implementar este método
-        // Testear la creación correcta de objetos de tipo Passenger comprobando 
-        // que la inicialización de campos como dirección de recogida y destino es correcta.
-        
-        passenger = new Passenger(pickup, destination, name, taxiName);
-                
+        passenger = new Passenger(pickup, destination, name, taxiName);      
         assertEquals(name, passenger.getName());
         assertEquals(pickup, passenger.getPickup());
         assertEquals(destination, passenger.getDestination());
@@ -82,8 +77,6 @@ public class PassengerTest
     @Test
     public void testGetTaxiName(){
         passenger = new Passenger(pickup, destination, name, taxiName);
-
-        
         assertEquals(taxiName, passenger.getTaxiName());    
     }
 
@@ -94,7 +87,6 @@ public class PassengerTest
     @Test
     public void testGetPickupLocation (){
         passenger = new Passenger(pickup, destination, name, taxiName);
-
         assertEquals(pickup, passenger.getPickup());
     }
 }
