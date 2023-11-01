@@ -122,7 +122,7 @@ public class DemoInicial
         }
         
         System.out.println("-->> Passengers requesting taxi <<--");
-        System.out.println("-->> ---------------- <<--");
+
         //TODO ordenar y mostrar los pasajero/as
         Collections.sort( company.getPassengers(), new ComparadorNombrePassenger()); 
          for (Passenger passenger : company.getPassengers()) {
@@ -134,7 +134,7 @@ public class DemoInicial
         //Collections.sort(passengers, new ComparadorNombrePassenger());
 
         
-
+        System.out.println("-->> ---------------- <<--");
         System.out.println("-->> Simulation start <<--");
         System.out.println("-->> ---------------- <<--");
         System.out.println("");        
