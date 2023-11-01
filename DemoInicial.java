@@ -133,7 +133,7 @@ public class DemoInicial
         //la compañía de taxis almacena los pasajero/as):
         //Collections.sort(passengers, new ComparadorNombrePassenger());
 
-        
+        System.out.println("");
         System.out.println("-->> ---------------- <<--");
         System.out.println("-->> Simulation start <<--");
         System.out.println("-->> ---------------- <<--");
