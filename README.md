@@ -9,3 +9,4 @@ las cuales ejecutan los módulos para que podamos comprobar su correcta funciona
 Tambien hemos implementado un comparador de taxis para ordenar la lista taxi de taxis por nombres y posteriormente mostrarla en la demos mediante 
 el uso de Colections.sort
 Por último nuestro codigo tiene una documentación interna adecuada y hay comentarios que explican el funcionamiento de cada modulo con mas detalle.
+Leo solo hace lo facil(resten puntos)
