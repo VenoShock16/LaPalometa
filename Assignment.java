@@ -31,7 +31,7 @@ public class Assignment
      * Assign a taxi to a passenger.
      */
     public void passengerToTaxi(Passenger passenger, Taxi taxi){
-        taxi.asignarPasagero(passenger);    
+        taxi.asignarPasagero(passenger);
     }
     
     /**

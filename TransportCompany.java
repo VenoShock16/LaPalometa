@@ -13,7 +13,8 @@ public class TransportCompany
     private String name; 
     private List<Taxi> vehicles;
     private List<Passenger> passengers;
-    private List<Assignment> assignments;
+    //private List<Assignment> assignments;
+    private Map<Taxi,Set<Passenger>> assignments;
 
     /**
      * Constructor for objects of class TransportCompany
@@ -22,7 +23,8 @@ public class TransportCompany
         this.name= name;
         vehicles = new ArrayList<>();
         passengers = new ArrayList<>();
-        assignments = new ArrayList<>();
+        //assignments = new ArrayList<>();
+        Map<Taxi,Passenger> assignments = new HashMap<>();
     }
 
     /**
@@ -33,7 +35,8 @@ public class TransportCompany
         this.name = name;
         vehicles = new ArrayList<>(vehicles);
         passengers = new ArrayList<>(passengers);
-        assignments = new ArrayList<>(assignments);
+        //assignments = new ArrayList<>(assignments);
+        Map<Taxi,Set<Passenger>> assignments = new HashMap<>();
     }
 
     /**
@@ -127,8 +130,10 @@ public class TransportCompany
 public boolean requestPickup(Passenger passenger)
     {
         Taxi taxiAux;
-        Assignment assignmentAux;
-        assignmentAux= null;
+        //cuadno me devuelven un taxi tengo q comprobar si tiene lista en assigments, si no tiene, hago un Set<Passenger> sAux= new treeSet<Passenger>();
+        // al crearlo le meto un comparador que he creado anteriormente  new Comparator<Passenger>()
+        //Assignment assignmentAux;
+        //assignmentAux= null;
         taxiAux= scheduleVehicle(passenger.getPickup());
         passenger.setTaxiName(taxiAux.getName());
         taxiAux.setBookTaxi(true);
@@ -137,8 +142,8 @@ public boolean requestPickup(Passenger passenger)
         }
         else{
         taxiAux.setPickupLocation(passenger.getPickup());
-        assignmentAux=new Assignment(taxiAux,passenger);
-        assignments.add(assignmentAux);
+        //assignmentAux=new Assignment(taxiAux,passenger);
+        //assignments.add(assignmentAux);
         System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ 
         " at " +passenger.getPickup());
         assignmentAux.passengerToTaxi(passenger, taxiAux); 
@@ -156,9 +161,11 @@ public boolean requestPickup(Passenger passenger)
         Passenger pAux;
         pAux= taxi.getPassenger();
         aAux= null;
-        if(taxi.getLocation()==pAux.getPickup()){  // Obtener el pasajero asignado al taxi y eliminar la asignación correspondiente taxi/pasajero
-            aAux.passengerToTaxi(pAux, taxi);
-            assignments.remove(aAux);
+        if(taxi.getLocation()==pAux.getPickup()){ // Obtener el pasajero asignado al taxi y eliminar la asignación correspondiente taxi/pasajero
+            
+            assignments.put(taxi,pAux);  //las tres linias siguientes cambian por el map                           
+            taxi.asignarPasagero(pAux);  //aAux.passengerToTaxi(pAux, taxi);
+            assignments.remove(taxi);
             System.out.println("<<<< "+taxi + " picks up " + pAux.getName());
             pAux.setTaxiName(taxi.getName());   // el pasajero debe guardar el nombre del taxi que le ha recogido
             taxi.pickup(pAux);  // el taxi debe recoger al pasajero
