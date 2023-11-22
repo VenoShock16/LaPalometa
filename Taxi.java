@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Model the common elements of taxis and shuttles.
  * 
@@ -20,7 +22,7 @@ public class Taxi
     //name of the taxi
     private String name; 
     //passenger of the taxi
-    private Passenger passenger;
+    private ArrayList<Passenger>passenger;
     //number of passengers that are transported by the taxi (in the whole simulation)
     private int passengersTransported;
     //Si el taxi está libre o no
@@ -74,7 +76,7 @@ public class Taxi
      * Get the passenger of the taxi
      * @return the passenger of the taxi
      */
-        public Passenger getPassenger()
+        public ArrayList<Passenger> getPassenger()
     {
         return passenger;
     }
