@@ -6,11 +6,14 @@
  * @version 2016.02.29
  * @version 2023.10.10 DP classes 
  */
-public class Passenger {
+public abstract class Passenger {
     private String name;
     private Location pickup;
     private Location destination;
     private String taxiName;
+    private int arrivalTime;
+    protected int creditCard;
+    private reliable reliable; //Tipo enum
 
     /**
      * Constructor for objects of class Passenger
@@ -19,7 +22,7 @@ public class Passenger {
      * @param name The passenger's name
      * @throws NullPointerException If either location is null.
      */
-    
+
     public Passenger(Location pickup, Location destination, String name){
         if(pickup == null) {
             throw new NullPointerException("Pickup location");
@@ -32,8 +35,8 @@ public class Passenger {
         this.name = name;
         this.taxiName = "";
     }
-    
-        /**
+
+    /**
      * Constructor for objects of class Passenger
      * @param pickup The pickup location, must not be null.
      * @param destination The destination location, must not be null.
@@ -69,7 +72,7 @@ public class Passenger {
     {
         return destination;
     }
-    
+
     /**
      * Return details of the passenger, such as where it is.
      * @return A string representation of the passenger.
@@ -79,9 +82,8 @@ public class Passenger {
         return "Passenger "+getName()+" travelling from " +
         pickup + " to " + destination;
     }
-    
-    
-     /**
+
+    /**
      * @return The pickup location of the passenger.
      */
     public Location getPickup()
@@ -89,7 +91,6 @@ public class Passenger {
         return pickup;
     }
 
-    
     /**
      * @modify The name of the taxi used.
      */
@@ -97,16 +98,15 @@ public class Passenger {
     {
         this.taxiName= tName;
     }
-    
-     /**
+
+    /**
      * @return The name of the taxi used.
      */
     public String getTaxiName()
     {
         return taxiName;
     }
-    
-    
+
     /**
      * Show the final information about the passenger, including the name of the taxi that used.
      */
@@ -114,5 +114,28 @@ public class Passenger {
     {
         return "Final passenger information: "+ getName() + " in location  " + destination + " transported by: " + getTaxiName() ;
     }
+    
+    /**
+     * Se ejecuta despues de que el vehiculo haga offload y llamra ha algunos modulos
+     */
+    public int act()
+    {
+        pay();
+        return calculateEvaluationValue();
+    }
+    
+    /**
+     * Clase abstracta, diferentes fromas de pagar para diferentes pasajeros
+     */
+    public abstract void pay();
+    
+    /**
+     * 
+     */
+    public int calculateEvaluationValue(){
+        //NO TENGO NI IDEA DE COMO IMPLEMENTARLO
+        return 0;
+    }
+    
 
 }
