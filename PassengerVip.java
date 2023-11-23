@@ -32,9 +32,8 @@ public class PassengerVip extends Passenger
     }
     
     @Override    
-        public int calculateEvaluationValue(){
-        super.calculateEvaluationValue();
-        //Y además aumenta en 15 la valoración del vehiculo utilizado
-        return 0;
+        public int calculateEvaluationValue()
+        {
+        return super.calculateEvaluationValue() + 15;
     }
 }

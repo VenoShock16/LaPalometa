@@ -13,7 +13,7 @@ public abstract class Passenger {
     private String taxiName;
     private int arrivalTime;
     protected int creditCard;
-    private reliable reliable; //Tipo enum
+    private Reliable enumReliable; //Tipo enum
 
     /**
      * Constructor for objects of class Passenger
@@ -130,11 +130,11 @@ public abstract class Passenger {
     public abstract void pay();
     
     /**
-     * 
+     * Debe ser llamado con la valoracion del taxi
      */
     public int calculateEvaluationValue(){
-        //NO TENGO NI IDEA DE COMO IMPLEMENTARLO
-        return 0;
+        
+        return Taxi.getValuation() + (enumReliable.getValor() * 2);
     }
     
 

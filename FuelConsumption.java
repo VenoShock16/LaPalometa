@@ -1,18 +1,20 @@
 
 /**
- * Enumeration class reliable - write a description of the enum class here
+ * Enumeration class FuelConsumption - write a description of the enum class here
  *
  * @author (your name here)
  * @version (version number or date here)
  */
-public enum reliable
+public enum FuelConsumption
 {
-    HIGH(10), LOW (5);
+    HIGH("High",8), MEDIUM("Medium",6), LOW ("Low", 4);
     
     private int valor;
+    private String nombre;
     
-    reliable(int valor)
+    FuelConsumption(String nombre, int valor)
     {
+    this.nombre=nombre;    
     this.valor=valor;
     }
     public int getValor()

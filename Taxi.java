@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 /**
  * Model the common elements of taxis and shuttles.
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  */
 
 // Esta clase guarda todos los elementos comunes de los taxis y reliza las acciones de recoger y dejar a sus pasajeros asigandos
-public class Taxi 
+public abstract class Taxi 
 {
     // The Taxi Company of this Taxi.
     private TransportCompany company;  
@@ -21,14 +22,25 @@ public class Taxi
     private int idleCount;       
     //name of the taxi
     private String name; 
-    //passenger of the taxi
-    private ArrayList<Passenger>passenger;
+    //passengers of the taxi
+    //Para la ordenacion se le psa el comprador la instanciarlo
+            //private arrivalTime TreeSet<Passenger>;
     //number of passengers that are transported by the taxi (in the whole simulation)
     private int passengersTransported;
     //Si el taxi está libre o no
     private boolean IsFree;
     //Esta variable sirve al asignar los taxis a los pasajeros y no sobre escribirlos cuando ya tiene un pasajero asigando
     private boolean IsBooked;
+    //enum del fuelconsption medio del taxi
+    protected FuelConsumption enumFuelConspution;
+    //Valoracion de los taxis, es publico por ue el único que lo cambia es passenger    
+    public int valuation;
+    //Ocupacion del taxi, min=1 max=4
+    private int occupation;
+    //Distancia recorrida en toda la simulación
+    protected int distanciaRecorrida=0;
+    
+    
 
     /**
      * Constructor of class Vehicle
@@ -61,6 +73,11 @@ public class Taxi
     public String getName()
     {
         return name;
+    }
+    
+        public int getValuation()
+    {
+        return valuation;
     }
     
     /**
@@ -314,6 +331,7 @@ public class Taxi
            idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
         }
         else{
+            distanciaRecorrida++;
             Location lAux;
             lAux= location.nextLocation(targetLocation);
             System.out.println("@@@ Taxi: "+name + " moving to: " + lAux.getX()+ " - " +lAux.getY());
@@ -357,5 +375,7 @@ public class Taxi
         return "Final taxi information: " + getName() + " " + getLocation() + " " + passengersTransported +" "+ getIdleCount();
 
     }
+    
+    public asbtract /* tipo enum */obtainComsumption();
 
 }
