@@ -23,6 +23,7 @@ public abstract class Taxi
     //name of the taxi
     private String name; 
     //passengers of the taxi
+    private ArrayList<Passenger>passenger;
     //Para la ordenacion se le psa el comprador la instanciarlo
             //private arrivalTime TreeSet<Passenger>;
     //number of passengers that are transported by the taxi (in the whole simulation)
@@ -60,6 +61,7 @@ public abstract class Taxi
         this.company = company;
         this.location = location;
         this.name= name;
+        
         targetLocation = null;
         idleCount = 0;
         IsFree= true;
@@ -93,7 +95,7 @@ public abstract class Taxi
      * Get the passenger of the taxi
      * @return the passenger of the taxi
      */
-        public ArrayList<Passenger> getPassenger()
+        public ArrayList<Passenger>getPassenger()
     {
         return passenger;
     }
@@ -102,8 +104,8 @@ public abstract class Taxi
      * Set the passenger of the taxi
      * @param the passenger you want to set
      */
-    public void asignarPasagero(Passenger p){
-        this.passenger = p;
+    public void InsertarPasagero(Passenger p){
+        passenger.add(p);
         targetLocation=p.getPickup();
     }
 
@@ -277,6 +279,7 @@ public abstract class Taxi
      */
     public void pickup(Passenger passenger)
     {   
+        InsertarPasagero(passenger);
         setTargetLocation(passenger.getDestination());
         targetLocation=passenger.getDestination();
         System.out.println("<<<< Taxi " + name + " at "+ location + " picks up " + passenger.getName());
