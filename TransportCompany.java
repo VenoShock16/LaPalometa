@@ -1,5 +1,6 @@
 import java.util.*;
 import javax.swing.Box;
+import java.util.TreeSet;
 
 /**
  * Model the operation of a taxi company, operating different
@@ -137,24 +138,28 @@ public boolean requestPickup(Passenger passenger)
         taxiAux= scheduleVehicle(passenger.getPickup());
         passenger.setTaxiName(taxiAux.getName());
         taxiAux.setBookTaxi(true);
+        
         if (taxiAux== null){
             return false;
         }
         else{
-            if(assignments.get(taxiAux) ==null){
-                Set<Passenger> sAux= new treeSet<Passenger>(new ComparadorPassenger<Passenger>());
+            Set<Passenger> sAux= assignments.get(taxiAux);
+            if(sAux ==null){
+               sAux= new TreeSet<Passenger>(new ComparadorPassenger());
             }
             else{
+                assignments.remove(taxiAux);
+            }
+                sAux.add(passenger);
+                assignments.put(taxiAux, sAux);
                 taxiAux.setPickupLocation(passenger.getPickup());
                 //assignmentAux=new Assignment(taxiAux,passenger);
                 //assignments.add(assignmentAux);
-                System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ 
-                " at " +passenger.getPickup());
-                assignmentAux.passengerToTaxi(passenger, taxiAux); 
+                System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ " at " +passenger.getPickup());
+                //assignmentAux.passengerToTaxi(passenger, taxiAux); 
                 return true;
             }  
-        }
-    }
+         }
 
     /**
      * A vehicle has arrived at a pickup point.
