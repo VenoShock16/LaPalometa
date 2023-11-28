@@ -90,6 +90,14 @@ public abstract class Passenger {
     {
         return pickup;
     }
+    
+    /**
+     * @return The pickup location of the passenger.
+     */
+    public int getDistance()
+    {
+        return pickup.distance(destination);
+    }
 
     /**
      * @modify The name of the taxi used.

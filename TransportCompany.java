@@ -30,13 +30,13 @@ public class TransportCompany
     /**
      * Constructor with necessary parameters for objects of class TransportCompany
      */
-    public TransportCompany(String name, List<Taxi> vehicles, List<Passenger> passengers, List<Assignment> assignments)
+    public TransportCompany(String name, List<Taxi> vehicles, List<Passenger> passengers)
     {
         this.name = name;
         vehicles = new ArrayList<>(vehicles);
         passengers = new ArrayList<>(passengers);
         //assignments = new ArrayList<>(assignments);
-        Map<Taxi,Set<Passenger>> assignments = new HashMap<>();
+        assignments = new HashMap<>();
     }
 
     /**
@@ -141,13 +141,18 @@ public boolean requestPickup(Passenger passenger)
             return false;
         }
         else{
-        taxiAux.setPickupLocation(passenger.getPickup());
-        //assignmentAux=new Assignment(taxiAux,passenger);
-        //assignments.add(assignmentAux);
-        System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ 
-        " at " +passenger.getPickup());
-        assignmentAux.passengerToTaxi(passenger, taxiAux); 
-        return true;
+            if(assignments.get(taxiAux) ==null){
+                Set<Passenger> sAux= new treeSet<Passenger>(new ComparadorPassenger<Passenger>());
+            }
+            else{
+                taxiAux.setPickupLocation(passenger.getPickup());
+                //assignmentAux=new Assignment(taxiAux,passenger);
+                //assignments.add(assignmentAux);
+                System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ 
+                " at " +passenger.getPickup());
+                assignmentAux.passengerToTaxi(passenger, taxiAux); 
+                return true;
+            }  
         }
     }
 
