@@ -15,7 +15,7 @@ public class TransportCompany
     private List<Taxi> vehicles;
     private List<Passenger> passengers;
     //private List<Assignment> assignments;
-    private Map<Taxi,Set<Passenger>> assignments;
+    private Map<Taxi,TreeSet<Passenger>> assignments;
 
     /**
      * Constructor for objects of class TransportCompany
@@ -138,13 +138,13 @@ public boolean requestPickup(Passenger passenger)
         taxiAux= scheduleVehicle(passenger.getPickup());
         passenger.setTaxiName(taxiAux.getName());
         taxiAux.setBookTaxi(true);
-        Location lAux;
+        Passenger pAux;
         
         if (taxiAux== null){
             return false;
         }
         else{
-            Set<Passenger> sAux= assignments.get(taxiAux);
+            TreeSet<Passenger> sAux= assignments.get(taxiAux);
             if(sAux ==null){
                sAux= new TreeSet<Passenger>(new ComparadorLlegada());
             }
@@ -153,8 +153,8 @@ public boolean requestPickup(Passenger passenger)
             }
                 sAux.add(passenger);
                 assignments.put(taxiAux, sAux);
-                lAux= sAux.fi;
-                taxiAux.setPickupLocation(lAux);
+                pAux= sAux.first();
+                taxiAux.setPickupLocation(pAux.getDestination());
                 //assignmentAux=new Assignment(taxiAux,passenger);
                 //assignments.add(assignmentAux);
                 System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ " at " +passenger.getPickup());
@@ -169,18 +169,19 @@ public boolean requestPickup(Passenger passenger)
      */
     public void arrivedAtPickup(Taxi taxi)
     {   
-        Assignment aAux;
-        Passenger pAux;
-        pAux= taxi.getPassenger();
-        aAux= null;
-        if(taxi.getLocation()==pAux.getPickup()){ // Obtener el pasajero asignado al taxi y eliminar la asignación correspondiente taxi/pasajero
+        TreeSet<Passenger> pAux= assignments.get(taxi);
+        Passenger p1;
+        p1= pAux.first();
+        if(taxi.getLocation().equals(p1.getPickup())){ // Obtener el pasajero asignado al taxi y eliminar la asignación correspondiente taxi
             
-            assignments.put(taxi,pAux);  //las tres linias siguientes cambian por el map                           
-            taxi.asignarPasagero(pAux);  //aAux.passengerToTaxi(pAux, taxi);
             assignments.remove(taxi);
-            System.out.println("<<<< "+taxi + " picks up " + pAux.getName());
-            pAux.setTaxiName(taxi.getName());   // el pasajero debe guardar el nombre del taxi que le ha recogido
-            taxi.pickup(pAux);  // el taxi debe recoger al pasajero
+            pAux.remove(p1);
+            if (pAux.size()!=0){
+                assignments.put(taxi,pAux);                
+            }
+            System.out.println("<<<< "+taxi + " picks up " + p1.getName());
+            p1.setTaxiName(taxi.getName());   // el pasajero debe guardar el nombre del taxi que le ha recogido
+            taxi.pickup(p1);  // el taxi debe recoger al pasajero
         }        
     }
 }
