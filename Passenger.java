@@ -98,6 +98,10 @@ public abstract class Passenger {
     {
         return pickup.distance(destination);
     }
+    
+    public int getArrivalTime(){
+        return arrivalTime;
+    }
 
     /**
      * @modify The name of the taxi used.

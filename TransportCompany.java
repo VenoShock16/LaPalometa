@@ -138,6 +138,7 @@ public boolean requestPickup(Passenger passenger)
         taxiAux= scheduleVehicle(passenger.getPickup());
         passenger.setTaxiName(taxiAux.getName());
         taxiAux.setBookTaxi(true);
+        Location lAux;
         
         if (taxiAux== null){
             return false;
@@ -145,14 +146,15 @@ public boolean requestPickup(Passenger passenger)
         else{
             Set<Passenger> sAux= assignments.get(taxiAux);
             if(sAux ==null){
-               sAux= new TreeSet<Passenger>(new ComparadorPassenger());
+               sAux= new TreeSet<Passenger>(new ComparadorLlegada());
             }
             else{
                 assignments.remove(taxiAux);
             }
                 sAux.add(passenger);
                 assignments.put(taxiAux, sAux);
-                taxiAux.setPickupLocation(passenger.getPickup());
+                lAux= sAux.fi;
+                taxiAux.setPickupLocation(lAux);
                 //assignmentAux=new Assignment(taxiAux,passenger);
                 //assignments.add(assignmentAux);
                 System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ " at " +passenger.getPickup());
