@@ -99,7 +99,7 @@ public class TransportCompany
      * @param location location to go
      * @return A free vehicle, or null if there is none.
      */
-    private Taxi scheduleVehicle(Location location)
+    private Taxi scheduleVehicle(Passenger passenger, Location location)
     {
        boolean enc;
        int i=0;
@@ -109,8 +109,15 @@ public class TransportCompany
        this.vehicles.sort(Comparator.comparingInt((Taxi taxi) -> taxi.getLocation().distance(location)).thenComparing(Taxi::getName));
        while (i< vehicles.size() && !enc ){ 
            tAux= vehicles.get(i);
-           if(tAux.isFree()&& !tAux.isBooked()){
-               enc=true;           
+           if (passenger.creditCard >= 20000){
+               if(tAux.isFree()&& !tAux.isBooked()&& tAux.getOccupation() == 1){
+                   enc=true; 
+                }
+            }
+            else{
+                if(tAux.isFree()&& !tAux.isBooked()&& tAux.getOccupation() >=1){
+                    enc=true;
+                }
             }
            i++;
        }
@@ -135,7 +142,7 @@ public boolean requestPickup(Passenger passenger)
         // al crearlo le meto un comparador que he creado anteriormente  new Comparator<Passenger>()
         //Assignment assignmentAux;
         //assignmentAux= null;
-        taxiAux= scheduleVehicle(passenger.getPickup());
+        taxiAux= scheduleVehicle(passenger, passenger.getPickup());
         passenger.setTaxiName(taxiAux.getName());
         taxiAux.setBookTaxi(true);
         Passenger pAux;
@@ -173,7 +180,6 @@ public boolean requestPickup(Passenger passenger)
         Passenger p1;
         p1= pAux.first();
         if(taxi.getLocation().equals(p1.getPickup())){ // Obtener el pasajero asignado al taxi y eliminar la asignación correspondiente taxi
-            
             assignments.remove(taxi);
             pAux.remove(p1);
             if (pAux.size()!=0){
@@ -183,5 +189,18 @@ public boolean requestPickup(Passenger passenger)
             p1.setTaxiName(taxi.getName());   // el pasajero debe guardar el nombre del taxi que le ha recogido
             taxi.pickup(p1);  // el taxi debe recoger al pasajero
         }        
+    }
+    /**
+     * A vehicle has arrived at the passenger destination.
+     * @param vehicle The vehicle at the pickup point.
+     */
+    public void arrivedAtDestination(Taxi taxi){
+        TreeSet<Passenger> pAux= assignments.get(taxi);
+        Passenger p1;
+        p1= pAux.first();
+        if(taxi.getLocation().equals(p1.getDestination())){
+            System.out.println("<<<< "+taxi + " at " + taxi.getLocation()+ " offloads "+ p1.getName()+ " travelling from  "+ p1.getPickup() + " to "
+            + p1.getDestination());
+        }
     }
 }

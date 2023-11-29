@@ -67,7 +67,15 @@ public abstract class Taxi
         IsFree= true;
         IsBooked= false;
         }
-
+    /**
+     * Get the taxi ocupation
+     * @return the ocupation of the taxi
+     */
+      public int getOccupation()
+    {
+        return occupation;
+    }
+    
     /**
      * Get the taxi name
      * @return the name of the taxi
