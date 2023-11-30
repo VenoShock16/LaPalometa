@@ -114,13 +114,14 @@ public class TransportCompany
        this.vehicles.sort(Comparator.comparingInt((Taxi taxi) -> taxi.getLocation().distance(location)).thenComparing(Taxi::getName));
        while (i< vehicles.size() && !enc ){ 
            tAux= vehicles.get(i);
+           TreeSet<Passenger> sAux= assignments.get(tAux);
            if (passenger.creditCard >= 20000){
-               if(tAux.isFree()&& !tAux.isBooked()&& tAux.getOccupation() == 1){
+               if(tAux.isFree()&& !tAux.isBooked()&& sAux.size()==0){//tAux.getOccupation() == 1
                    enc=true; 
                 }
             }
             else{
-                if(tAux.isFree()&& !tAux.isBooked()&& tAux.getOccupation() >=1){
+                if(tAux.isFree()&& !tAux.isBooked()&& sAux.size()>4){//tAux.getOccupation() >=1
                     enc=true;
                 }
             }
@@ -206,6 +207,9 @@ public boolean requestPickup(Passenger passenger)
         if(taxi.getLocation().equals(p1.getDestination())){
             System.out.println("<<<< "+taxi + " at " + taxi.getLocation()+ " offloads "+ p1.getName()+ " travelling from  "+ p1.getPickup() + " to "
             + p1.getDestination());
+            assignments.remove(taxi);
+            pAux.remove(p1);
+            assignments.put(taxi,pAux);
         }
     }
 }
