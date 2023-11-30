@@ -111,8 +111,8 @@ public class TransportCompany
            tAux= vehicles.get(i);
            TreeSet<Passenger> sAux= assignments.get(tAux);
            if (passenger.creditCard >= 20000){
-               if(tAux.isFree()&& !tAux.isBooked()&& sAux.size()==0){//tAux.getOccupation() == 1
-                   enc=true; 
+               if(assignments.containsKey(tAux)){//tAux.isFree()&& !tAux.isBooked()&& sAux.size()==0 tAux.getOccupation() == 1
+                enc=true; 
                 }
             }
             else{
@@ -204,7 +204,9 @@ public boolean requestPickup(Passenger passenger)
             + p1.getDestination());
             assignments.remove(taxi);
             pAux.remove(p1);
-            assignments.put(taxi,pAux);
+            if (pAux.size()!=0){
+                assignments.put(taxi,pAux);                
+            }
         }
     }
 }
