@@ -202,6 +202,9 @@ public boolean requestPickup(Passenger passenger)
         if(taxi.getLocation().equals(p1.getDestination())){
             System.out.println("<<<< "+taxi + " at " + taxi.getLocation()+ " offloads "+ p1.getName()+ " travelling from  "+ p1.getPickup() + " to "
             + p1.getDestination());
+            assignments.remove(taxi);
+            pAux.remove(p1);
+            assignments.put(taxi,pAux);
         }
     }
 }
