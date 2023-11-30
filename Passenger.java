@@ -128,12 +128,12 @@ public abstract class Passenger {
     }
     
     /**
-     * Se ejecuta despues de que el vehiculo haga offload y llamra ha algunos modulos
+     * Se ejecuta despues de que el vehiculo haga offload y llamara ha algunos modulos
      */
-    public int act()
+    public int act(int taxiEvaluation)
     {
         pay();
-        return calculateEvaluationValue();
+        return taxiEvaluation + calculateEvaluationValue();
     }
     
     /**
@@ -146,7 +146,7 @@ public abstract class Passenger {
      */
     public int calculateEvaluationValue(){
         
-        return Taxi.getValuation() + (enumReliable.getValor() * 2);
+        return enumReliable.getValor() * 2;
     }
     
 

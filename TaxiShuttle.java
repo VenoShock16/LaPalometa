@@ -1,3 +1,4 @@
+import java.util.*;
 
 /**
  * Write a description of class TaxiShuttle here.
@@ -9,7 +10,7 @@ public class TaxiShuttle extends Taxi
 
 {
     //No se muy bien si es TreeSet y tmp se muy bien como usarlo
-    private Passengers TreeSet<Passenger>; 
+    private Map<TreeSet, TreeSet<Passenger>>Passengers;
     /**
      * Constructor for objects of class TaxiShuttle
      */
@@ -18,12 +19,9 @@ public class TaxiShuttle extends Taxi
         super(company,location,name);
     }
     
-    
-    public int GastoCombustible()
+    public int obtainComsumption()
     {
     return enumFuelConspution.getValor() * distanciaRecorrida;
     }
-    
-    
 
 }

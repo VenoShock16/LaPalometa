@@ -56,6 +56,7 @@ public class TransportCompany
     public void arrivedAtDestination(Taxi vehicle,
     Passenger passenger)
     {
+        //Hay que eliminar el pasajero del tree set??
         System.out.println(vehicle + " offloads " + passenger);
     }
 
@@ -81,6 +82,7 @@ public class TransportCompany
      */
     public void addVehicle(Taxi vehicle)
     {
+        //Borra el psajero de tree set??
         vehicles.add (vehicle);
     }
 
@@ -101,6 +103,9 @@ public class TransportCompany
      */
     private Taxi scheduleVehicle(Passenger passenger, Location location)
     {
+        //Comprobar ocupacion
+        //Comprobar si la creditcard es mayor de 20000
+        
        boolean enc;
        int i=0;
        enc= false;

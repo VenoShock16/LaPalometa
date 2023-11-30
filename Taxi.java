@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Model the common elements of taxis and shuttles.
@@ -24,8 +25,12 @@ public abstract class Taxi
     private String name; 
     //passengers of the taxi
     private ArrayList<Passenger>passenger;
+    
     //Para la ordenacion se le psa el comprador la instanciarlo
-            //private arrivalTime TreeSet<Passenger>;
+    private Map<TreeSet, TreeSet<Passenger>>Passenger;
+    private int arrivalTime; 
+            //No tengo ni idea si el treeset ese esta bn
+            
     //number of passengers that are transported by the taxi (in the whole simulation)
     private int passengersTransported;
     //Si el taxi está libre o no
@@ -303,6 +308,7 @@ public abstract class Taxi
         targetLocation=null; //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
         IsFree=true;
         setBookTaxi(false);
+        Passenger.act(valuation);
     }
 
     /**
@@ -370,11 +376,15 @@ public abstract class Taxi
             }
             
         if(flagOffload){
-            notifyPassengerArrival(passenger); //Notifica que el pasajero ha llegado a su destino
-            offloadPassenger();
+            OffloadOperation();
             incrementPassengersTransported();
         }
         
+    }
+    
+    public void OffloadOperation(){
+            notifyPassengerArrival(passenger); //Notifica que el pasajero ha llegado a su destino
+            offloadPassenger();
     }
     
      /**
@@ -387,6 +397,6 @@ public abstract class Taxi
 
     }
     
-    public asbtract /* tipo enum */obtainComsumption();
+    public abstract int obtainComsumption();
 
 }
