@@ -89,6 +89,10 @@ public abstract class Taxi
         return name;
     }
     
+    /**
+     * Get the taxi valuation
+     * @return the valuation of the taxi
+     */
         public int getValuation()
     {
         return valuation;
@@ -393,6 +397,6 @@ public abstract class Taxi
 
     }
     
-    public asbtract /* tipo enum */obtainComsumption();
+    public abstract int obtainComsumption();
 
 }
