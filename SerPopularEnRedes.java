@@ -7,5 +7,5 @@
  */
 public interface SerPopularEnRedes
 {
-     public void adjustPopularity();
+     public void adjustPopularity(Passenger passenger);
 }

@@ -32,7 +32,7 @@ public class TaxiExclusive extends Taxi implements SerPopularEnRedes
         
     }
     
-    //@Override lo he comentado pq daba error
+    @Override
     public void adjustPopularity(Passenger passenger)
     {
         if(passenger.getcreditCard()>20000){ //Escribir logica: si el pasjero que se ha dejado tiene +20000 = +4 popularidad
