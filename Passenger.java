@@ -64,7 +64,13 @@ public abstract class Passenger {
     {
         return name;
     }
-
+    
+    /**
+     * @return The creditCard money of the passenger.
+     */
+    public int getcreditCard(){
+        return creditCard;
+    }   
     /**
      * @return The destination location.
      */
