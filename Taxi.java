@@ -397,6 +397,7 @@ public abstract class Taxi
 
     }
     
+    
     public abstract int obtainComsumption();
 
 }
