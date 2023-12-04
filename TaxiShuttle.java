@@ -1,5 +1,9 @@
 import java.util.*;
+<<<<<<< HEAD
 import java.util.Random
+=======
+import java.util.Random;
+>>>>>>> c22eaaacca53bcd22b1e97e604134a074d80d1c6
 
 /**
  * Write a description of class TaxiShuttle here.

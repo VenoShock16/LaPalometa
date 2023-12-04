@@ -2,7 +2,7 @@
  * Model a passenger wishing to get from one
  * location to another.
  * 
- * @author David J. Barnes and Michael Kölling
+ * @author David J. Barnes and Michael KÃ¶lling
  * @version 2016.02.29
  * @version 2023.10.10 DP classes 
  */
