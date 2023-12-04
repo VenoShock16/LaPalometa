@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.TreeSet;
-import java.util.*;
 
 /**
  * Model the common elements of taxis and shuttles.
@@ -24,13 +23,9 @@ public abstract class Taxi
     //name of the taxi
     private String name; 
     //passengers of the taxi
-    private ArrayList<Passenger>passenger;
-    
-    //Para la ordenacion se le psa el comprador la instanciarlo
-    private Map<TreeSet, TreeSet<Passenger>>Passenger;
-    private int arrivalTime; 
-            //No tengo ni idea si el treeset ese esta bn
-            
+    //private ArrayList<Passenger>passenger;
+    //Colección de pasageros (la ordenacion se le psa el comprador la instanciarlo)
+    private TreeSet<Passenger> passenger;
     //number of passengers that are transported by the taxi (in the whole simulation)
     private int passengersTransported;
     //Si el taxi está libre o no
@@ -63,6 +58,9 @@ public abstract class Taxi
         if(location == null) {
             throw new NullPointerException("location");
         }
+        if(passenger== null){
+            passenger= new TreeSet<Passenger>(new ComparadorLlegada());
+        }
         this.company = company;
         this.location = location;
         this.name= name;
@@ -71,6 +69,7 @@ public abstract class Taxi
         idleCount = 0;
         IsFree= true;
         IsBooked= false;
+        
         }
     /**
      * Get the taxi ocupation
@@ -90,6 +89,10 @@ public abstract class Taxi
         return name;
     }
     
+    /**
+     * Get the taxi valuation
+     * @return the valuation of the taxi
+     */
         public int getValuation()
     {
         return valuation;
@@ -108,7 +111,7 @@ public abstract class Taxi
      * Get the passenger of the taxi
      * @return the passenger of the taxi
      */
-        public ArrayList<Passenger>getPassenger()
+        public TreeSet<Passenger>getPassenger()
     {
         return passenger;
     }
@@ -308,7 +311,6 @@ public abstract class Taxi
         targetLocation=null; //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
         IsFree=true;
         setBookTaxi(false);
-        Passenger.act(valuation);
     }
 
     /**
@@ -344,6 +346,8 @@ public abstract class Taxi
     {
         boolean flagPickUp=false;
         boolean flagOffload=false;
+        Passenger p1;
+        p1= passenger.first();
         if(targetLocation==null){
            idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
         }
@@ -372,19 +376,15 @@ public abstract class Taxi
         
         if(flagPickUp){
                 notifyPickupArrival(); //Notifica que ha recogido un pasajero
-                pickup(passenger);
+                pickup(p1);
             }
             
         if(flagOffload){
-            OffloadOperation();
+            notifyPassengerArrival(p1); //Notifica que el pasajero ha llegado a su destino
+            offloadPassenger();
             incrementPassengersTransported();
         }
         
-    }
-    
-    public void OffloadOperation(){
-            notifyPassengerArrival(passenger); //Notifica que el pasajero ha llegado a su destino
-            offloadPassenger();
     }
     
      /**

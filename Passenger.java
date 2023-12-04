@@ -64,7 +64,13 @@ public abstract class Passenger {
     {
         return name;
     }
-
+    
+    /**
+     * @return The creditCard money of the passenger.
+     */
+    public int getcreditCard(){
+        return creditCard;
+    }   
     /**
      * @return The destination location.
      */
@@ -128,12 +134,12 @@ public abstract class Passenger {
     }
     
     /**
-     * Se ejecuta despues de que el vehiculo haga offload y llamara ha algunos modulos
+     * Se ejecuta despues de que el vehiculo haga offload y llamra ha algunos modulos
      */
-    public int act(int taxiEvaluation)
+    public int act()
     {
         pay();
-        return taxiEvaluation + calculateEvaluationValue();
+        return calculateEvaluationValue();
     }
     
     /**
@@ -145,8 +151,8 @@ public abstract class Passenger {
      * Debe ser llamado con la valoracion del taxi
      */
     public int calculateEvaluationValue(){
-        
-        return enumReliable.getValor() * 2;
+        int value= Taxi.getValuation();
+        return value + (enumReliable.getValor() * 2);
     }
     
 
