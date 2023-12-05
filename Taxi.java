@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.TreeSet;
+import java.util.Map;
 
 /**
  * Model the common elements of taxis and shuttles.
@@ -14,8 +15,10 @@ public abstract class Taxi
 {
     // The Taxi Company of this Taxi.
     private TransportCompany company;  
-    // Where the vehicle is.
     
+    private Map<Taxi,TreeSet<Passenger>> TaxiAssignments;
+    
+    // Where the vehicle is.
     private Location location;     
     // Where the vehicle is headed.
     private  Location targetLocation; 
@@ -416,6 +419,16 @@ public abstract class Taxi
         boolean flagOffload=false;
         // Passenger p1;
         // p1= passenger.first();
+        
+        company.assignments.get(this);
+        
+        TreeSet<Passenger> pAux= company.assignments.get(this);
+        Passenger p1;
+        p1= pAux.first();
+        
+        
+        
+        
         if(targetLocation==null){
            idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
         }

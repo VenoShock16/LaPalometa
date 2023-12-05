@@ -15,7 +15,7 @@ public class TransportCompany
     private List<Taxi> vehicles;
     private List<Passenger> passengers;
     //private List<Assignment> assignments;
-    private Map<Taxi,TreeSet<Passenger>> assignments;
+    public Map<Taxi,TreeSet<Passenger>> assignments;
 
     /**
      * Constructor for objects of class TransportCompany
@@ -46,6 +46,10 @@ public class TransportCompany
     public String getName()
     {
         return name;
+    }
+    
+    public Map<Taxi,TreeSet<Passenger>> getAssigements(){
+    return assignments;
     }
 
     /**
