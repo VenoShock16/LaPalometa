@@ -18,10 +18,10 @@ public class ComparadorPassenger implements Comparator<Passenger>
             return new ComparadorNombrePassenger().compare(p1,p2);
         }
         else{
-            if(p1.getDistance()<p2.getDistance()){
+            if(p1.getDistance()>p2.getDistance()){
                 return 1;
             }
-            if(p1.getDistance()>p2.getDistance()){
+            if(p1.getDistance()<p2.getDistance()){
                 return -1;
             }
         }

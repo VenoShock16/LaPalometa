@@ -147,6 +147,16 @@ public abstract class Taxi
     }
 
     /**
+     * Get the number of passengers.
+     * @return the number of passenger that the taxi contains
+     */
+    public int getPassengersTransported()
+    {
+        return passengersTransported;
+    }
+
+    
+    /**
      * Set the current location.
      * @param location Where it is. Must not be null.
      * @throws NullPointerException If location is null.

@@ -18,10 +18,10 @@ public class ComparadorLlegada implements Comparator<Passenger>
             return new ComparadorNombrePassenger().compare(p1,p2);
         }
         else{
-            if(p1.getArrivalTime()<p2.getArrivalTime()){
+            if(p1.getArrivalTime()>p2.getArrivalTime()){
                 return 1;
             }
-            if(p1.getArrivalTime()>p2.getArrivalTime()){
+            if(p1.getArrivalTime()<p2.getArrivalTime()){
                 return -1;
             }
         }

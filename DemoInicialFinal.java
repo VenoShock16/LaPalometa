@@ -44,7 +44,7 @@ public class DemoInicialFinal
      */
     public void step()
     {
-        for(Actor actor : actors) {
+        for(Taxi actor : actors) {
             actor.act();
         }
     }
