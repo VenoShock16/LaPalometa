@@ -17,7 +17,7 @@ public class TaxiExclusive extends Taxi implements SerPopularEnRedes
      */
     public TaxiExclusive(TransportCompany company, Location location, String name, FuelConsumption fuelConsumption, int weight)
     {
-        super(company,location,name);
+        super(company,location,name,fuelConsumption);
         
         popularidad = 6;
         setOcMax(1);

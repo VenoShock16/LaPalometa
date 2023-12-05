@@ -74,6 +74,38 @@ public abstract class Taxi
         occupation = 0;
 
         }
+        
+            /**
+     * Constructor of class Vehicle
+     * @param company The taxi company. Must not be null.
+     * @param location The vehicle's starting point. Must not be null.
+     * @throws NullPointerException If company or location is null.
+     */
+    
+    public Taxi(TransportCompany company, Location location, String name, FuelConsumption enumFuelConspution)
+    {
+        if(company == null) {
+            throw new NullPointerException("company");
+        }
+        if(location == null) {
+            throw new NullPointerException("location");
+        }
+        if(passenger== null){
+            passenger= new TreeSet<Passenger>(new ComparadorLlegada());
+        }
+        this.company = company;
+        this.location = location;
+        this.name= name;
+        this.enumFuelConspution= enumFuelConspution;
+        
+        targetLocation = null;
+        idleCount = 0;
+        IsFree= true;
+        IsBooked= false;
+        occupation = 0;
+
+        }
+        
     /**
      * Get the taxi ocupation
      * @return the ocupation of the taxi
