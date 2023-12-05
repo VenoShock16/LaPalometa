@@ -11,9 +11,15 @@ public class PassengerVip extends Passenger
     /**
      * Constructor for objects of class PassengerVip
      */
-    public PassengerVip(Location pickup, Location destination, String name)
+    public PassengerVip(Location pickup, Location destination, String name, Reliable reliable)
     {
-       super(pickup,destination,name);
+       super(pickup,destination,name,reliable);
+    }
+    
+        public PassengerVip(Location pickup, Location destination, String name, int arrivalTime
+        , int creditCard, Reliable reliable)
+    {
+       super(pickup,destination,name, arrivalTime, creditCard,reliable);
     }
     
     public PassengerVip(Location pickup, Location destination, String name, String taxiName)
