@@ -63,8 +63,8 @@ public class TaxiTest
         taxiLocation2 = new Location(0, 0); 
         
         // Create 2 new passengers
-        passenger1 = new Passenger(pickup1,destination1,"Nombre1", "T1");
-        passenger2 = new Passenger(pickup2,destination2,"Nombre2", "T2");  
+        passenger1 = new PassengerNoVip(pickup1,destination1,"Nombre1", "T1");
+        passenger2 = new PassengerNoVip(pickup2,destination2,"Nombre2", "T2");  
         
         //Create 2 assigments
         assigment1 = new Assignment( taxi1,passenger1);

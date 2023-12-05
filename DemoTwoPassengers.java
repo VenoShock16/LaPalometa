@@ -13,7 +13,7 @@ import java.util.*;
 public class DemoTwoPassengers
 {
     TransportCompany company;
-    private List<Actor> actors;
+    private List<Taxi> actors;
 
     /**
      * Constructor for objects of class DemoOnePassanger
@@ -44,7 +44,7 @@ public class DemoTwoPassengers
      */
     public void step()
     {
-        for(Actor actor : actors) {
+        for(Taxi actor : actors) {
             actor.act();
         }
     }
@@ -118,7 +118,7 @@ public class DemoTwoPassengers
             System.out.println(taxi);
         }
         System.out.println("-->> Passengers requesting taxi <<--");
-        Collections.sort(passengers, new ComparadorPasHoraLlegada());
+        Collections.sort(passengers, new ComparadorLlegada());
 
         for(Passenger passenger : passengers) {
             System.out.println(passenger);

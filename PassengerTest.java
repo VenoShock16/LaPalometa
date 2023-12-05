@@ -63,7 +63,7 @@ public class PassengerTest
     @Test
     public void testCreation()
     {
-        passenger = new Passenger(pickup, destination, name, taxiName);      
+        passenger = new PassengerNoVip(pickup, destination, name, taxiName);      
         assertEquals(name, passenger.getName());
         assertEquals(pickup, passenger.getPickup());
         assertEquals(destination, passenger.getDestination());
@@ -76,7 +76,7 @@ public class PassengerTest
      */
     @Test
     public void testGetTaxiName(){
-        passenger = new Passenger(pickup, destination, name, taxiName);
+        passenger = new PassengerNoVip(pickup, destination, name, taxiName);
         assertEquals(taxiName, passenger.getTaxiName());    
     }
 
@@ -86,7 +86,7 @@ public class PassengerTest
      */
     @Test
     public void testGetPickupLocation (){
-        passenger = new Passenger(pickup, destination, name, taxiName);
+        passenger = new PassengerNoVip(pickup, destination, name, taxiName);
         assertEquals(pickup, passenger.getPickup());
     }
 }
