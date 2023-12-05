@@ -343,7 +343,7 @@ public abstract class Taxi
         occupation= occupation -1;
         IsFree=true;
         setBookTaxi(false);
-    }
+    }    
     
     /**
      * Increment the number of passengers this vehicle has transported.

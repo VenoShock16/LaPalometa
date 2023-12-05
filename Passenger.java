@@ -2,7 +2,7 @@
  * Model a passenger wishing to get from one
  * location to another.
  * 
- * @author David J. Barnes and Michael Kölling
+ * @author David J. Barnes and Michael KÃ¶lling
  * @version 2016.02.29
  * @version 2023.10.10 DP classes 
  */
@@ -152,8 +152,7 @@ public abstract class Passenger {
      * Debe ser llamado con la valoracion del taxi
      */
     public int calculateEvaluationValue(){
-        int value= Taxi.getValuation();
-        return value + (enumReliable.getValor() * 2);
+        return (enumReliable.getValor() * 2);
     }
     
 

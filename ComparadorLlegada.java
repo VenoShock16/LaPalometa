@@ -25,6 +25,5 @@ public class ComparadorLlegada implements Comparator<Passenger>
                 return -1;
             }
         }
-        
     }
 }
