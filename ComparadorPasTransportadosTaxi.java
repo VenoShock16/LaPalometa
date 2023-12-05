@@ -25,6 +25,5 @@ public class ComparadorPasTransportadosTaxi
                 return -1;
             }
         }
-        
     }
 }
