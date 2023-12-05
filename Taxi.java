@@ -40,6 +40,8 @@ public abstract class Taxi
     private int occupation;
     //Distancia recorrida en toda la simulación
     protected int distanciaRecorrida=0;
+    //ocupación máxima del taxi
+    private int ocMax;
     
     
 
@@ -69,7 +71,8 @@ public abstract class Taxi
         idleCount = 0;
         IsFree= true;
         IsBooked= false;
-        
+        occupation = 0;
+
         }
     /**
      * Get the taxi ocupation
@@ -105,6 +108,15 @@ public abstract class Taxi
         public void setName(String name)
     {
         this.name=name;
+    }
+    
+    /**
+     * Set the name of the taxi
+     * @param the name of the taxi you want to set
+     */
+        public void setOcMax(int ocMax)
+    {
+        this.ocMax=ocMax;
     }
     
     /**
@@ -234,6 +246,14 @@ public abstract class Taxi
     {
         return idleCount;
     }
+    
+    /**
+     * @return The max occupation of the taxi.
+     */
+    public int getOcMax()
+    {
+        return ocMax;
+    }
 
     /**
      * Increment the number of steps on which this vehicle
@@ -299,7 +319,8 @@ public abstract class Taxi
         setTargetLocation(passenger.getDestination());
         targetLocation=passenger.getDestination();
         System.out.println("<<<< Taxi " + name + " at "+ location + " picks up " + passenger.getName());
-        IsFree=false;
+        occupation= occupation +1;
+            // IsFree=false;
     }
 
     /**
@@ -309,6 +330,7 @@ public abstract class Taxi
     {
         passenger=null; //Limpia la información de passenger para luego asignarle otro pasajero
         targetLocation=null; //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
+        occupation= occupation -1;
         IsFree=true;
         setBookTaxi(false);
     }
@@ -337,6 +359,17 @@ public abstract class Taxi
     {
         return location.distance(targetLocation);
 
+    }
+    
+    public boolean tieneSitio(){
+        boolean enc;
+        if(occupation< ocMax){
+            enc= true;
+        }
+        else{
+            enc= false;
+        }
+        return enc;
     }
 
     /**

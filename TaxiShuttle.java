@@ -16,13 +16,13 @@ public class TaxiShuttle extends Taxi
     /**
      * Constructor for objects of class TaxiShuttle
      */
-    public TaxiShuttle(TransportCompany company, Location location, String name)
+    public TaxiShuttle(TransportCompany company, Location location, String name,FuelConsumption FuelConsumption,int ocMax)
     {
         super(company,location,name);
         if (passengers== null){
             passengers= new TreeSet<Passenger>(new ComparadorLlegada());
         }
-        occupation=  Math.random()*4; //poner q la ocupacion es >1 y <4, seguramente esté mal
+        setOcMax(ocMax);
     }
     
     
@@ -32,6 +32,8 @@ public class TaxiShuttle extends Taxi
     return enumFuelConspution.getValor() * distanciaRecorrida;
     }
     
-    
+    public int obtainComsumption(){
+        return enumFuelConspution.getValor() * distanciaRecorrida;
+    }
 
 }

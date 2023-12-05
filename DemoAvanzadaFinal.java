@@ -13,7 +13,7 @@ import java.util.*;
 public class DemoAvanzadaFinal
 {
     TransportCompany company;
-    private List<Actor> actors;
+    private List<Taxi> actors;
 
     /**
      * Constructor for objects of class DemoOnePassanger
@@ -169,7 +169,7 @@ public class DemoAvanzadaFinal
     private void showFinalInfo() {
         List<Taxi> vehicles = company.getVehicles();
         List<Passenger> passengers = company.getPassengers();
-        Collections.sort(vehicles, new ComparadorPasTransportadosTaxi());
+        Collections.sort(vehicles, new ComparadorPasTransportadosTaxi()); // ComparadorPassenger?
         Collections.sort(passengers, new ComparadorNombrePassenger());
 
         System.out.println("");

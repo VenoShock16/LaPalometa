@@ -13,7 +13,7 @@ import java.util.*;
 public class DemoInicialFinal
 {
     TransportCompany company;
-    private List<Actor> actors;
+    private List<Taxi> actors;
 
     /**
      * Constructor for objects of class DemoOnePassanger
