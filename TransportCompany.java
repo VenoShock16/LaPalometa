@@ -111,12 +111,12 @@ public class TransportCompany
            tAux= vehicles.get(i);
            TreeSet<Passenger> sAux= assignments.get(tAux);
            if (passenger.creditCard > 20000){
-               if(tAux.getOcMax()==1 && tAux.tieneSitio()){
+               if(tAux.getOcMax()==1 && tieneSitioAsignaciones(tAux)){
                 enc=true; 
                 }
             }
             else{
-                if(tAux.getOcMax()>1 && tAux.tieneSitio()){
+                if(tAux.getOcMax()>1 && tieneSitioAsignaciones(tAux)){
                     enc=true;
                 }
             }
@@ -129,6 +129,20 @@ public class TransportCompany
         //Si no encuentra o encuentra y esta lleno el taxi devuelve null.
          return null;  
        }
+    }
+    
+    public boolean tieneSitioAsignaciones(Taxi taxi){
+        boolean flag = false;
+        TreeSet<Passenger> sAux;
+        if(assignments.containsKey(taxi)){
+           sAux= assignments.get(taxi);
+           if(sAux.size()< taxi.getOcMax()){
+               flag= true;
+           }
+        }
+        return flag;
+        
+        
     }
 
     /**
@@ -147,17 +161,18 @@ public boolean requestPickup(Passenger passenger)
         passenger.setTaxiName(taxiAux.getName());
         taxiAux.setBookTaxi(true);
         Passenger pAux;
+        TreeSet<Passenger> sAux;
         
         if (taxiAux== null){
             return false;
         }
         else{
-            TreeSet<Passenger> sAux= assignments.get(taxiAux); // preguntar por el contains key => assignments.containsKey(tAux)
-            if(sAux ==null){
-               sAux= new TreeSet<Passenger>(new ComparadorLlegada());
-            }
-            else{
+            if(assignments.containsKey(taxiAux)){
+                sAux= assignments.get(taxiAux);
                 assignments.remove(taxiAux);
+            }
+            else {
+               sAux= new TreeSet<Passenger>(new ComparadorLlegada());
             }
                 sAux.add(passenger);
                 assignments.put(taxiAux, sAux);
@@ -213,6 +228,7 @@ public boolean requestPickup(Passenger passenger)
         Taxi tAux;
        System.out.println("-->> Taxi(s) with less time not active <<--"); 
        Collections.sort(vehicles, new ComparadorIdleCountTaxi());
+       
        tAux= vehicles.get(0);
        
        System.out.println("Final taxi information: " + tAux.getName() + " at location " + tAux.getLocation()+ " occupation "+
