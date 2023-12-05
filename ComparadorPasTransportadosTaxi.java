@@ -1,11 +1,11 @@
-
+import java.util.*;
 /**
  * Write a description of class ComparadorPasTransportadosTaxi here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class ComparadorPasTransportadosTaxi
+public class ComparadorPasTransportadosTaxi implements Comparator<Taxi>
 {
    /**
      * Compara 2 taxis por número de pasageros
@@ -17,13 +17,11 @@ public class ComparadorPasTransportadosTaxi
         if(t1.getPassengersTransported()==t2.getPassengersTransported()){
             return new ComparadorNombreTaxi().compare(t1,t2);
         }
-        else{
+        else
             if(t1.getPassengersTransported()>t2.getPassengersTransported()){
                 return 1;
             }
-            if(t1.getPassengersTransported()<t2.getPassengersTransported()){
-                return -1;
-            }
-        }
+            else return -1;
+            
     }
 }
