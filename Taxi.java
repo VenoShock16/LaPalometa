@@ -460,7 +460,7 @@ public abstract class Taxi
     
     public String showFinalInfo()
     {
-        return "Final taxi information: " + getName() + " at location " + getLocation()+ ""+getOccupation()+ "- passengers transported: " +
+        return "Final taxi information: " + getName() + " at location " + getLocation()+ " occupation "+getOccupation()+ "- passengers transported: " +
         passengersTransported +" - non active for: "+ getIdleCount()+ " times - valuation:" +getValuation() + " - consumption: " + obtainComsumption();
 
     }
