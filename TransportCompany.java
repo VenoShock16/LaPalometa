@@ -175,6 +175,7 @@ public boolean requestPickup(Passenger passenger)
                 assignments.put(taxiAux, sAux);
                 pAux= sAux.first();
                 taxiAux.setPickupLocation(pAux.getDestination());
+                taxiAux.InsertarPasagero(passenger);
                 //assignmentAux=new Assignment(taxiAux,passenger);
                 //assignments.add(assignmentAux);
                 System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ " at " +passenger.getPickup());

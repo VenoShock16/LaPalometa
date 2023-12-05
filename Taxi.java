@@ -15,6 +15,7 @@ public abstract class Taxi
     // The Taxi Company of this Taxi.
     private TransportCompany company;  
     // Where the vehicle is.
+    
     private Location location;     
     // Where the vehicle is headed.
     private  Location targetLocation; 
@@ -413,8 +414,8 @@ public abstract class Taxi
     {
         boolean flagPickUp=false;
         boolean flagOffload=false;
-        Passenger p1;
-        p1= passenger.first();
+        // Passenger p1;
+        // p1= passenger.first();
         if(targetLocation==null){
            idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
         }
@@ -443,11 +444,11 @@ public abstract class Taxi
         
         if(flagPickUp){
                 notifyPickupArrival(); //Notifica que ha recogido un pasajero
-                pickup(p1);
+                pickup(passenger.first());
             }
             
         if(flagOffload){
-            notifyPassengerArrival(p1); //Notifica que el pasajero ha llegado a su destino
+            notifyPassengerArrival(passenger.first()); //Notifica que el pasajero ha llegado a su destino
             offloadPassenger();
             incrementPassengersTransported();
         }

@@ -27,8 +27,6 @@ public class TaxiTest
     private Location pickup2;
     private Location destination1;
     private Location destination2;
-    private Assignment assigment1;
- //   private Assignment assigment2;
     
     private TransportCompany company;
     //crear más campos (si es necesario) 
@@ -66,10 +64,6 @@ public class TaxiTest
         passenger1 = new PassengerNoVip(pickup1,destination1,"Nombre1", "T1");
         passenger2 = new PassengerNoVip(pickup2,destination2,"Nombre2", "T2");  
         
-        //Create 2 assigments
-        assigment1 = new Assignment( taxi1,passenger1);
-        assigment2 = new Assignment( taxi2,passenger2);
-        
         
     }
 
@@ -94,8 +88,6 @@ public class TaxiTest
         destination1= null;
         pickup2= null;
         destination2= null;
-        assigment1 = null;
-        assigment2 = null;
 
         
     }
@@ -123,8 +115,8 @@ public class TaxiTest
         passengerList.add(passenger2);
         taxiList.add(taxi1);
         taxiList.add(taxi2);
-        assignments.add(assigment1);
-        assignments.add(assigment2);
+        assignments.put(taxi1, passenger1);
+        assignments.put(taxi2, passenger2);
         
         //Asserts
         assertNotNull(passengerList); //La lista de pasajeros no debería estar vacia
