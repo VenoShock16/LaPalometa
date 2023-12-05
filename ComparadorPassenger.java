@@ -25,6 +25,5 @@ public class ComparadorPassenger implements Comparator<Passenger>
                 return -1;
             }
         }
-        
     }
 }
