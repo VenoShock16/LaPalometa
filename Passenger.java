@@ -130,7 +130,8 @@ public abstract class Passenger {
      */
     public String showFinalInfo()
     {
-        return "Final passenger information: "+ getName() + " in location  " + destination + " transported by: " + getTaxiName() ;
+        return "Final passenger information: "+ getName() + " in location  " + destination + " transported by: " + getTaxiName() + " with  "+
+        getcreditCard() + "money in the credit card";
     }
     
     /**
