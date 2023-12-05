@@ -5,7 +5,7 @@ import java.util.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class ComparadorPasTransportadosTaxi implements Comparator<Taxi>
+public class ComparadorIdleCountTaxi implements Comparator<Taxi>
 {
    /**
      * Compara 2 taxis por número de pasageros
@@ -14,11 +14,11 @@ public class ComparadorPasTransportadosTaxi implements Comparator<Taxi>
      * @return Cual es el pasajero con orden alfabetico mas cercano
      */
     public int compare(Taxi t1, Taxi t2){  
-        if(t1.getIdleCount()==t2.getIdleCount()){
-            return new ComparadorEvaluationTaxi().compare(t1,t2);
+        if(t1.getPassengersTransported()==t2.getPassengersTransported()){
+            return new ComparadorNombreTaxi().compare(t1,t2);
         }
         else
-            if(t1.getIdleCount()>t2.getIdleCount()){
+            if(t1.getPassengersTransported()>t2.getPassengersTransported()){
                 return 1;
             }
             else return -1;
