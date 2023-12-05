@@ -344,14 +344,6 @@ public abstract class Taxi
         IsFree=true;
         setBookTaxi(false);
     }
-
-    /**
-     * @return how many passengers this vehicle has transported.
-     */
-    public int getPassengersTransported()
-    {
-        return passengersTransported;
-    }
     
     /**
      * Increment the number of passengers this vehicle has transported.
@@ -436,7 +428,8 @@ public abstract class Taxi
      */
     public String showFinalInfo()
     {
-        return "Final taxi information: " + getName() + " " + getLocation() + " " + passengersTransported +" "+ getIdleCount();
+        return "Final taxi information: " + getName() + " at location " + getLocation()+ ""+getOccupation()+ "- passengers transported: " +
+        passengersTransported +" - non active for: "+ getIdleCount()+ " times - valuation:" +getValuation() + " - consumption: " + obtainComsumption();
 
     }
     

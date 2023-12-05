@@ -44,7 +44,7 @@ public class DemoAvanzadaFinal
      */
     public void step()
     {
-        for(Actor actor : actors) {
+        for(Taxi actor : actors) {
             actor.act();
         }
     }
@@ -169,7 +169,7 @@ public class DemoAvanzadaFinal
     private void showFinalInfo() {
         List<Taxi> vehicles = company.getVehicles();
         List<Passenger> passengers = company.getPassengers();
-        Collections.sort(vehicles, new ComparadorPasTransportadosTaxi()); // ComparadorPassenger?
+        Collections.sort(vehicles, new ComparadorPasTransportadosTaxi());
         Collections.sort(passengers, new ComparadorNombrePassenger());
 
         System.out.println("");
