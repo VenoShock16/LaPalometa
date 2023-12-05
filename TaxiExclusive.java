@@ -19,18 +19,19 @@ public class TaxiExclusive extends Taxi implements SerPopularEnRedes
     {
         super(company,location,name);
         popularidad = 6;
+        this.setOcMax(1);
     }
     
     public int obtainComsumption()
     {
-    return weight * enumFuelConspution.getValor() * distanciaRecorrida;
+    return (weight/2) * enumFuelConspution.getValor() * distanciaRecorrida;
     }
     
-    //metodo act, me da pereza hacerlo
-    @Override
-    public void act(){
+    
+    // @Override
+    // public void act(){
         
-    }
+    // }
     
     @Override
     public void adjustPopularity(Passenger passenger)

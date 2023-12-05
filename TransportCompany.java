@@ -110,13 +110,13 @@ public class TransportCompany
        while (i< vehicles.size() && !enc ){ 
            tAux= vehicles.get(i);
            TreeSet<Passenger> sAux= assignments.get(tAux);
-           if (passenger.creditCard >= 20000){
-               if(assignments.containsKey(tAux)){//tAux.isFree()&& !tAux.isBooked()&& sAux.size()==0 tAux.getOccupation() == 1
+           if (passenger.creditCard > 20000){
+               if(tAux.getOcMax()==1 && tAux.tieneSitio()){
                 enc=true; 
                 }
             }
             else{
-                if(tAux.isFree()&& !tAux.isBooked()&& sAux.size()>4){//tAux.getOccupation() >=1
+                if(tAux.getOcMax()>1 && tAux.tieneSitio()){
                     enc=true;
                 }
             }
@@ -152,7 +152,7 @@ public boolean requestPickup(Passenger passenger)
             return false;
         }
         else{
-            TreeSet<Passenger> sAux= assignments.get(taxiAux);
+            TreeSet<Passenger> sAux= assignments.get(taxiAux); // preguntar por el contains key => assignments.containsKey(tAux)
             if(sAux ==null){
                sAux= new TreeSet<Passenger>(new ComparadorLlegada());
             }
