@@ -151,7 +151,7 @@ public abstract class Passenger {
      * Debe ser llamado con la valoracion del taxi
      */
     public int calculateEvaluationValue(){
-        int value= Taxi.getValuation();
+        int value= valuation;
         return value + (enumReliable.getValor() * 2);
     }
     

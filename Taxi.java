@@ -333,6 +333,11 @@ public abstract class Taxi
         occupation= occupation -1;
         IsFree=true;
         setBookTaxi(false);
+        OffloadOperation(this);
+    }
+    
+    public Taxi OffloadOperation(Taxi taxi){
+    return taxi;
     }
 
     /**
