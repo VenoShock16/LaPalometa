@@ -25,7 +25,7 @@ public class TransportCompany
         vehicles = new ArrayList<>();
         passengers = new ArrayList<>();
         //assignments = new ArrayList<>();
-        Map<Taxi,Passenger> assignments = new HashMap<>();
+       assignments = new HashMap<>();
     }
 
     /**
@@ -109,14 +109,13 @@ public class TransportCompany
        this.vehicles.sort(Comparator.comparingInt((Taxi taxi) -> taxi.getLocation().distance(location)).thenComparing(Taxi::getName));
        while (i< vehicles.size() && !enc ){ 
            tAux= vehicles.get(i);
-           TreeSet<Passenger> sAux= assignments.get(tAux);
            if (passenger.creditCard > 20000){
-               if(tAux.getOcMax()==1 && tieneSitioAsignaciones(tAux)){
+               if(tieneSitioAsignaciones(tAux)){
                 enc=true; 
                 }
             }
             else{
-                if(tAux.getOcMax()>1 && tieneSitioAsignaciones(tAux)){
+                if(tieneSitioAsignaciones(tAux)){
                     enc=true;
                 }
             }
@@ -132,12 +131,10 @@ public class TransportCompany
     }
     
     public boolean tieneSitioAsignaciones(Taxi taxi){
-        boolean flag = false;
-        TreeSet<Passenger> sAux;
+        boolean flag = true;
         if(assignments.containsKey(taxi)){
-           sAux= assignments.get(taxi);
-           if(sAux.size()< taxi.getOcMax()){
-               flag= true;
+           if(assignments.get(taxi).size() >= taxi.getOcMax()){
+               flag= false;
            }
         }
         return flag;
