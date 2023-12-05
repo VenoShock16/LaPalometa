@@ -210,6 +210,7 @@ public boolean requestPickup(Passenger passenger)
         }
     }
     public void showFinalInfo(){
+        Collections.sort(vehicles, new ComparadorPasTransportadosTaxi());
         
        System.out.println("-->> Taxi(s) with less time not active <<--"); 
        
