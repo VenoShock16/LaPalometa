@@ -23,7 +23,7 @@ public abstract class Passenger {
      * @throws NullPointerException If either location is null.
      */
 
-    public Passenger(Location pickup, Location destination, String name){
+    public Passenger(Location pickup, Location destination, String name, Reliable enumReliable    ){
         if(pickup == null) {
             throw new NullPointerException("Pickup location");
         }
@@ -34,6 +34,24 @@ public abstract class Passenger {
         this.destination = destination;
         this.name = name;
         this.taxiName = "";
+        this.enumReliable =enumReliable;
+    }
+    
+        public Passenger(Location pickup, Location destination, String name,    
+        int arrivalTime,int creditCard, Reliable enumReliable){
+        if(pickup == null) {
+            throw new NullPointerException("Pickup location");
+        }
+        if(destination == null) {
+            throw new NullPointerException("Destination location");
+        }
+        this.pickup = pickup;
+        this.destination = destination;
+        this.name = name;
+        this.taxiName = "";
+        this.enumReliable =enumReliable;
+        this.arrivalTime =arrivalTime;
+        this.creditCard =creditCard;
     }
 
     /**
