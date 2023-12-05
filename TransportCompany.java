@@ -210,11 +210,23 @@ public boolean requestPickup(Passenger passenger)
         }
     }
     public void showFinalInfo(){
-        Collections.sort(vehicles, new ComparadorPasTransportadosTaxi());
-        
+        Taxi tAux;
        System.out.println("-->> Taxi(s) with less time not active <<--"); 
+       Collections.sort(vehicles, new ComparadorIdleCountTaxi());
+       tAux= vehicles.get(0);
        
+       System.out.println("Final taxi information: " + tAux.getName() + " at location " + tAux.getLocation()+ ""+
+       tAux.getOccupation()+ "- passengers transported: " +
+       tAux.getPassengersTransported() +" - non active for: "+ tAux.getIdleCount()+ " times - valuation:" + tAux.getValuation() + " - consumption: " +
+       tAux.obtainComsumption());
        
        System.out.println("-->> Taxi(s) with highest evaluation <<--"); 
+       Collections.sort(vehicles, new ComparadorEvaluationTaxi());
+       tAux= vehicles.get(0);
+       
+       System.out.println("Final taxi information: " + tAux.getName() + " at location " + tAux.getLocation()+ ""+
+       tAux.getOccupation()+ "- passengers transported: " +
+       tAux.getPassengersTransported() +" - non active for: "+ tAux.getIdleCount()+ " times - valuation:" + tAux.getValuation() + " - consumption: " +
+       tAux.obtainComsumption());
     }
 }
