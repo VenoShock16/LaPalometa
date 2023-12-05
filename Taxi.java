@@ -343,7 +343,20 @@ public abstract class Taxi
         occupation= occupation -1;
         IsFree=true;
         setBookTaxi(false);
+<<<<<<< HEAD
     }    
+=======
+    }
+    
+
+    /**
+     * @return how many passengers this vehicle has transported.
+     */
+    public int getPassengersTransported()
+    {
+        return passengersTransported;
+    }
+>>>>>>> 96851487f58038c4b310c393eb0716d6c622d4bb
     
     /**
      * Increment the number of passengers this vehicle has transported.
