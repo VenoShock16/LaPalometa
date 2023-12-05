@@ -20,7 +20,7 @@ public class TaxiTest
     private Passenger passenger2;
     private List<Passenger> passengerList;
     private List<Taxi> taxiList;
-    private List<Assignment> assignments;
+    private Map<Taxi,TreeSet<Passenger>>  assignments;
     private Location taxiLocation1;
     private Location taxiLocation2;
     private Location pickup1;
@@ -28,7 +28,7 @@ public class TaxiTest
     private Location destination1;
     private Location destination2;
     private Assignment assigment1;
-    private Assignment assigment2;
+ //   private Assignment assigment2;
     
     private TransportCompany company;
     //crear más campos (si es necesario) 
@@ -50,7 +50,7 @@ public class TaxiTest
         //Crea 3 listas para declarar TransportCompany
         passengerList = new ArrayList<Passenger>();
         taxiList= new ArrayList<Taxi>();
-        assignments= new ArrayList<Assignment>();
+        assignments= new  HashMap<>();
 
         // Locations for the passenger.
         pickup1 = new Location(1, 2);
@@ -108,15 +108,15 @@ public class TaxiTest
     {
         
         //Create the company
-        TransportCompany defaultcompany = new TransportCompany("Compañía Taxis Cáceres",taxiList,passengerList,assignments);
+        TransportCompany defaultcompany = new TransportCompany("Compañía Taxis Cáceres",taxiList,passengerList);
             
         //Create 2 taxis
-        taxi1 = new Taxi(defaultcompany, taxiLocation1,"T1");
-        taxi2 = new Taxi(defaultcompany, taxiLocation2,"T2");
+        taxi1 = new TaxiShuttle(defaultcompany, taxiLocation1,"T1");
+        taxi2 = new TaxiExclusive(defaultcompany, taxiLocation2,"T2");
         
         //Asigna los pasajeros al taxi
-        taxi1.asignarPasagero(passenger1);
-        taxi2.asignarPasagero(passenger2);
+        taxi1.InsertarPasagero(passenger1);
+        taxi2.InsertarPasagero(passenger2);
         
         // Add passengers and taxis to the taxiList and passengerList
         passengerList.add(passenger1);
@@ -149,15 +149,15 @@ public class TaxiTest
         
         
         //Create the company
-        TransportCompany defaultcompany = new TransportCompany("Compañía Taxis Cáceres",taxiList,passengerList,assignments);
+        TransportCompany defaultcompany = new TransportCompany("Compañía Taxis Cáceres",taxiList,passengerList);
             
         //Create 2 taxis
-        taxi1 = new Taxi(defaultcompany, taxiLocation1,"T1");
-        taxi2 = new Taxi(defaultcompany, taxiLocation2,"T2");
+        taxi1 = new TaxiShuttle(defaultcompany, taxiLocation1,"T1");
+        taxi2 = new TaxiExclusive(defaultcompany, taxiLocation2,"T2");
         
         //Asigna los pasajeros al taxi
-        taxi1.asignarPasagero(passenger1);
-        taxi2.asignarPasagero(passenger2);
+        taxi1.InsertarPasagero(passenger1);
+        taxi2.InsertarPasagero(passenger2);
         
         taxi1.pickup(passenger1);
         taxi2.pickup(passenger2);
@@ -190,15 +190,15 @@ public class TaxiTest
     {
     
         //Create the company
-        TransportCompany defaultcompany = new TransportCompany("Compañía Taxis Cáceres",taxiList,passengerList,assignments);
+        TransportCompany defaultcompany = new TransportCompany("Compañía Taxis Cáceres",taxiList,passengerList);
             
         //Create 2 taxis
-        taxi1 = new Taxi(defaultcompany, taxiLocation1,"T1");
-        taxi2 = new Taxi(defaultcompany, taxiLocation2,"T2");
+        taxi1 = new TaxiShuttle(defaultcompany, taxiLocation1,"T1");
+        taxi2 = new TaxiExclusive(defaultcompany, taxiLocation2,"T2");
         
         //Asigna los pasajeros al taxi
-        taxi1.asignarPasagero(passenger1);
-        taxi2.asignarPasagero(passenger2);
+        taxi1.InsertarPasagero(passenger1);
+        taxi2.InsertarPasagero(passenger2);
         
         // Add passengers and taxis to the taxiList and passengerList
         passengerList.add(passenger1);
@@ -236,13 +236,13 @@ public class TaxiTest
     {
            
         //Create the company
-        TransportCompany defaultcompany = new TransportCompany("Compañía Taxis Cáceres",taxiList,passengerList,assignments);
+        TransportCompany defaultcompany = new TransportCompany("Compañía Taxis Cáceres",taxiList,passengerList);
             
         //Create 2 taxis
-        taxi1 = new Taxi(defaultcompany, taxiLocation1,"T1");
+        taxi1 = new TaxiShuttle(defaultcompany, taxiLocation1,"T1");
         
         //Asigna los pasajeros al taxi
-        taxi1.asignarPasagero(passenger1);
+        taxi1.InsertarPasagero(passenger1);
         
                 // Add passengers and taxis to the taxiList and passengerList
         passengerList.add(passenger1);
