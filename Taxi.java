@@ -420,11 +420,11 @@ public abstract class Taxi
         // Passenger p1;
         // p1= passenger.first();
         
-        company.assignments.get(this);
         
-        TreeSet<Passenger> pAux= company.assignments.get(this);
-        Passenger p1;
-        p1= pAux.first();
+        
+        TreeSet<Passenger> pAux;
+        //Passenger p1;
+        //p1= pAux.first();
         
         
         
