@@ -45,6 +45,8 @@ public abstract class Taxi
     //ocupación máxima del taxi
     private int ocMax;
     
+    private boolean isFree;
+    
     
 
     /**
@@ -73,6 +75,7 @@ public abstract class Taxi
         idleCount = 0;
         IsBooked= false;
         occupation = 0;
+        isFree= true;
 
         }
         
@@ -103,6 +106,7 @@ public abstract class Taxi
         idleCount = 0;
         IsBooked= false;
         occupation = 0;
+        isFree= true;
 
         }
         
@@ -140,6 +144,15 @@ public abstract class Taxi
         public int getValuation()
     {
         return valuation;
+    }
+    
+    /**
+     * Get if the taxi is free
+     * @return the valuation of the taxi
+     */
+        public boolean getIsFree()
+    {
+        return isFree;
     }
     
     /**
@@ -372,6 +385,9 @@ public abstract class Taxi
         //targetLocation=passenger.getDestination();
         //System.out.println("<<<< Taxi " + name + " at "+ location + " picks up " + passenger.getName());
         occupation= occupation +1;
+        if (!tieneSitio()){
+            isFree= false;
+        }
     }
 
     /**
@@ -383,6 +399,9 @@ public abstract class Taxi
         targetLocation=null; //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
         occupation= occupation -1;
         setBookTaxi(false);
+        if (tieneSitio()){
+            isFree= true;
+        }
     }
     
     /**
@@ -417,7 +436,8 @@ public abstract class Taxi
     public void act(){
         boolean flagPickUp=false;
         boolean flagOffload=false;
-
+        
+        
         if(targetLocation==null){
            idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
         }
@@ -428,12 +448,12 @@ public abstract class Taxi
             System.out.println("@@@ Taxi: "+name + " moving to: " + lAux.getX()+ " , " +lAux.getY());
             //Si la siguiente posicion es la misma que la a la que se dirgia y no está lleno
             //es decir, va recoger a un pasajero:
-            if(lAux.equals(targetLocation)){
+            if(lAux.equals(targetLocation)&&isFree){
                 flagPickUp=true;
             }
             //Si la siguiente posicion es la misma que la a la que se dirgia y está lleno
             //es decir, esta llevando a un destino a un pasajero:
-            if(lAux.equals(targetLocation)){
+            if(lAux.equals(targetLocation)&&!isFree){ 
                 flagOffload= true;
             }
         }    
