@@ -432,11 +432,6 @@ public abstract class Taxi
     public void act(){
         boolean flagPickUp=false;
         boolean flagOffload=false;
-        // Passenger p1;
-        // p1= passenger.first();        
-        
-        Passenger p1;
-        p1= pAux.first();
 
         if(targetLocation==null){
            idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
@@ -445,7 +440,7 @@ public abstract class Taxi
             distanciaRecorrida++;
             Location lAux;
             lAux= location.nextLocation(targetLocation);
-            System.out.println("@@@ Taxi: "+name + " moving to: " + lAux.getX()+ " - " +lAux.getY());
+            System.out.println("@@@ Taxi: "+name + " moving to: " + lAux.getX()+ " , " +lAux.getY());
             //Si la siguiente posicion es la misma que la a la que se dirgia y no está lleno
             //es decir, va recoger a un pasajero:
             if(lAux.equals(targetLocation)&&isFree()){

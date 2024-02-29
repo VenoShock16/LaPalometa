@@ -109,7 +109,7 @@ public class TransportCompany
        this.vehicles.sort(Comparator.comparingInt((Taxi taxi) -> taxi.getLocation().distance(location)).thenComparing(Taxi::getName));
        while (i< vehicles.size() && !enc ){ 
            tAux= vehicles.get(i);
-           if (passenger.getcreditCard() > 20000){
+           if (passenger.getcreditCard() >= 20000){
                if(hayHuecoTaxiExclusive(tAux)){
                 enc=true; 
                 }
