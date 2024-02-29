@@ -109,13 +109,13 @@ public class TransportCompany
        this.vehicles.sort(Comparator.comparingInt((Taxi taxi) -> taxi.getLocation().distance(location)).thenComparing(Taxi::getName));
        while (i< vehicles.size() && !enc ){ 
            tAux= vehicles.get(i);
-           if (passenger.creditCard > 20000){
-               if(tieneSitioAsignaciones(tAux)){
+           if (passenger.getcreditCard() > 20000){
+               if(hayHuecoTaxiExclusive(tAux)){
                 enc=true; 
                 }
             }
             else{
-                if(tieneSitioAsignaciones(tAux)){
+                if(hayHuecoTaxiShuttle(tAux)){
                     enc=true;
                 }
             }
@@ -130,12 +130,18 @@ public class TransportCompany
        }
     }
     
-    public boolean tieneSitioAsignaciones(Taxi taxi){
-        boolean flag = true;
-        if(assignments.containsKey(taxi)){
-           if(assignments.get(taxi).size() >= taxi.getOcMax()){
-               flag= false;
-           }
+    public boolean hayHuecoTaxiExclusive(Taxi taxi){
+        boolean flag= false;
+        if(!assignments.containsKey(taxi)&& taxi.getOccupation()==0){
+            flag= true;
+        }
+        return flag;
+    }
+    
+    public boolean hayHuecoTaxiShuttle(Taxi taxi){
+        boolean flag = false;
+        if(assignments.containsKey(taxi)&& taxi.tieneSitio()){
+            flag= true;
         }
         return flag;
         
@@ -149,7 +155,7 @@ public class TransportCompany
      */
 public boolean requestPickup(Passenger passenger)
     {
-        Taxi taxiAux;
+        Taxi taxiAux = null;
         //cuadno me devuelven un taxi tengo q comprobar si tiene lista en assigments, si no tiene, hago un Set<Passenger> sAux= new treeSet<Passenger>();
         // al crearlo le meto un comparador que he creado anteriormente  new Comparator<Passenger>()
         //Assignment assignmentAux;
@@ -175,6 +181,7 @@ public boolean requestPickup(Passenger passenger)
                 assignments.put(taxiAux, sAux);
                 pAux= sAux.first();
                 taxiAux.setPickupLocation(pAux.getDestination());
+                taxiAux.incOccupation();
                 //assignmentAux=new Assignment(taxiAux,passenger);
                 //assignments.add(assignmentAux);
                 System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ " at " +passenger.getPickup());
@@ -214,6 +221,7 @@ public boolean requestPickup(Passenger passenger)
         if(taxi.getLocation().equals(p1.getDestination())){
             System.out.println("<<<< "+taxi + " at " + taxi.getLocation()+ " offloads "+ p1.getName()+ " travelling from  "+ p1.getPickup() + " to "
             + p1.getDestination());
+            taxi.decOccupation();
             assignments.remove(taxi);
             pAux.remove(p1);
             if (pAux.size()!=0){

@@ -116,6 +116,15 @@ public abstract class Taxi
     }
     
     /**
+     * Get the taxi maximum ocupation 
+     * @return the ocupation of the taxi
+     */
+      public int getOcMax()
+    {
+        return ocMax;
+    }
+    
+    /**
      * Get the taxi name
      * @return the name of the taxi
      */
@@ -143,12 +152,30 @@ public abstract class Taxi
     }
     
     /**
-     * Set the name of the taxi
+     * Set the taxi maximum ocupation
      * @param the name of the taxi you want to set
      */
         public void setOcMax(int ocMax)
     {
         this.ocMax=ocMax;
+    }
+    
+     /**
+     * Increment the occupation of the taxi
+     * @param the name of the taxi you want to set
+     */
+        public void incOccupation()
+    {
+        this.occupation++;
+    }
+    
+     /**
+     * Decrement the occupation of the taxi
+     * @param the name of the taxi you want to set
+     */
+        public void decOccupation()
+    {
+        this.occupation--;
     }
     
     /**
@@ -288,14 +315,6 @@ public abstract class Taxi
     {
         return idleCount;
     }
-    
-    /**
-     * @return The max occupation of the taxi.
-     */
-    public int getOcMax()
-    {
-        return ocMax;
-    }
 
     /**
      * Increment the number of steps on which this vehicle
@@ -396,12 +415,9 @@ public abstract class Taxi
     }
     
     public boolean tieneSitio(){
-        boolean enc;
+        boolean enc= false;
         if(occupation< ocMax){
             enc= true;
-        }
-        else{
-            enc= false;
         }
         return enc;
     }

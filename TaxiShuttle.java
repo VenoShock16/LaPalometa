@@ -25,8 +25,6 @@ public class TaxiShuttle extends Taxi
         setOcMax(ocMax);
     }
     
-    
-    
     public int GastoCombustible()
     {
     return enumFuelConspution.getValor() * distanciaRecorrida;
