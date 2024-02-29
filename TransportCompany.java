@@ -15,7 +15,7 @@ public class TransportCompany
     private List<Taxi> vehicles;
     private List<Passenger> passengers;
     //private List<Assignment> assignments;
-    public Map<Taxi,TreeSet<Passenger>> assignments;
+    private Map<Taxi,TreeSet<Passenger>> assignments;
 
     /**
      * Constructor for objects of class TransportCompany
@@ -46,10 +46,6 @@ public class TransportCompany
     public String getName()
     {
         return name;
-    }
-    
-    public Map<Taxi,TreeSet<Passenger>> getAssigements(){
-    return assignments;
     }
 
     /**
@@ -98,7 +94,7 @@ public class TransportCompany
 
     }
 
-    /**
+ /**
      * Find a the most closed free vehicle to a location, if any.
      * @param location location to go
      * @return A free vehicle, or null if there is none.
@@ -114,12 +110,12 @@ public class TransportCompany
        while (i< vehicles.size() && !enc ){ 
            tAux= vehicles.get(i);
            if (passenger.getcreditCard() > 20000){
-               if(tieneSitioAsignaciones(tAux)){
+               if(hayHuecoTaxiExclusive(tAux)){
                 enc=true; 
                 }
             }
             else{
-                if(tieneSitioAsignaciones(tAux)){
+                if(hayHuecoTaxiShuttle(tAux)){
                     enc=true;
                 }
             }
@@ -134,12 +130,36 @@ public class TransportCompany
        }
     }
     
-    public boolean tieneSitioAsignaciones(Taxi taxi){
-        boolean flag = true;
-        if(assignments.containsKey(taxi)){
-           if(assignments.get(taxi).size() >= taxi.getOcMax()){
-               flag= false;
-           }
+    public boolean hayHuecoTaxiExclusive(Taxi taxi){
+        boolean flag= false;
+        if(!assignments.containsKey(taxi)&& taxi.getOccupation()==0){
+            flag= true;
+        }
+        return flag;
+    }
+    
+    public boolean hayHuecoTaxiShuttle(Taxi taxi){
+        boolean flag = false;
+        if(assignments.containsKey(taxi)&& taxi.tieneSitio()){
+            flag= true;
+        }
+        return flag;
+        
+        
+    }
+    
+    public boolean hayHuecoTaxiExclusive(Taxi taxi){
+        boolean flag= false;
+        if(!assignments.containsKey(taxi)&& taxi.getOccupation()==0){
+            flag= true;
+        }
+        return flag;
+    }
+    
+    public boolean hayHuecoTaxiShuttle(Taxi taxi){
+        boolean flag = false;
+        if(assignments.containsKey(taxi)&& taxi.tieneSitio()){
+            flag= true;
         }
         return flag;
         
@@ -153,7 +173,7 @@ public class TransportCompany
      */
 public boolean requestPickup(Passenger passenger)
     {
-        Taxi taxiAux;
+        Taxi taxiAux = null;
         //cuadno me devuelven un taxi tengo q comprobar si tiene lista en assigments, si no tiene, hago un Set<Passenger> sAux= new treeSet<Passenger>();
         // al crearlo le meto un comparador que he creado anteriormente  new Comparator<Passenger>()
         //Assignment assignmentAux;
@@ -179,7 +199,7 @@ public boolean requestPickup(Passenger passenger)
                 assignments.put(taxiAux, sAux);
                 pAux= sAux.first();
                 taxiAux.setPickupLocation(pAux.getDestination());
-                taxiAux.InsertarPasagero(passenger);
+                taxiAux.incOccupation();
                 //assignmentAux=new Assignment(taxiAux,passenger);
                 //assignments.add(assignmentAux);
                 System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ " at " +passenger.getPickup());
@@ -219,6 +239,7 @@ public boolean requestPickup(Passenger passenger)
         if(taxi.getLocation().equals(p1.getDestination())){
             System.out.println("<<<< "+taxi + " at " + taxi.getLocation()+ " offloads "+ p1.getName()+ " travelling from  "+ p1.getPickup() + " to "
             + p1.getDestination());
+            taxi.decOccupation();
             assignments.remove(taxi);
             pAux.remove(p1);
             if (pAux.size()!=0){

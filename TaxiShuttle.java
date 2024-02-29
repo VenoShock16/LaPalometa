@@ -33,7 +33,6 @@ public class TaxiShuttle extends Taxi
         }
     }
     
-    
     public int GastoCombustible()
     {
     return enumFuelConspution.getValor() * distanciaRecorrida;
