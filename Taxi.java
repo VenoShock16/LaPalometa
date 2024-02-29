@@ -32,8 +32,6 @@ public abstract class Taxi
     private TreeSet<Passenger> passenger;
     //number of passengers that are transported by the taxi (in the whole simulation)
     private int passengersTransported;
-    //Si el taxi está libre o no
-    private boolean IsFree;
     //Esta variable sirve al asignar los taxis a los pasajeros y no sobre escribirlos cuando ya tiene un pasajero asigando
     private boolean IsBooked;
     //enum del fuelconsption medio del taxi
@@ -46,6 +44,8 @@ public abstract class Taxi
     protected int distanciaRecorrida=0;
     //ocupación máxima del taxi
     private int ocMax;
+    
+    private boolean isFree;
     
     
 
@@ -73,9 +73,9 @@ public abstract class Taxi
         
         targetLocation = null;
         idleCount = 0;
-        IsFree= true;
         IsBooked= false;
         occupation = 0;
+        isFree= true;
 
         }
         
@@ -104,9 +104,9 @@ public abstract class Taxi
         
         targetLocation = null;
         idleCount = 0;
-        IsFree= true;
         IsBooked= false;
         occupation = 0;
+        isFree= true;
 
         }
         
@@ -144,6 +144,15 @@ public abstract class Taxi
         public int getValuation()
     {
         return valuation;
+    }
+    
+    /**
+     * Get if the taxi is free
+     * @return the valuation of the taxi
+     */
+        public boolean getIsFree()
+    {
+        return isFree;
     }
     
     /**
@@ -197,7 +206,7 @@ public abstract class Taxi
      */
     public void InsertarPasagero(Passenger p){
         passenger.add(p);
-        targetLocation=p.getPickup();
+        //targetLocation=p.getDestination();
     }
 
     /**
@@ -337,15 +346,6 @@ public abstract class Taxi
     {
         return getClass().getName() + " " +getName()+" at " + getLocation();
     }
-
-    /**
-     * Is the taxi free?
-     * @return Whether or not this taxi is free.
-     */
-    public boolean isFree()
-    {
-        return IsFree;
-    }
     
     /**
      * Get del estado booked del taxi
@@ -382,10 +382,12 @@ public abstract class Taxi
     {   
         InsertarPasagero(passenger);
         setTargetLocation(passenger.getDestination());
-        targetLocation=passenger.getDestination();
-        System.out.println("<<<< Taxi " + name + " at "+ location + " picks up " + passenger.getName());
+        //targetLocation=passenger.getDestination();
+        //System.out.println("<<<< Taxi " + name + " at "+ location + " picks up " + passenger.getName());
         occupation= occupation +1;
-            // IsFree=false;
+        if (!tieneSitio()){
+            isFree= false;
+        }
     }
 
     /**
@@ -396,8 +398,10 @@ public abstract class Taxi
         passenger=null; //Limpia la información de passenger para luego asignarle otro pasajero
         targetLocation=null; //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
         occupation= occupation -1;
-        IsFree=true;
         setBookTaxi(false);
+        if (tieneSitio()){
+            isFree= true;
+        }
     }
     
     /**
@@ -426,15 +430,14 @@ public abstract class Taxi
         return enc;
     }
 
-  /**
-     
-Carry out a taxi's actions.*/
-  public void act(){
-      boolean flagPickUp=false;
-      boolean flagOffload=false;// Passenger p1;// p1= passenger.first();
-
-      // Passenger p1;// p1= pAux.first();
-
+    /**
+     * Carry out a taxi's actions.
+     */
+    public void act(){
+        boolean flagPickUp=false;
+        boolean flagOffload=false;
+        
+        
         if(targetLocation==null){
            idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
         }
@@ -442,36 +445,36 @@ Carry out a taxi's actions.*/
             distanciaRecorrida++;
             Location lAux;
             lAux= location.nextLocation(targetLocation);
-            System.out.println("@@@ Taxi: "+name + " moving to: " + lAux.getX()+ " - " +lAux.getY());
+            System.out.println("@@@ Taxi: "+name + " moving to: " + lAux.getX()+ " , " +lAux.getY());
             //Si la siguiente posicion es la misma que la a la que se dirgia y no está lleno
             //es decir, va recoger a un pasajero:
-            if(lAux.equals(targetLocation)&&isFree()){
+            if(lAux.equals(targetLocation)&&isFree){
                 flagPickUp=true;
             }
             //Si la siguiente posicion es la misma que la a la que se dirgia y está lleno
             //es decir, esta llevando a un destino a un pasajero:
-            if(lAux.equals(targetLocation)&&!isFree()){
+            if(lAux.equals(targetLocation)&&!isFree){ 
                 flagOffload= true;
             }
-        }
-
-
+        }    
+         
+        
         if(targetLocation!=null){
         //Efectua el movimiento
-        location=location.nextLocation(targetLocation);
+        location=location.nextLocation(targetLocation);  
         }
-
+        
         if(flagPickUp){
                 notifyPickupArrival(); //Notifica que ha recogido un pasajero
-                pickup(passenger.first());
+                //pickup(passenger.first());
             }
-
+            
         if(flagOffload){
             notifyPassengerArrival(passenger.first()); //Notifica que el pasajero ha llegado a su destino
             offloadPassenger();
             incrementPassengersTransported();
         }
-
+        
     }
     
     

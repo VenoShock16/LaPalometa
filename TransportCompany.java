@@ -94,7 +94,7 @@ public class TransportCompany
 
     }
 
- /**
+    /**
      * Find a the most closed free vehicle to a location, if any.
      * @param location location to go
      * @return A free vehicle, or null if there is none.
@@ -109,7 +109,7 @@ public class TransportCompany
        this.vehicles.sort(Comparator.comparingInt((Taxi taxi) -> taxi.getLocation().distance(location)).thenComparing(Taxi::getName));
        while (i< vehicles.size() && !enc ){ 
            tAux= vehicles.get(i);
-           if (passenger.getcreditCard() > 20000){
+           if (passenger.getcreditCard() >= 20000){
                if(hayHuecoTaxiExclusive(tAux)){
                 enc=true; 
                 }
@@ -130,22 +130,22 @@ public class TransportCompany
        }
     }
     
-public boolean hayHuecoTaxiExclusive(Taxi taxi){
+    public boolean hayHuecoTaxiExclusive(Taxi taxi){
         boolean flag= false;
         if(!assignments.containsKey(taxi)&& taxi.getOccupation()==0){
             flag= true;
         }
         return flag;
     }
-
+    
     public boolean hayHuecoTaxiShuttle(Taxi taxi){
         boolean flag = false;
-        if(assignments.containsKey(taxi)&& taxi.tieneSitio()){
+        if(taxi.tieneSitio()){
             flag= true;
         }
         return flag;
-
-
+        
+        
     }
 
     /**
@@ -162,7 +162,7 @@ public boolean requestPickup(Passenger passenger)
         //assignmentAux= null;
         taxiAux= scheduleVehicle(passenger, passenger.getPickup());
         passenger.setTaxiName(taxiAux.getName());
-        taxiAux.setBookTaxi(true);
+        //taxiAux.setBookTaxi(true);
         Passenger pAux;
         TreeSet<Passenger> sAux;
         
@@ -180,8 +180,8 @@ public boolean requestPickup(Passenger passenger)
                 sAux.add(passenger);
                 assignments.put(taxiAux, sAux);
                 pAux= sAux.first();
-                taxiAux.setPickupLocation(pAux.getDestination());
-                taxiAux.incOccupation();
+                taxiAux.setPickupLocation(pAux.getPickup());
+                //taxiAux.incOccupation();
                 //assignmentAux=new Assignment(taxiAux,passenger);
                 //assignments.add(assignmentAux);
                 System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ " at " +passenger.getPickup());
