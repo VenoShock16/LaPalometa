@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.TreeSet;
+import java.util.Map;
 
 /**
  * Model the common elements of taxis and shuttles.
@@ -14,6 +15,9 @@ public abstract class Taxi
 {
     // The Taxi Company of this Taxi.
     private TransportCompany company;  
+    
+    private Map<Taxi,TreeSet<Passenger>> TaxiAssignments;
+    
     // Where the vehicle is.
     private Location location;     
     // Where the vehicle is headed.
@@ -425,12 +429,15 @@ public abstract class Taxi
     /**
      * Carry out a taxi's actions.
      */
-    public void act()
-    {
+    public void act(){
         boolean flagPickUp=false;
         boolean flagOffload=false;
+        // Passenger p1;
+        // p1= passenger.first();        
+        
         Passenger p1;
-        p1= passenger.first();
+        p1= pAux.first();
+
         if(targetLocation==null){
            idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
         }
@@ -459,11 +466,11 @@ public abstract class Taxi
         
         if(flagPickUp){
                 notifyPickupArrival(); //Notifica que ha recogido un pasajero
-                pickup(p1);
+                pickup(passenger.first());
             }
             
         if(flagOffload){
-            notifyPassengerArrival(p1); //Notifica que el pasajero ha llegado a su destino
+            notifyPassengerArrival(passenger.first()); //Notifica que el pasajero ha llegado a su destino
             offloadPassenger();
             incrementPassengersTransported();
         }

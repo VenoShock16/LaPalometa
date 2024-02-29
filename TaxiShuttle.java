@@ -25,6 +25,14 @@ public class TaxiShuttle extends Taxi
         setOcMax(ocMax);
     }
     
+        public TaxiShuttle(TransportCompany company, Location location, String name)
+    {
+        super(company,location,name);
+        if (passengers== null){
+            passengers= new TreeSet<Passenger>(new ComparadorLlegada());
+        }
+    }
+    
     public int GastoCombustible()
     {
     return enumFuelConspution.getValor() * distanciaRecorrida;

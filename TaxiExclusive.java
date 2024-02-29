@@ -14,6 +14,7 @@ public class TaxiExclusive extends Taxi implements SerPopularEnRedes
     private int popularidad;
     /**
      * Constructor for objects of class TaxiExclusive
+     * 
      */
     public TaxiExclusive(TransportCompany company, Location location, String name, FuelConsumption fuelConsumption, int weight)
     {
@@ -22,6 +23,15 @@ public class TaxiExclusive extends Taxi implements SerPopularEnRedes
         popularidad = 6;
         setOcMax(1);
         this.weight= weight;
+    }
+    
+        public TaxiExclusive(TransportCompany company, Location location, String name)
+    {
+        super(company,location,name);
+        
+        popularidad = 6;
+        setOcMax(1);
+        this.weight= 0;
     }
     
     public int obtainComsumption()
