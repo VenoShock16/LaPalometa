@@ -427,24 +427,14 @@ public abstract class Taxi
     }
 
   /**
-     * Carry out a taxi's actions.
-     */
-    public void act()
-    {
-        boolean flagPickUp=false;
-        boolean flagOffload=false;
-        // Passenger p1;
-        // p1= passenger.first();
-        
-        
-        
-        TreeSet<Passenger> pAux;
-        //Passenger p1;
-        //p1= pAux.first();
-        
-        
-        
-        
+     
+Carry out a taxi's actions.*/
+  public void act(){
+      boolean flagPickUp=false;
+      boolean flagOffload=false;// Passenger p1;// p1= passenger.first();
+
+      // Passenger p1;// p1= pAux.first();
+
         if(targetLocation==null){
            idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
         }
@@ -463,25 +453,25 @@ public abstract class Taxi
             if(lAux.equals(targetLocation)&&!isFree()){
                 flagOffload= true;
             }
-        }    
-         
-        
+        }
+
+
         if(targetLocation!=null){
         //Efectua el movimiento
-        location=location.nextLocation(targetLocation);  
+        location=location.nextLocation(targetLocation);
         }
-        
+
         if(flagPickUp){
                 notifyPickupArrival(); //Notifica que ha recogido un pasajero
                 pickup(passenger.first());
             }
-            
+
         if(flagOffload){
             notifyPassengerArrival(passenger.first()); //Notifica que el pasajero ha llegado a su destino
             offloadPassenger();
             incrementPassengersTransported();
         }
-        
+
     }
     
     

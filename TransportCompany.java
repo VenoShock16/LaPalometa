@@ -130,40 +130,22 @@ public class TransportCompany
        }
     }
     
-    public boolean hayHuecoTaxiExclusive(Taxi taxi){
+public boolean hayHuecoTaxiExclusive(Taxi taxi){
         boolean flag= false;
         if(!assignments.containsKey(taxi)&& taxi.getOccupation()==0){
             flag= true;
         }
         return flag;
     }
-    
+
     public boolean hayHuecoTaxiShuttle(Taxi taxi){
         boolean flag = false;
         if(assignments.containsKey(taxi)&& taxi.tieneSitio()){
             flag= true;
         }
         return flag;
-        
-        
-    }
-    
-    public boolean hayHuecoTaxiExclusive(Taxi taxi){
-        boolean flag= false;
-        if(!assignments.containsKey(taxi)&& taxi.getOccupation()==0){
-            flag= true;
-        }
-        return flag;
-    }
-    
-    public boolean hayHuecoTaxiShuttle(Taxi taxi){
-        boolean flag = false;
-        if(assignments.containsKey(taxi)&& taxi.tieneSitio()){
-            flag= true;
-        }
-        return flag;
-        
-        
+
+
     }
 
     /**
