@@ -39,11 +39,50 @@ public class TaxiExclusive extends Taxi implements SerPopularEnRedes
     return (weight/2) * enumFuelConspution.getValor() * distanciaRecorrida;
     }
     
-    
-    // @Override
-    // public void act(){
+@Override
+    public void act(){
+        boolean flagPickUp=false;
+        boolean flagOffload=false;
         
-    // }
+        
+        if(targetLocation==null){
+           idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
+        }
+        else{
+            distanciaRecorrida++;
+            Location lAux;
+            lAux= location.nextLocation(targetLocation);
+            System.out.println("@@@ Taxi: "+name + " moving to: " + lAux.getX()+ " , " +lAux.getY());
+            //Si la siguiente posicion es la misma que la a la que se dirgia y no está lleno
+            //es decir, va recoger a un pasajero:
+            if(lAux.equals(targetLocation)&&isFree){
+                flagPickUp=true;
+            }
+            //Si la siguiente posicion es la misma que la a la que se dirgia y está lleno
+            //es decir, esta llevando a un destino a un pasajero:
+            if(lAux.equals(targetLocation)&&!isFree){ 
+                flagOffload= true;
+            }
+        }    
+         
+        
+        if(targetLocation!=null){
+        //Efectua el movimiento
+        location=location.nextLocation(targetLocation);  
+        }
+        
+        if(flagPickUp){
+                notifyPickupArrival(); //Notifica que ha recogido un pasajero
+                //pickup(passenger.first());
+            }
+            
+        if(flagOffload){
+            notifyPassengerArrival(passenger.first()); //Notifica que el pasajero ha llegado a su destino
+            offloadPassenger();
+            incrementPassengersTransported();
+        }
+        
+    }
     
     @Override
     public void adjustPopularity(Passenger passenger)

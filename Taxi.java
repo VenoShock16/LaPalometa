@@ -19,17 +19,17 @@ public abstract class Taxi
     private Map<Taxi,TreeSet<Passenger>> TaxiAssignments;
     
     // Where the vehicle is.
-    private Location location;     
+    protected Location location;     
     // Where the vehicle is headed.
-    private  Location targetLocation; 
+    protected  Location targetLocation; 
     // Record how often the vehicle has nothing to do.
-    private int idleCount;       
+    protected int idleCount;       
     //name of the taxi
-    private String name; 
+    protected String name; 
     //passengers of the taxi
     //private ArrayList<Passenger>passenger;
     //Colección de pasageros (la ordenacion se le psa el comprador la instanciarlo)
-    private TreeSet<Passenger> passenger;
+    protected TreeSet<Passenger> passenger;
     //number of passengers that are transported by the taxi (in the whole simulation)
     private int passengersTransported;
     //Esta variable sirve al asignar los taxis a los pasajeros y no sobre escribirlos cuando ya tiene un pasajero asigando
@@ -45,7 +45,7 @@ public abstract class Taxi
     //ocupación máxima del taxi
     private int ocMax;
     
-    private boolean isFree;
+    protected boolean isFree;
     
     
 
@@ -110,6 +110,17 @@ public abstract class Taxi
 
         }
         
+    /**
+     * Get the taxi ocupation
+     * @return the ocupation of the taxi
+     */
+      public Passenger getPassenger()
+    {
+        Passenger p= passenger.first();
+        return p;
+    }    
+        
+    
     /**
      * Get the taxi ocupation
      * @return the ocupation of the taxi
@@ -195,7 +206,7 @@ public abstract class Taxi
      * Get the passenger of the taxi
      * @return the passenger of the taxi
      */
-        public TreeSet<Passenger>getPassenger()
+        public TreeSet<Passenger> getPassengerList()
     {
         return passenger;
     }
