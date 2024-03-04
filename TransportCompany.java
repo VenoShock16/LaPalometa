@@ -14,7 +14,6 @@ public class TransportCompany
     private String name; 
     private List<Taxi> vehicles;
     private List<Passenger> passengers;
-    //private List<Assignment> assignments;
     private Map<Taxi,TreeSet<Passenger>> assignments;
 
     /**

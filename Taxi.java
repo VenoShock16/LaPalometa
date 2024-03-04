@@ -111,14 +111,30 @@ public abstract class Taxi
         }
         
     /**
-     * Get the taxi ocupation
-     * @return the ocupation of the taxi
+     * return true if the TreeSet of the taxi is empty
+     * @return the passenger of the taxi
      */
-      public Passenger getPassenger()
+        public boolean isEmpty()
     {
-        Passenger p= passenger.first();
-        return p;
-    }    
+            if (passenger.isEmpty()){
+                return true;
+            }
+            else return false;
+    }
+    
+    /**
+     * Get the passenger of the taxi
+     * @return the passenger of the taxi
+     */
+        public Passenger getPassenger()
+    {
+        if(!isEmpty()){
+            return passenger.first();
+        }
+        else{
+            return null;
+        }
+    } 
         
     
     /**

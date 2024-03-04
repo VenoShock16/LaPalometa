@@ -172,6 +172,4 @@ public abstract class Passenger {
     public int calculateEvaluationValue(){
         return (enumReliable.getValor() * 2);
     }
-    
-
 }
