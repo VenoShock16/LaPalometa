@@ -48,12 +48,12 @@ public class TaxiShuttle extends Taxi
             System.out.println("@@@ Taxi: "+name + " moving to: " + lAux.getX()+ " , " +lAux.getY());
             //Si la siguiente posicion es la misma que la a la que se dirgia y no está lleno
             //es decir, va recoger a un pasajero:
-            if(lAux.equals(targetLocation)&&isFree){
+            if(lAux.equals(targetLocation)&&getIsFree()){
             flagPickUp=true;
             }
             //Si la siguiente posicion es la misma que la a la que se dirgia y está lleno
             //es decir, esta llevando a un destino a un pasajero:
-            if(lAux.equals(targetLocation)&&!isFree()){ 
+            if(lAux.equals(targetLocation)&& (getIsFree() && passengers.isEmpty()) || (!getIsFree() && !passengers.isEmpty())){ 
             flagOffload= true;
             }
         }    

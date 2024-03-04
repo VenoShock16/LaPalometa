@@ -179,7 +179,10 @@ public abstract class Taxi
      */
         public boolean getIsFree()
     {
-        return isFree;
+        if (tieneSitio()){
+           return isFree= true;
+        }
+        return isFree= false;
     }
     
     /**
