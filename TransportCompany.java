@@ -197,17 +197,20 @@ public boolean requestPickup(Passenger passenger)
     {   
         TreeSet<Passenger> pAux= assignments.get(taxi);
         Passenger p1;
-        p1= pAux.first();
-        if(taxi.getLocation().equals(p1.getPickup())){ // Obtener el pasajero asignado al taxi y eliminar la asignación correspondiente taxi
-            assignments.remove(taxi);
-            pAux.remove(p1);
-            if (pAux.size()!=0){
+        if (pAux!= null){  
+            p1= pAux.first();
+        
+            if(taxi.getLocation().equals(p1.getPickup())){ // Obtener el pasajero asignado al taxi y eliminar la asignación correspondiente taxi
+                assignments.remove(taxi);
+                pAux.remove(p1);
+                if (pAux.size()!=0){
                 assignments.put(taxi,pAux);                
+                }
+                System.out.println("<<<< "+taxi + " picks up " + p1.getName());
+                p1.setTaxiName(taxi.getName());   // el pasajero debe guardar el nombre del taxi que le ha recogido
+                taxi.pickup(p1);  // el taxi debe recoger al pasajero
             }
-            System.out.println("<<<< "+taxi + " picks up " + p1.getName());
-            p1.setTaxiName(taxi.getName());   // el pasajero debe guardar el nombre del taxi que le ha recogido
-            taxi.pickup(p1);  // el taxi debe recoger al pasajero
-        }        
+        }
     }
     /**
      * A vehicle has arrived at the passenger destination.

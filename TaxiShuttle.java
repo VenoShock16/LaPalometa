@@ -35,8 +35,6 @@ public class TaxiShuttle extends Taxi
 
     @Override
     public void act(){
-
-        /*
         boolean flagPickUp=false;
         boolean flagOffload=false;
 
@@ -44,20 +42,20 @@ public class TaxiShuttle extends Taxi
         idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
         }
         else{
-        distanciaRecorrida++;
-        Location lAux;
-        lAux= location.nextLocation(targetLocation);
-        System.out.println("@@@ Taxi: "+name + " moving to: " + lAux.getX()+ " , " +lAux.getY());
-        //Si la siguiente posicion es la misma que la a la que se dirgia y no está lleno
-        //es decir, va recoger a un pasajero:
-        if(lAux.equals(targetLocation)){
-        flagPickUp=true;
-        }
-        //Si la siguiente posicion es la misma que la a la que se dirgia y está lleno
-        //es decir, esta llevando a un destino a un pasajero:
-        if(lAux.equals(targetLocation)){ 
-        flagOffload= true;
-        }
+            distanciaRecorrida++;
+            Location lAux;
+            lAux= location.nextLocation(targetLocation);
+            System.out.println("@@@ Taxi: "+name + " moving to: " + lAux.getX()+ " , " +lAux.getY());
+            //Si la siguiente posicion es la misma que la a la que se dirgia y no está lleno
+            //es decir, va recoger a un pasajero:
+            if(lAux.equals(targetLocation)&&isFree){
+            flagPickUp=true;
+            }
+            //Si la siguiente posicion es la misma que la a la que se dirgia y está lleno
+            //es decir, esta llevando a un destino a un pasajero:
+            if(lAux.equals(targetLocation)&&!isFree()){ 
+            flagOffload= true;
+            }
         }    
 
         if(targetLocation!=null){
@@ -74,33 +72,31 @@ public class TaxiShuttle extends Taxi
         notifyPassengerArrival(passenger.first()); //Notifica que el pasajero ha llegado a su destino
         offloadPassenger();
         incrementPassengersTransported();
-         */
+        } 
 
-        if(getTargetLocation() == null) {
-            idleCount=idleCount+1;
-        }
-            else{
-                this.setLocation(getLocation().nextLocation(getTargetLocation()));
-                System.out.println("@@@ Taxi:" + getName () +"moving to: " + getLocation().getX() + " " + getLocation().getY());
-                if(getTargetLocation().equals(getLocation()) ){
-                    Passenger p;
-                    p= this.getPassenger();
-                    if (p != null){
-                        if(p.getDestination().equals(getLocation()) ){
-                            notifyPassengerArrival(getPassenger());
-                            offloadPassenger();
-                            if(p != null){
-                                setTargetLocation(p.getPickup());
-                            }
-                            incrementPassengersTransported();
-                        }
-                        else {
-                            notifyPickupArrival();
-                        }
-                    }
+        // if(getTargetLocation() == null) {
+            // idleCount=idleCount+1;
+        // }
+            // else{
+                // this.setLocation(getLocation().nextLocation(getTargetLocation()));
+                // System.out.println("@@@ Taxi: " + getName () +" moving to: " + getLocation().getX() + ", " + getLocation().getY());
+                // if(getTargetLocation().equals(getLocation()) ){
+                    // if (getPassenger() != null){
+                        // if(getPassenger().getDestination().equals(getLocation()) ){
+                            // notifyPassengerArrival(getPassenger());
+                            // offloadPassenger();
+                            // incrementPassengersTransported();
+                            // if(getPassenger() != null){
+                                // setTargetLocation(getPassenger().getPickup());
+                            // }
+                        // }
+                        // else {
+                            // notifyPickupArrival();
+                        // }
+                    // }
 
-                }
-            }
+                // }
+            
         }
 
     public int GastoCombustible()
