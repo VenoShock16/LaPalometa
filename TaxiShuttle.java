@@ -35,21 +35,44 @@ public class TaxiShuttle extends Taxi
 
     @Override
     public void act(){
-       /*         if(targetLocation==null){
+        boolean flagPickUp=false;
+        boolean flagOffload=false;
+
+        if(targetLocation==null){
         idleCount=idleCount+1; //Si no tiene ningún destino asigando el idleCount del taxi aumenta
         }
         else{
+            distanciaRecorrida++;
             Location lAux;
             lAux= location.nextLocation(targetLocation);
             System.out.println("@@@ Taxi: "+name + " moving to: " + lAux.getX()+ " , " +lAux.getY());
-        int i=0;
-        while(company.assignments.get(this).size() <= i){
-            Location PassgengerPickupAux;
-            PassgengerPickupAux =company.assignments.getValue().get(i).getPickup();
-        if(lAux.equals(targetLocation)){
-            
+            //Si la siguiente posicion es la misma que la a la que se dirgia y no está lleno
+            //es decir, va recoger a un pasajero:
+            if(lAux.equals(targetLocation)){ //&&getIsFree()
+            flagPickUp=true;
+            }
+            //Si la siguiente posicion es la misma que la a la que se dirgia y está lleno
+            //es decir, esta llevando a un destino a un pasajero:
+            if(lAux.equals(targetLocation)){ //&& (getIsFree() && passengers.isEmpty()) || (!getIsFree() && !passengers.isEmpty())
+            flagOffload= true;
+            }
+        }    
+
+        if(targetLocation!=null){
+        //Efectua el movimiento
+        location=location.nextLocation(targetLocation);  
         }
-        }   */
+
+        if(flagPickUp){
+        notifyPickupArrival(); //Notifica que ha recogido un pasajero
+        //pickup(passenger.first());
+        }
+
+        if(flagOffload){
+        notifyPassengerArrival(passenger.first()); //Notifica que el pasajero ha llegado a su destino
+        offloadPassenger();
+        incrementPassengersTransported();
+        }  
     }
         
         
