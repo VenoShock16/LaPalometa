@@ -14,7 +14,7 @@ public class TransportCompany
     private String name; 
     private List<Taxi> vehicles;
     private List<Passenger> passengers;
-    protected Map<Taxi,TreeSet<Passenger>> assignments;
+    private Map<Taxi,TreeSet<Passenger>> assignments;
 
     /**
      * Constructor for objects of class TransportCompany
@@ -105,16 +105,16 @@ public class TransportCompany
        enc= false;
        Taxi tAux;
        tAux= null;
-       this.vehicles.sort(Comparator.comparingInt((Taxi taxi) -> taxi.getLocation().distance(location)).thenComparing(Taxi::getName));
+       this.vehicles.sort(Comparator.comparingInt((Taxi taxi) -> taxi.getLocation().distance(location)).thenComparing(Taxi::getName));// Ordena la lista de taxis según la ubicación.
        while (i< vehicles.size() && !enc ){ 
            tAux= vehicles.get(i);
-           if (passenger.getcreditCard() >= 20000){
+           if (passenger.getcreditCard() >= 20000){//Mira si es rico
                if(hayHuecoTaxiExclusive(tAux)){
                 enc=true; 
                 }
             }
             else{
-                if(assignments.size() < tAux.getOcMax()&& hayHuecoTaxiShuttle(tAux)){
+                if(hayHuecoTaxiShuttle(tAux)){
                     enc=true;
                 }
             }
@@ -180,7 +180,9 @@ public boolean requestPickup(Passenger passenger)
                 assignments.put(taxiAux, sAux);
                 pAux= sAux.first();
                 taxiAux.setPickupLocation(pAux.getPickup());
-                //taxiAux.incOccupation();
+                int ocupacion =taxiAux.getOccupation();
+                ocupacion=ocupacion+1;
+                taxiAux.setOcupacion(ocupacion);
                 //assignmentAux=new Assignment(taxiAux,passenger);
                 //assignments.add(assignmentAux);
                 System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ " at " +passenger.getPickup());
@@ -211,10 +213,6 @@ public boolean requestPickup(Passenger passenger)
                 taxi.pickup(p1);  // el taxi debe recoger al pasajero
             }
         }
-    }
-    public void RenewTaxiLocation(){
-    
-    
     }
     /**
      * A vehicle has arrived at the passenger destination.
