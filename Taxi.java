@@ -454,7 +454,7 @@ public abstract class Taxi
     
     public boolean tieneSitio(){
         boolean enc= false;
-        if(occupation< ocMax){
+        if(occupation < ocMax){
             enc= true;
         }
         return enc;

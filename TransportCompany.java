@@ -114,7 +114,7 @@ public class TransportCompany
                 }
             }
             else{
-                if(hayHuecoTaxiShuttle(tAux)){
+                if(assignments.get(tAux).size()< tAux.getOcMax()&& hayHuecoTaxiShuttle(tAux)){
                     enc=true;
                 }
             }
@@ -131,7 +131,7 @@ public class TransportCompany
     
     public boolean hayHuecoTaxiExclusive(Taxi taxi){
         boolean flag= false;
-        if(!assignments.containsKey(taxi)&& taxi.getOccupation()==0){
+        if(!assignments.containsKey(taxi)&& taxi.getOcMax()==1){
             flag= true;
         }
         return flag;
@@ -139,7 +139,7 @@ public class TransportCompany
     
     public boolean hayHuecoTaxiShuttle(Taxi taxi){
         boolean flag = false;
-        if(taxi.tieneSitio()){
+        if(taxi.tieneSitio()&& taxi.getOcMax()>1){
             flag= true;
         }
         return flag;
