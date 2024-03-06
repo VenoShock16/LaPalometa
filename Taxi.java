@@ -335,6 +335,10 @@ public abstract class Taxi
         this.company = company;
     }
     
+    public void setOcupacion(int occupation){
+        this.occupation=occupation;
+    }
+    
     /**
      * Has the vehicle a target Location?
      * @return Whether or not this vehicle has a target Location.
