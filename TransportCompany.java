@@ -14,7 +14,7 @@ public class TransportCompany
     private String name; 
     private List<Taxi> vehicles;
     private List<Passenger> passengers;
-    private Map<Taxi,TreeSet<Passenger>> assignments;
+    protected Map<Taxi,TreeSet<Passenger>> assignments;
 
     /**
      * Constructor for objects of class TransportCompany
@@ -114,7 +114,7 @@ public class TransportCompany
                 }
             }
             else{
-                if(assignments.get(tAux).size()< tAux.getOcMax()&& hayHuecoTaxiShuttle(tAux)){
+                if(assignments.size() < tAux.getOcMax()&& hayHuecoTaxiShuttle(tAux)){
                     enc=true;
                 }
             }
@@ -211,6 +211,10 @@ public boolean requestPickup(Passenger passenger)
                 taxi.pickup(p1);  // el taxi debe recoger al pasajero
             }
         }
+    }
+    public void RenewTaxiLocation(){
+    
+    
     }
     /**
      * A vehicle has arrived at the passenger destination.

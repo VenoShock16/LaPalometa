@@ -14,9 +14,9 @@ import java.util.Map;
 public abstract class Taxi 
 {
     // The Taxi Company of this Taxi.
-    private TransportCompany company;  
+    protected TransportCompany company;  
     
-    private Map<Taxi,TreeSet<Passenger>> TaxiAssignments;
+    public Map<Taxi,TreeSet<Passenger>> TaxiAssignments;
     
     // Where the vehicle is.
     protected Location location;     
@@ -30,6 +30,8 @@ public abstract class Taxi
     //private ArrayList<Passenger>passenger;
     //Colección de pasageros (la ordenacion se le psa el comprador la instanciarlo)
     protected TreeSet<Passenger> passenger;
+    
+    
     //number of passengers that are transported by the taxi (in the whole simulation)
     private int passengersTransported;
     //Esta variable sirve al asignar los taxis a los pasajeros y no sobre escribirlos cuando ya tiene un pasajero asigando
