@@ -214,6 +214,11 @@ public boolean requestPickup(Passenger passenger)
             }
         }
     }
+    public void RennewTargetLocation(Taxi taxi){
+        TreeSet<Passenger> PtreeAux;
+        PtreeAux=assignments.get(taxi);
+        taxi.setTargetLocation(PtreeAux.first().getDestination());
+    }
     /**
      * A vehicle has arrived at the passenger destination.
      * @param vehicle The vehicle at the pickup point.
