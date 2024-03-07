@@ -23,6 +23,9 @@ public abstract class Taxi
     // Where the vehicle is headed.
     protected  Location targetLocation; 
     // Record how often the vehicle has nothing to do.
+    
+    protected  Location taxiDestination;
+    
     protected int idleCount;       
     //name of the taxi
     protected String name; 
@@ -72,6 +75,7 @@ public abstract class Taxi
         this.name= name;
         
         targetLocation = null;
+        taxiDestination = null;
         idleCount = 0;
         IsBooked= false;
         occupation = 0;
@@ -103,6 +107,7 @@ public abstract class Taxi
         this.enumFuelConspution= enumFuelConspution;
         
         targetLocation = null;
+        taxiDestination = null;
         idleCount = 0;
         IsBooked= false;
         occupation = 0;
@@ -135,7 +140,6 @@ public abstract class Taxi
             return null;
         }
     } 
-        
     
     /**
      * Get the taxi ocupation
@@ -236,7 +240,6 @@ public abstract class Taxi
      */
     public void InsertarPasagero(Passenger p){
         passenger.add(p);
-        //targetLocation=p.getDestination();
     }
 
     /**
@@ -246,6 +249,15 @@ public abstract class Taxi
     public Location getLocation()
     {
         return location;
+    }
+    
+    /**
+     * Get the destination.
+     * @return Where this taxi is currently located.
+     */
+    public Location getTaxiDestination()
+    {
+        return taxiDestination;
     }
 
     /**
@@ -302,6 +314,16 @@ public abstract class Taxi
     {
         if(location != null) {
             targetLocation = location;
+        }
+        else {
+            throw new NullPointerException();
+        }
+    }
+    
+    public void setTaxiDestination(Location location)
+    {
+        if(location != null) {
+            taxiDestination = location;
         }
         else {
             throw new NullPointerException();
@@ -414,8 +436,9 @@ public abstract class Taxi
      */
     public void pickup(Passenger passenger)
     {   
-        InsertarPasagero(passenger);
+        
         setTargetLocation(passenger.getDestination());
+        setTaxiDestination(passenger.getDestination());
         //targetLocation=passenger.getDestination();
         //System.out.println("<<<< Taxi " + name + " at "+ location + " picks up " + passenger.getName());
         occupation= occupation +1;
@@ -429,8 +452,12 @@ public abstract class Taxi
      */
     public void offloadPassenger()
     {
-        passenger=null; //Limpia la información de passenger para luego asignarle otro pasajero
-        targetLocation=null; //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
+        if (passenger!=null){ //Limpia la información de passenger para luego asignarle otro pasajero
+            passenger.pollFirst();
+        }
+        if(targetLocation!=null){ //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
+            setTargetLocation(passenger.first().getPickup());
+        }
         occupation= occupation -1;
         setBookTaxi(false);
         if (tieneSitio()){

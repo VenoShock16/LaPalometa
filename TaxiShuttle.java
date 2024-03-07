@@ -53,7 +53,7 @@ public class TaxiShuttle extends Taxi
             }
             //Si la siguiente posicion es la misma que la a la que se dirgia y está lleno
             //es decir, esta llevando a un destino a un pasajero:
-            if(lAux.equals(targetLocation)){ //&& (getIsFree() && passengers.isEmpty()) || (!getIsFree() && !passengers.isEmpty())
+            if(lAux.equals(taxiDestination)){ //&& (getIsFree() && passengers.isEmpty()) || (!getIsFree() && !passengers.isEmpty())
             flagOffload= true;
             }
         }    

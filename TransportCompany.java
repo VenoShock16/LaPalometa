@@ -183,6 +183,8 @@ public boolean requestPickup(Passenger passenger)
                 int ocupacion =taxiAux.getOccupation();
                 ocupacion=ocupacion+1;
                 taxiAux.setOcupacion(ocupacion);
+                taxiAux.InsertarPasagero(pAux);
+                
                 //assignmentAux=new Assignment(taxiAux,passenger);
                 //assignments.add(assignmentAux);
                 System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ " at " +passenger.getPickup());
@@ -218,6 +220,7 @@ public boolean requestPickup(Passenger passenger)
         TreeSet<Passenger> PtreeAux;
         PtreeAux=assignments.get(taxi);
         taxi.setTargetLocation(PtreeAux.first().getDestination());
+        //taxi.setTaxiDestination(PtreeAux.first().getDestination());
     }
     /**
      * A vehicle has arrived at the passenger destination.
