@@ -452,11 +452,14 @@ public abstract class Taxi
      */
     public void offloadPassenger()
     {
-        if (passenger!=null){ //Limpia la información de passenger para luego asignarle otro pasajero
+         //Limpia la información de passenger para luego asignarle otro pasajero
             passenger.pollFirst();
-        }
-        if(targetLocation!=null){ //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
+       
+        if(passenger.size()>0){ //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
             setTargetLocation(passenger.first().getPickup());
+        }
+        else{
+            targetLocation= null;
         }
         occupation= occupation -1;
         setBookTaxi(false);

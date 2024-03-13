@@ -36,11 +36,11 @@ public class TaxiDemoFinal
         //demoOne.run();
 
         //Demo con 3 personajes y 3 taxis
-        DemoInicialFinal demoIni = new DemoInicialFinal();
-        demoIni.run();
+        //DemoInicialFinal demoIni = new DemoInicialFinal();
+        //demoIni.run();
 
         //Demo con varios personajes y taxis
-        //DemoAvanzadaFinal demoAvan = new DemoAvanzadaFinal();
-        //demoAvan.run();
+        DemoAvanzadaFinal demoAvan = new DemoAvanzadaFinal();
+        demoAvan.run();
     }
 }

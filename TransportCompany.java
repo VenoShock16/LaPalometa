@@ -234,9 +234,9 @@ public boolean requestPickup(Passenger passenger)
             System.out.println("<<<< "+taxi + " at " + taxi.getLocation()+ " offloads "+ p1.getName()+ " travelling from  "+ p1.getPickup() + " to "
             + p1.getDestination());
             taxi.decOccupation();
-            assignments.remove(taxi);
-            pAux.remove(p1);
-            if (pAux.size()!=0){
+            // assignments.remove(taxi);
+            // pAux.remove(p1);
+            if (assignments.containsKey(taxi)&&passengers.size()>0){
                 assignments.put(taxi,pAux);                
             }
         }
