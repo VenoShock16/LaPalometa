@@ -437,6 +437,7 @@ public abstract class Taxi
      */
     public void notifyPassengerArrival(Passenger passenger)
     {
+         valuation= valuation+passenger.act();
         company.arrivedAtDestination(this, passenger);
     }
 
@@ -464,7 +465,7 @@ public abstract class Taxi
     public void offloadPassenger()
     {
          //Limpia la información de passenger para luego asignarle otro pasajero
-             valuation= valuation+passenger.first().act();
+            
             passenger.pollFirst();
        
         if(passenger.size()>0){ //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
