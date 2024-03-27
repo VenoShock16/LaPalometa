@@ -55,7 +55,7 @@ public class TransportCompany
     public void arrivedAtDestination(Taxi vehicle,
     Passenger passenger)
     {
-        System.out.println(vehicle.toStringSimple() + " offloads " + passenger);
+        System.out.println(vehicle + " offloads " + passenger);
     }
 
     /**
@@ -176,15 +176,16 @@ public boolean requestPickup(Passenger passenger)
             else {
                sAux= new TreeSet<Passenger>(new ComparadorLlegada());
             }
+                taxiAux.InsertarPasagero(passenger);
                 sAux.add(passenger);
                 assignments.put(taxiAux, sAux);
                 pAux= sAux.first();
                 taxiAux.setPickupLocation(pAux.getPickup());
-                int ocupacion =taxiAux.getOccupation();
-                ocupacion=ocupacion+1;
-                taxiAux.setOcupacion(ocupacion);
-                taxiAux.InsertarPasagero(pAux);
-                
+                 int ocupacion =taxiAux.getOccupation();
+                 ocupacion=ocupacion+1;
+                 taxiAux.setOcupacion(ocupacion);
+                 
+        
                 //assignmentAux=new Assignment(taxiAux,passenger);
                 //assignments.add(assignmentAux);
                 System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ " at " +passenger.getPickup());
@@ -210,7 +211,7 @@ public boolean requestPickup(Passenger passenger)
                 if (pAux.size()!=0){
                 assignments.put(taxi,pAux);                
                 }
-                System.out.println("<<<< "+taxi.toStringSimple() + " picks up " + p1.getName());
+                System.out.println("<<<< "+taxi + " picks up " + p1.getName());
                 p1.setTaxiName(taxi.getName());   // el pasajero debe guardar el nombre del taxi que le ha recogido
                 taxi.pickup(p1);  // el taxi debe recoger al pasajero
             }
@@ -220,7 +221,7 @@ public boolean requestPickup(Passenger passenger)
         TreeSet<Passenger> PtreeAux;
         PtreeAux=assignments.get(taxi);
         taxi.setTargetLocation(PtreeAux.first().getDestination());
-        //taxi.setTaxiDestination(PtreeAux.first().getDestination());
+        taxi.setTaxiDestination(PtreeAux.first().getDestination());
     }
     /**
      * A vehicle has arrived at the passenger destination.
@@ -233,7 +234,7 @@ public boolean requestPickup(Passenger passenger)
         if(taxi.getLocation().equals(p1.getDestination())){
             System.out.println("<<<< "+taxi + " at " + taxi.getLocation()+ " offloads "+ p1.getName()+ " travelling from  "+ p1.getPickup() + " to "
             + p1.getDestination());
-            taxi.decOccupation();
+                taxi.decOccupation();
             // assignments.remove(taxi);
             // pAux.remove(p1);
             if (assignments.containsKey(taxi)&&passengers.size()>0){
