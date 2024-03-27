@@ -17,6 +17,8 @@ public class PassengerTest
     private Location destination;
     private String taxiName;
     private Passenger passenger;
+    private int credit;
+    private Reliable reliable;
 
   
     /**
@@ -37,6 +39,10 @@ public class PassengerTest
         pickup= new Location(1,1);
         destination=new Location(2,2);
         taxiName="FakeTaxi";
+        credit= 5000;
+        reliable.setValor(8);
+        
+        
     }
 
     /**
@@ -52,6 +58,7 @@ public class PassengerTest
         destination=null;
         taxiName="";
         passenger=null;
+        credit= 0;
         
     }
 
@@ -63,12 +70,32 @@ public class PassengerTest
     @Test
     public void testCreation()
     {
-        passenger = new PassengerNoVip(pickup, destination, name, taxiName);      
+
+    {
+                    passenger = new PassengerNoVip(pickup, destination,  name, 15
+        ,credit , reliable) ;   
         assertEquals(name, passenger.getName());
         assertEquals(pickup, passenger.getPickup());
         assertEquals(destination, passenger.getDestination());
         assertEquals(taxiName, passenger.getTaxiName());
+        assertEquals(credit, passenger.getcreditCard());
     }
+}
+
+    @Test
+    public void testCreation2()
+    {
+
+    {
+                    passenger = new PassengerVip(pickup, destination,  name, 15
+        ,credit , reliable) ;   
+        assertEquals(name, passenger.getName());
+        assertEquals(pickup, passenger.getPickup());
+        assertEquals(destination, passenger.getDestination());
+        assertEquals(taxiName, passenger.getTaxiName());
+        assertEquals(credit, passenger.getcreditCard());
+    }
+}
 
     /**
      * Test of the getTaxiName method.
@@ -85,7 +112,7 @@ public class PassengerTest
      * Ensure that this method gets and returns the pickup location correctly.
      */
     @Test
-    public void testGetPickupLocation (){
+    public void testGetPickupLocation(){
         passenger = new PassengerNoVip(pickup, destination, name, taxiName);
         assertEquals(pickup, passenger.getPickup());
     }
