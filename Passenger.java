@@ -103,8 +103,10 @@ public abstract class Passenger {
      */
     public String toString()
     {
-        return "Passenger "+getName()+" travelling from " +
-        pickup + " to " + destination;
+        return getClass().getName()+" "+getName()+" travelling from " +
+        pickup + " to " + destination + " arrival time: " + getArrivalTime() +" money in the credit card: "+
+        getcreditCard()+ " <realiable: " + enumReliable.getNombre()+" (value: " + enumReliable.getValor()
+        +")>";
     }
 
     /**
@@ -148,8 +150,8 @@ public abstract class Passenger {
      */
     public String showFinalInfo()
     {
-        return "Final passenger information: "+ getName() + " in location  " + destination + " transported by: " + getTaxiName() + " with  "+
-        getcreditCard() + "money in the credit card";
+        return getClass().getName()+" "+getName()+" in location  " + destination + " transported by: " + getTaxiName() + " with "+
+        getcreditCard() + " money in the credit card";
     }
     
     /**
@@ -165,6 +167,10 @@ public abstract class Passenger {
      * Clase abstracta, diferentes fromas de pagar para diferentes pasajeros
      */
     public abstract void pay();
+    
+    public void substractFromCreditCard(int i){
+        this.creditCard=this.creditCard- i;
+    }
     
     /**
      * Debe ser llamado con la valoracion del taxi

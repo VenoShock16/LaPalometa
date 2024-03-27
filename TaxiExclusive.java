@@ -96,4 +96,16 @@ public class TaxiExclusive extends Taxi implements SerPopularEnRedes
     
     }
     
+    //
+        
+    @Override
+        public String showFinalInfo()
+    {
+        return getClass().getName() +" " +getName()+ " at location " + getLocation()+ " occupation "+getOcMax()+ "- passengers transported: " +
+        getPassengersTransported() +" - non active for: "+ getIdleCount()+ " times - valuation:" +getValuation() + " - consumption: " + obtainComsumption()
+        + " - popularity: "+ popularidad;
+
+    }
+        
+    
 }

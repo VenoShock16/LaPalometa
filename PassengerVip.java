@@ -34,7 +34,7 @@ public class PassengerVip extends Passenger
     {
         //A lo mejor esta mal porque hace falta darle una propina de 10 al conductor y
         //eso no se como se hace hasta que alguien haga taxi
-    creditCard= creditCard -610;
+    substractFromCreditCard(610);
     }
     
     @Override    

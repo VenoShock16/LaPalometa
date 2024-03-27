@@ -21,6 +21,11 @@ public enum Reliable
     {
     return valor;
     }
+    
+        public String getNombre()
+    {
+    return nombre;
+    }
     public void setValor(int valor)
     {
     this.valor=valor;

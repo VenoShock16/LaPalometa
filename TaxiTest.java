@@ -25,6 +25,9 @@ public class TaxiTest
     private Location taxiLocation2;
     private Location pickup1;
     private Location pickup2;
+    private List<Taxi> vehicles;
+    private TreeSet<Passenger> Treepassengers;
+    private TreeSet<Passenger> Treepassengers2;
     private Location destination1;
     private Location destination2;
     
@@ -113,10 +116,12 @@ public class TaxiTest
         // Add passengers and taxis to the taxiList and passengerList
         passengerList.add(passenger1);
         passengerList.add(passenger2);
+        Treepassengers.add(passenger2);
+        Treepassengers2.add(passenger1);
         taxiList.add(taxi1);
         taxiList.add(taxi2);
-        assignments.put(taxi1, passenger1);
-        assignments.put(taxi2, passenger2);
+        assignments.put(taxi1, Treepassengers);
+        assignments.put(taxi2, Treepassengers2);
         
         //Asserts
         assertNotNull(passengerList); //La lista de pasajeros no debería estar vacia
@@ -159,18 +164,18 @@ public class TaxiTest
         passengerList.add(passenger2);
         taxiList.add(taxi1);
         taxiList.add(taxi2);
-        assignments.add(assigment1);
-        assignments.add(assigment2);
+        assignments.put(taxi1, Treepassengers);
+        assignments.put(taxi2, Treepassengers2);
         
         //Asserts taxi1
         assertEquals(passenger1, taxi1.getPassenger()); //Mira si el passenger se ha asiganado correctamente
         assertEquals(passenger1.getDestination(), taxi1.getTargetLocation()); //Comapara el getDestination y el targetLocation
-        assertEquals(false, taxi1.isFree()); //Mira si no esta libre el taxi
+        assertEquals(false, taxi1.getIsFree()); //Mira si no esta libre el taxi
         
         //Asserts taxi2
         assertEquals(passenger2, taxi2.getPassenger()); //Mira si el passenger se ha asiganado correctamente
         assertEquals(passenger2.getDestination(), taxi2.getTargetLocation()); //Mira si el passenger se ha asiganado correctamente
-        assertEquals(false, taxi2.isFree()); //Mira si no esta libre el taxi
+        assertEquals(false, taxi2.getIsFree()); //Mira si no esta libre el taxi
     }
 
     /**
@@ -197,15 +202,15 @@ public class TaxiTest
         passengerList.add(passenger2);
         taxiList.add(taxi1);
         taxiList.add(taxi2);
-        assignments.add(assigment1);
-        assignments.add(assigment2);
+        assignments.put(taxi1, Treepassengers);
+        assignments.put(taxi2, Treepassengers2);
         
         
         
             taxi1.offloadPassenger();
             
             //Y estos tambien dan mal al no tener destination no hace offload por que no nunca llega al destino
-            assertEquals(true, taxi1.isFree()); //Mira si esta libre el taxi
+            assertEquals(true, taxi1.getIsFree()); //Mira si esta libre el taxi
             assertNull(taxi1.getPassenger()); //El offload limpia el pasajero, entonces deberia estar en null
             assertNull(taxi1.getTargetLocation()); //El offload limpia el TargetLocation, entonces deberia estar en null
             
@@ -213,7 +218,7 @@ public class TaxiTest
             
             taxi2.offloadPassenger();
             
-            assertEquals(true, taxi2.isFree()); //Mira si esta libre el taxi
+            assertEquals(true, taxi2.getIsFree()); //Mira si esta libre el taxi
             assertNull(taxi2.getPassenger()); //El offload limpia el pasajero, entonces deberia estar en null
             assertNull(taxi2.getTargetLocation()); //El offload limpia el TargetLocation, entonces deberia estar en null
             
@@ -239,7 +244,7 @@ public class TaxiTest
                 // Add passengers and taxis to the taxiList and passengerList
         passengerList.add(passenger1);
         taxiList.add(taxi1);
-        assignments.add(assigment1);
+        assignments.put(taxi1, Treepassengers);
         
         
             taxi1.act(); //Se mueve hacia el punto de recogida
@@ -248,7 +253,7 @@ public class TaxiTest
             
             
             assertEquals(passenger1.getDestination(), taxi1.getTargetLocation()); //Comapara el getDestination y el targetLocation
-            assertEquals(false, taxi1.isFree()); //Mira si no esta libre el taxi
+            assertEquals(false, taxi1.getIsFree()); //Mira si no esta libre el taxi
             
             taxi1.act(); //Se mueve hacia el destino del pasajero
             taxi1.act(); //Se mueve hacia el destino del pasajero
@@ -257,7 +262,7 @@ public class TaxiTest
             assertEquals( taxi1.getLocation().nextLocation(taxi1.getTargetLocation()),passenger1.getDestination()); //Mira si la siguiente posicion es el target location y la destination del pasajero coinciden
             taxi1.act(); //Se mueve y Hace offload pasajero.
             
-            assertEquals(true, taxi1.isFree()); //Mira si esta libre el taxi
+            assertEquals(true, taxi1.getIsFree()); //Mira si esta libre el taxi
             assertNull(taxi1.getPassenger()); //El offload limpia el pasajero, entonces deberia estar en null
             assertNull(taxi1.getTargetLocation()); //El offload limpia el TargetLocation, entonces deberia estar en null
             
