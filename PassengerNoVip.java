@@ -31,6 +31,6 @@ public class PassengerNoVip extends Passenger
     @Override
     public void pay()
     {
-    creditCard= creditCard -30;
+    substractFromCreditCard(30);
     }
 }

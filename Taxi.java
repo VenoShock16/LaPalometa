@@ -79,6 +79,7 @@ public abstract class Taxi
         idleCount = 0;
         IsBooked= false;
         occupation = 0;
+        valuation=0;
         isFree= true;
 
         }
@@ -110,6 +111,7 @@ public abstract class Taxi
         taxiDestination = null;
         idleCount = 0;
         IsBooked= false;
+        valuation=0;
         occupation = 0;
         isFree= true;
 
@@ -384,7 +386,7 @@ public abstract class Taxi
     {
         return idleCount;
     }
-
+    
     /**
      * Increment the number of steps on which this vehicle
      * has been idle.
@@ -400,7 +402,16 @@ public abstract class Taxi
      */
     public String toString()
     {
-        return getClass().getName() + " " +getName()+" at " + getLocation();
+        
+        return getClass().getName() + " " +getName()+" at " + getLocation() + " occupation " + getOcMax()
+        + " " + "<fuel consumption:" + " " + enumFuelConspution.getNombre() + " (value:"+ enumFuelConspution.getValor()
+        + ")>";
+    }
+    
+        public String toStringSimple()
+    {
+        
+        return getClass().getName() + " " +getName()+" at " + getLocation() + " occupation " + getOcMax();
     }
     
     /**
@@ -453,6 +464,7 @@ public abstract class Taxi
     public void offloadPassenger()
     {
          //Limpia la información de passenger para luego asignarle otro pasajero
+             valuation= valuation+passenger.first().act();
             passenger.pollFirst();
        
         if(passenger.size()>0){ //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
@@ -534,6 +546,7 @@ public abstract class Taxi
             }
             
         if(flagOffload){
+
             notifyPassengerArrival(passenger.first()); //Notifica que el pasajero ha llegado a su destino
             offloadPassenger();
             incrementPassengersTransported();
@@ -547,8 +560,8 @@ public abstract class Taxi
 
     public String showFinalInfo()
     {
-        return "Final taxi information: " + getName() + " at location " + getLocation()+ " occupation "+getOccupation()+ "- passengers transported: " +
-        passengersTransported +" - non active for: "+ getIdleCount()+ " times - valuation:" +getValuation() + " - consumption: " + obtainComsumption();
+        return getClass().getName() +" " +getName()+ " at location " + getLocation()+ " occupation "+getOcMax()+ "- passengers transported: " +
+        getPassengersTransported() +" - non active for: "+ getIdleCount()+ " times - valuation:" +getValuation() + " - consumption: " + obtainComsumption();
 
     }
 
