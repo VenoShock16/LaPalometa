@@ -164,7 +164,7 @@ public abstract class Passenger {
     }
     
     /**
-     * Clase abstracta, diferentes fromas de pagar para diferentes pasajeros
+     * Clase abstracta, diferentes formas de pagar para diferentes pasajeros
      */
     public abstract void pay();
     
