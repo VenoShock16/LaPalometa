@@ -55,7 +55,7 @@ public class TransportCompany
     public void arrivedAtDestination(Taxi vehicle,
     Passenger passenger)
     {
-        System.out.println(vehicle + " offloads " + passenger);
+        System.out.println(vehicle.toStringSimple() + " offloads " + passenger);
     }
 
     /**
@@ -188,7 +188,7 @@ public boolean requestPickup(Passenger passenger)
         
                 //assignmentAux=new Assignment(taxiAux,passenger);
                 //assignments.add(assignmentAux);
-                System.out.println("<<<< "+taxiAux + " go to pick up passenger " +passenger.getName()+ " at " +passenger.getPickup());
+                System.out.println("<<<< "+taxiAux.toStringSimple() + " go to pick up passenger " +passenger.getName()+ " at " +passenger.getPickup());
                 //assignmentAux.passengerToTaxi(passenger, taxiAux); 
                 return true;
             }  
@@ -211,7 +211,7 @@ public boolean requestPickup(Passenger passenger)
                 if (pAux.size()!=0){
                 assignments.put(taxi,pAux);                
                 }
-                System.out.println("<<<< "+taxi + " picks up " + p1.getName());
+                System.out.println("<<<< "+taxi.toStringSimple() + " picks up " + p1.getName());
                 p1.setTaxiName(taxi.getName());   // el pasajero debe guardar el nombre del taxi que le ha recogido
                 taxi.pickup(p1);  // el taxi debe recoger al pasajero
             }
@@ -232,7 +232,7 @@ public boolean requestPickup(Passenger passenger)
         Passenger p1;
         p1= pAux.first();
         if(taxi.getLocation().equals(p1.getDestination())){
-            System.out.println("<<<< "+taxi + " at " + taxi.getLocation()+ " offloads "+ p1.getName()+ " travelling from  "+ p1.getPickup() + " to "
+            System.out.println("<<<< "+taxi.toStringSimple() + " at " + taxi.getLocation()+ " offloads "+ p1.getName()+ " travelling from  "+ p1.getPickup() + " to "
             + p1.getDestination());
                 taxi.decOccupation();
             // assignments.remove(taxi);

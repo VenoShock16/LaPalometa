@@ -421,6 +421,10 @@ public abstract class Taxi
         + ")>";
     }
     
+    /**
+     * Return details of the taxi, such as where it is.
+     * @return A string representation of the taxi.
+    */
         public String toStringSimple()
     {
         
@@ -535,7 +539,7 @@ public abstract class Taxi
             distanciaRecorrida++;
             Location lAux;
             lAux= location.nextLocation(targetLocation);
-            System.out.println("@@@ Taxi: "+name + " moving to: " + lAux.getX()+ " , " +lAux.getY());
+            System.out.println("@@@ Taxi: "+name + " moving to: " + lAux.getX()+ "," +lAux.getY());
             //Si la siguiente posicion es la misma que la a la que se dirgia y no está lleno
             //es decir, va recoger a un pasajero:
             if(lAux.equals(targetLocation)&&isFree){
