@@ -14,11 +14,11 @@ public class ComparadorIdleCountTaxi implements Comparator<Taxi>
      * @return Cual es el pasajero con orden alfabetico mas cercano
      */
     public int compare(Taxi t1, Taxi t2){  
-        if(t1.getPassengersTransported()==t2.getPassengersTransported()){
+        if(t1.getIdleCount()==t2.getIdleCount()){
             return new ComparadorNombreTaxi().compare(t1,t2);
         }
         else
-            if(t1.getPassengersTransported()<t2.getPassengersTransported()){
+            if(t1.getIdleCount()>t2.getIdleCount()){
                 return 1;
             }
             else return -1;
