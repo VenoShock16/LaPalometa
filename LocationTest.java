@@ -17,6 +17,8 @@ public class LocationTest
     Location location1;
     Location location2;
     Location location3;
+    Location location4;
+    Location location5;
 
     /**
      * Default constructor for test class LocationTest
@@ -37,6 +39,7 @@ public class LocationTest
         location1 = new Location(0, 0);
         location2 = new Location(1, 0);
         location3 = new Location(4, 4);
+        location4 = new Location(0, 0);
 
     }
 
@@ -53,9 +56,22 @@ public class LocationTest
         location1= null;
         location2= null;
         location3= null;
+        location4= null;
         
     }
 
+    
+    /**
+     * Test the creation of the location object.
+     */
+    @Test
+    public void TestCreation(){
+        location5 = new Location(1,5);
+        
+        assertEquals(1, location5.getX());
+        assertEquals(5, location5.getY());
+    }
+    
     /**
      * Test the distance method of the Location class.
      */
@@ -84,5 +100,20 @@ public class LocationTest
         next= location1.nextLocation(location3);
         assertFalse(location1.areAdjacent(location1, next));
 
+    }
+    
+        /**
+     * Run tests of the Equals method of the Location class.
+     */
+    @Test
+    public void testEquals()
+    {
+        //Son iguales
+        assertTrue(location1.equals(location4));
+        
+        //Son diferentes
+        assertTrue(location2.equals(location3));
+        
+        
     }
 }

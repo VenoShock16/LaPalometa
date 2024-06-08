@@ -15,10 +15,25 @@ public class PassengerTest
     private String name;
     private Location pickup;
     private Location destination;
+        private Location pickup1;
+    private Location destination1;
+        private Location pickup2;
+    private Location destination2;
+        private Location pickup3;
+    private Location destination3;
     private String taxiName;
     private Passenger passenger;
     private int credit;
     private Reliable reliable;
+    private Reliable reliable1;
+    private Reliable reliable2;
+    private Reliable reliable3;
+    
+    Passenger passengerVip1;
+    Passenger passengerVip2;
+    
+    Passenger passengerNoVip1;
+    Passenger passengerNoVip2;
 
   
     /**
@@ -35,13 +50,27 @@ public class PassengerTest
     @Before
     public void setUp()
     {
-        name= "Leo Xian Li";
         pickup= new Location(1,1);
         destination=new Location(2,2);
-        taxiName="FakeTaxi";
-        credit= 5000;
         reliable.setValor(8);
+        passengerVip1 = new PassengerVip(pickup , destination, "Jose Pulido Pulido" , 5 , 5000,  reliable);
+
         
+        pickup1 = new Location(0,0);
+        destination1 =new Location(4,4);
+        reliable1 .setValor(4);
+        passengerVip2 = new PassengerVip(pickup1 , destination1 , "Fernando Palomo Civantos" , 10 , 2000,  reliable1);
+        
+        
+        pickup2 = new Location(5,5);
+        destination2 =new Location(5,4);
+        reliable2 .setValor(1);
+        passengerNoVip1 = new PassengerNoVip( pickup2,  destination2 , "José Hernandez" ,6 ,200 ,  reliable2 );
+        
+        pickup3 = new Location(2,2);
+        destination3 =new Location(2,4);
+        reliable3 .setValor(8);
+        passengerNoVip2 = new PassengerNoVip( pickup3,  destination3 , "José Hernandez" ,6 ,500 ,  reliable3 );
         
     }
 
@@ -98,22 +127,31 @@ public class PassengerTest
 }
 
     /**
-     * Test of the getTaxiName method.
-     * Ensure that this method gets and returns the name of the taxi correctly.
+     * Test the pay method of the passenger object.
      */
     @Test
-    public void testGetTaxiName(){
-        passenger = new PassengerNoVip(pickup, destination, name, taxiName);
-        assertEquals(taxiName, passenger.getTaxiName());    
+    public void TestPay(){
+        //Pay del pasajero vip
+        passengerNoVip1.pay();
+        assertEquals(passengerNoVip1.getcreditCard(),170);
+        
+        //Pay del pasajero no vip
+        passengerVip1.pay();
+        assertEquals(passengerVip1.getcreditCard(),4390);
+        
     }
 
-    /**
-     * Test of the getPickupLocation method.
-     * Ensure that this method gets and returns the pickup location correctly.
+
+        /**
+     * Test the pay method of the passenger object.
      */
     @Test
-    public void testGetPickupLocation(){
-        passenger = new PassengerNoVip(pickup, destination, name, taxiName);
-        assertEquals(pickup, passenger.getPickup());
+    public void calculateEvaluationValue(){
+        // calculateEvaluationValue del pasajero vip
+        assertEquals(passengerVip1.calculateEvaluationValue(),31); //8*2+15
+        
+        // calculateEvaluationValue del pasajero no vip
+        assertEquals(passengerNoVip1.calculateEvaluationValue(),2); //1*2
+        
     }
 }
