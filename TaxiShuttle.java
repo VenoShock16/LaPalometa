@@ -74,41 +74,15 @@ public class TaxiShuttle extends Taxi
         incrementPassengersTransported();
         }  
     }
-        
-        
 
-        // if(getTargetLocation() == null) {
-            // idleCount=idleCount+1;
-        // }
-            // else{
-                // this.setLocation(getLocation().nextLocation(getTargetLocation()));
-                // System.out.println("@@@ Taxi: " + getName () +" moving to: " + getLocation().getX() + ", " + getLocation().getY());
-                // if(getTargetLocation().equals(getLocation()) ){
-                    // if (getPassenger() != null){
-                        // if(getPassenger().getDestination().equals(getLocation()) ){
-                            // notifyPassengerArrival(getPassenger());
-                            // offloadPassenger();
-                            // incrementPassengersTransported();
-                            // if(getPassenger() != null){
-                                // setTargetLocation(getPassenger().getPickup());
-                            // }
-                        // }
-                        // else {
-                            // notifyPickupArrival();
-                        // }
-                    // }
-
-                // }
-            
-    //    }
-
-    public int GastoCombustible()
-    {
-        return enumFuelConspution.getValor() * distanciaRecorrida;
-    }
+    // public int GastoCombustible()
+    // {
+        // return enumFuelConspution.getValor() * distanciaRecorrida;
+    // }
 
     public int obtainComsumption(){
-        return enumFuelConspution.getValor() * distanciaRecorrida;
+        Location lAux = getInitialLocation();        
+        return enumFuelConspution.getValor() * lAux.distance(getLocation());
     }
     
 }

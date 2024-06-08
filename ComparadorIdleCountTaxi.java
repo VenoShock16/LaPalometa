@@ -18,7 +18,7 @@ public class ComparadorIdleCountTaxi implements Comparator<Taxi>
             return new ComparadorNombreTaxi().compare(t1,t2);
         }
         else
-            if(t1.getPassengersTransported()>t2.getPassengersTransported()){
+            if(t1.getPassengersTransported()<t2.getPassengersTransported()){
                 return 1;
             }
             else return -1;

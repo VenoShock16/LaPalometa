@@ -49,6 +49,8 @@ public abstract class Taxi
     private int ocMax;
     
     protected boolean isFree;
+    // guarda la localización inicial del texi
+    private Location initialLocation;
     
     
 
@@ -73,6 +75,7 @@ public abstract class Taxi
         this.company = company;
         this.location = location;
         this.name= name;
+        this.initialLocation= location;
         
         targetLocation = null;
         taxiDestination = null;
@@ -106,6 +109,7 @@ public abstract class Taxi
         this.location = location;
         this.name= name;
         this.enumFuelConspution= enumFuelConspution;
+        this.initialLocation= location;
         
         targetLocation = null;
         taxiDestination = null;
@@ -159,6 +163,15 @@ public abstract class Taxi
       public int getOcMax()
     {
         return ocMax;
+    }
+    
+    /**
+     * Get the initial location of te taxi 
+     * @return the initialLocation of the taxi
+     */
+      public Location getInitialLocation()
+    {
+        return initialLocation;
     }
     
     /**

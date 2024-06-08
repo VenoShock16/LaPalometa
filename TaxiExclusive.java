@@ -36,7 +36,8 @@ public class TaxiExclusive extends Taxi implements SerPopularEnRedes
     
     public int obtainComsumption()
     {
-    return (weight/2) * enumFuelConspution.getValor() * distanciaRecorrida;
+        Location lAux = getInitialLocation();        
+        return (weight/2) * enumFuelConspution.getValor() * lAux.distance(getLocation());
     }
     
 @Override

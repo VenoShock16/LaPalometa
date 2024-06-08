@@ -18,7 +18,7 @@ public class ComparadorEvaluationTaxi implements Comparator<Taxi>
             return new ComparadorNombreTaxi().compare(t1,t2);
         }
         else
-            if(t1.getValuation()>t2.getValuation()){
+            if(t1.getValuation()<t2.getValuation()){
                 return 1;
             }
             else return -1;
