@@ -37,6 +37,13 @@ public abstract class Passenger {
         this.enumReliable =enumReliable;
     }
     
+    /**
+     * Constructor for objects of class Passenger
+     * @param pickup The pickup location, must not be null.
+     * @param destination The destination location, must not be null.
+     * @param name The passenger's name
+     * @throws NullPointerException If either location is null.
+     */
         public Passenger(Location pickup, Location destination, String name,    
         int arrivalTime,int creditCard, Reliable enumReliable){
         if(pickup == null) {
@@ -88,7 +95,8 @@ public abstract class Passenger {
      */
     public int getcreditCard(){
         return this.creditCard;
-    }   
+    }  
+    
     /**
      * @return The destination location.
      */
@@ -125,6 +133,9 @@ public abstract class Passenger {
         return pickup.distance(destination);
     }
     
+    /**
+     * @return The arrival time of the passenger.
+     */
     public int getArrivalTime(){
         return arrivalTime;
     }

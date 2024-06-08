@@ -14,7 +14,6 @@ public class TaxiExclusive extends Taxi implements SerPopularEnRedes
     private int popularidad;
     /**
      * Constructor for objects of class TaxiExclusive
-     * 
      */
     public TaxiExclusive(TransportCompany company, Location location, String name, FuelConsumption fuelConsumption, int weight)
     {
@@ -25,6 +24,9 @@ public class TaxiExclusive extends Taxi implements SerPopularEnRedes
         this.weight= weight;
     }
     
+    /**
+    * Constructor for objects of class TaxiExclusive
+    */
         public TaxiExclusive(TransportCompany company, Location location, String name)
     {
         super(company,location,name);
@@ -34,12 +36,18 @@ public class TaxiExclusive extends Taxi implements SerPopularEnRedes
         this.weight= 0;
     }
     
+    /**
+    * Calcula la consumción del taxi exclusivo
+    */
     public int obtainComsumption()
     {
         Location lAux = getInitialLocation();        
         return (weight/2) * enumFuelConspution.getValor() * lAux.distance(getLocation());
     }
     
+    /**
+    * Carry out the taxi Exclusive actions
+    */
 @Override
     public void act(){
         boolean flagPickUp=false;
@@ -85,6 +93,9 @@ public class TaxiExclusive extends Taxi implements SerPopularEnRedes
         
     }
     
+    /**
+    * Calcula la popularidad del taxi
+    */
     @Override
     public void adjustPopularity(Passenger passenger)
     {
@@ -97,8 +108,10 @@ public class TaxiExclusive extends Taxi implements SerPopularEnRedes
     
     }
     
-    //
-        
+    
+    /**
+    * Show final info of taxiExclusive
+    */    
     @Override
         public String showFinalInfo()
     {

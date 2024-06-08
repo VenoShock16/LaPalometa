@@ -129,6 +129,10 @@ public class TransportCompany
        }
     }
     
+    /**
+     * Checks if there are any space left for the passenger in the taxi
+     * @retuns true if it does @return false if it doesn't
+     */
     public boolean hayHuecoTaxiExclusive(Taxi taxi){
         boolean flag= false;
         if(!assignments.containsKey(taxi)&& taxi.getOcMax()==1){
@@ -137,6 +141,10 @@ public class TransportCompany
         return flag;
     }
     
+    /**
+     * Checks if there are any space left for the passenger in the taxi
+     * @retuns true if it does @return false if it doesn't
+     */
     public boolean hayHuecoTaxiShuttle(Taxi taxi){
         boolean flag = false;
         if(taxi.tieneSitio()&& taxi.getOcMax()>1){
@@ -217,12 +225,17 @@ public boolean requestPickup(Passenger passenger)
             }
         }
     }
+    
+    /**
+     * Renews the location where the taxi is headed to.
+     */
     public void RennewTargetLocation(Taxi taxi){
         TreeSet<Passenger> PtreeAux;
         PtreeAux=assignments.get(taxi);
         taxi.setTargetLocation(PtreeAux.first().getDestination());
         taxi.setTaxiDestination(PtreeAux.first().getDestination());
     }
+    
     /**
      * A vehicle has arrived at the passenger destination.
      * @param vehicle The vehicle at the pickup point.
@@ -242,6 +255,10 @@ public boolean requestPickup(Passenger passenger)
             }
         }
     }
+    
+    /**
+     * Shows final info of the company
+     */
     public void showFinalInfo(){
         Taxi tAux;
        System.out.println("-->> Taxi(s) with less time not active <<--"); 
@@ -250,7 +267,7 @@ public boolean requestPickup(Passenger passenger)
        tAux= vehicles.get(0);
        
        System.out.println("Final taxi information: " + tAux.getName() + " at " + tAux.getLocation()+ " occupation "+
-       tAux.getOccupation()+ "- passengers transported: " +
+       tAux.getOccupation()+ " - passengers transported: " +
        tAux.getPassengersTransported() +" - non active for: "+ tAux.getIdleCount()+ " times - valuation:" + tAux.getValuation() + " - consumption: " +
        tAux.obtainComsumption());
        
@@ -259,7 +276,7 @@ public boolean requestPickup(Passenger passenger)
        tAux= vehicles.get(0);
        
        System.out.println("Final taxi information: " + tAux.getName() + " at " + tAux.getLocation()+ "occupation "+
-       tAux.getOccupation()+ "- passengers transported: " +
+       tAux.getOccupation()+ " - passengers transported: " +
        tAux.getPassengersTransported() +" - non active for: "+ tAux.getIdleCount()+ " times - valuation: " + tAux.getValuation() + " - consumption: " +
        tAux.obtainComsumption());
     }

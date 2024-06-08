@@ -334,7 +334,10 @@ public abstract class Taxi
             throw new NullPointerException();
         }
     }
-    
+
+    /**
+     * Sets the taxi destination
+     */
     public void setTaxiDestination(Location location)
     {
         if(location != null) {
@@ -372,7 +375,10 @@ public abstract class Taxi
         this.company = company;
     }
     
-    public void setOcupacion(int occupation){
+    /**
+     * Sets the ocupation of the taxi
+     */
+        public void setOcupacion(int occupation){
         this.occupation=occupation;
     }
     
@@ -483,7 +489,7 @@ public abstract class Taxi
     public void offloadPassenger()
     {
          //Limpia la información de passenger para luego asignarle otro pasajero
-            
+            adjustPopularity(passenger.first());
             passenger.pollFirst();
        
         if(passenger.size()>0){ //Como el vehiculo ya ha llegado a su posición a la que se dirigía limpia ese campo.
@@ -517,6 +523,10 @@ public abstract class Taxi
 
     }
     
+    /**
+     * Checks if the taxi got any space left for passengers
+     * If it does @return true, @return false if it doesn't
+     */
     public boolean tieneSitio(){
         boolean enc= false;
         if(occupation < ocMax){
@@ -569,20 +579,27 @@ public abstract class Taxi
             notifyPassengerArrival(passenger.first()); //Notifica que el pasajero ha llegado a su destino
             offloadPassenger();
             incrementPassengersTransported();
-            adjustPopularity(passenger.first());
+            
         }
         
     }
     
-    
+    /**
+     * Calcula la consumción del taxi
+     */
     public abstract int obtainComsumption();
     
+    /**
+     * Calcula la popularidad del taxi
+     */
     public abstract void adjustPopularity(Passenger passenger);
     
-
+    /**
+     * Shows the taxi's final info
+     */
     public String showFinalInfo()
     {
-        return getClass().getName() +" " +getName()+ " at " + getLocation()+ " occupation "+getOcMax()+ "- passengers transported: " +
+        return getClass().getName() +" " +getName()+ " at " + getLocation()+ " occupation "+getOcMax()+ " - passengers transported: " +
         getPassengersTransported() +" - non active for: "+ getIdleCount()+ " times - valuation:" +getValuation() + " - consumption: " + obtainComsumption();
 
     }

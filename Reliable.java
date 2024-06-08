@@ -12,20 +12,34 @@ public enum Reliable
     private int valor;
     private String nombre;
     
+    /**
+     * Constructor of enum Reliable
+     */
     Reliable(String nombre, int valor)
     {
     this.nombre=nombre;    
     this.valor=valor;
     }
+    
+    /**
+     * @return valor
+     */
     public int getValor()
     {
     return valor;
     }
     
+    /**
+     * @return nombre
+     */
         public String getNombre()
     {
     return nombre;
     }
+    
+    /**
+     * Sets valor
+     */
     public void setValor(int valor)
     {
     this.valor=valor;

@@ -16,18 +16,25 @@ public class PassengerVip extends Passenger
        super(pickup,destination,name,reliable);
     }
     
+    /**
+     * Constructor for objects of class PassengerVip
+     */
         public PassengerVip(Location pickup, Location destination, String name, int arrivalTime
         , int creditCard, Reliable reliable)
     {
        super(pickup,destination,name, arrivalTime, creditCard,reliable);
     }
-    
+
+    /**
+     * Constructor for objects of class PassengerVip
+     */
     public PassengerVip(Location pickup, Location destination, String name, String taxiName)
     {
        super(pickup,destination,name,taxiName);
     }
+
     /**
-     *
+     * Carries out the action of paying regarding PassengerVip
      */
     @Override
     public void pay()
@@ -37,6 +44,9 @@ public class PassengerVip extends Passenger
     substractFromCreditCard(610);
     }
     
+    /**
+     * Carries out the action of calculating the Evaluation regarding PassengerVip
+     */
     @Override    
         public int calculateEvaluationValue()
         {

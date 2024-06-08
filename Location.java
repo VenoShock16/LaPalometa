@@ -7,8 +7,8 @@
  */
 public class Location 
 {
-    private int x;  //TODO cambiar a private
-    private int y;  //TODO cambiar a private
+    private int x;  
+    private int y;  
 
 
     /**

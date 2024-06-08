@@ -24,7 +24,10 @@ public class TaxiShuttle extends Taxi
         }
         setOcMax(ocMax);
     }
-
+    
+    /**
+     * Constructor for objects of class TaxiShuttle
+     */    
     public TaxiShuttle(TransportCompany company, Location location, String name)
     {
         super(company,location,name);
@@ -32,7 +35,9 @@ public class TaxiShuttle extends Taxi
             passengers= new TreeSet<Passenger>(new ComparadorLlegada());
         }
     }
-    
+    /**
+    * Calcula la popularidad del taxi TaxiShuttle
+    */
         @Override
     public void adjustPopularity(Passenger passenger)
     {
@@ -40,7 +45,9 @@ public class TaxiShuttle extends Taxi
     }
     
      
-
+    /**
+     * Carry out the taxiShuttle actions
+     */
     @Override
     public void act(){
         boolean flagPickUp=false;
@@ -83,6 +90,9 @@ public class TaxiShuttle extends Taxi
         }  
     }
 
+    /**
+    * Calcula la consumción del taxiShuttle
+    */
     public int obtainComsumption(){
         Location lAux = getInitialLocation();        
         return enumFuelConspution.getValor() * lAux.distance(getLocation());
