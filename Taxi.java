@@ -454,8 +454,9 @@ public abstract class Taxi
      */
     public void notifyPassengerArrival(Passenger passenger)
     {
-         valuation= valuation+passenger.act();
         company.arrivedAtDestination(this, passenger);
+         valuation= valuation+passenger.act();
+        
     }
 
     /**
@@ -568,6 +569,7 @@ public abstract class Taxi
             notifyPassengerArrival(passenger.first()); //Notifica que el pasajero ha llegado a su destino
             offloadPassenger();
             incrementPassengersTransported();
+            adjustPopularity(passenger.first());
         }
         
     }
@@ -575,10 +577,12 @@ public abstract class Taxi
     
     public abstract int obtainComsumption();
     
+    public abstract void adjustPopularity(Passenger passenger);
+    
 
     public String showFinalInfo()
     {
-        return getClass().getName() +" " +getName()+ " at location " + getLocation()+ " occupation "+getOcMax()+ "- passengers transported: " +
+        return getClass().getName() +" " +getName()+ " at " + getLocation()+ " occupation "+getOcMax()+ "- passengers transported: " +
         getPassengersTransported() +" - non active for: "+ getIdleCount()+ " times - valuation:" +getValuation() + " - consumption: " + obtainComsumption();
 
     }

@@ -150,7 +150,7 @@ public abstract class Passenger {
      */
     public String showFinalInfo()
     {
-        return getClass().getName()+" "+getName()+" in location  " + destination + " transported by: " + getTaxiName() + " with "+
+        return getClass().getName()+" "+getName()+" in " + destination + " transported by: " + getTaxiName() + " with "+
         getcreditCard() + " money in the credit card";
     }
     

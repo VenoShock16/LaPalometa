@@ -249,7 +249,7 @@ public boolean requestPickup(Passenger passenger)
        
        tAux= vehicles.get(0);
        
-       System.out.println("Final taxi information: " + tAux.getName() + " at location " + tAux.getLocation()+ " occupation "+
+       System.out.println("Final taxi information: " + tAux.getName() + " at " + tAux.getLocation()+ " occupation "+
        tAux.getOccupation()+ "- passengers transported: " +
        tAux.getPassengersTransported() +" - non active for: "+ tAux.getIdleCount()+ " times - valuation:" + tAux.getValuation() + " - consumption: " +
        tAux.obtainComsumption());
@@ -258,9 +258,9 @@ public boolean requestPickup(Passenger passenger)
        Collections.sort(vehicles, new ComparadorEvaluationTaxi());
        tAux= vehicles.get(0);
        
-       System.out.println("Final taxi information: " + tAux.getName() + " at location " + tAux.getLocation()+ "occupation "+
+       System.out.println("Final taxi information: " + tAux.getName() + " at " + tAux.getLocation()+ "occupation "+
        tAux.getOccupation()+ "- passengers transported: " +
-       tAux.getPassengersTransported() +" - non active for: "+ tAux.getIdleCount()+ " times - valuation:" + tAux.getValuation() + " - consumption: " +
+       tAux.getPassengersTransported() +" - non active for: "+ tAux.getIdleCount()+ " times - valuation: " + tAux.getValuation() + " - consumption: " +
        tAux.obtainComsumption());
     }
 }

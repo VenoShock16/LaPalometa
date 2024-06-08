@@ -32,6 +32,14 @@ public class TaxiShuttle extends Taxi
             passengers= new TreeSet<Passenger>(new ComparadorLlegada());
         }
     }
+    
+        @Override
+    public void adjustPopularity(Passenger passenger)
+    {
+    
+    }
+    
+     
 
     @Override
     public void act(){
@@ -74,11 +82,6 @@ public class TaxiShuttle extends Taxi
         incrementPassengersTransported();
         }  
     }
-
-    // public int GastoCombustible()
-    // {
-        // return enumFuelConspution.getValor() * distanciaRecorrida;
-    // }
 
     public int obtainComsumption(){
         Location lAux = getInitialLocation();        
